@@ -1,5 +1,7 @@
-export default function Home (): React.ReactElement {
+function Home (): React.ReactElement {
   return (
     <></>
   )
 }
+
+export default Home

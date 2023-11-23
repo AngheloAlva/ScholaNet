@@ -14,19 +14,19 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
       },
       colors: {
-        'primary-100': '#4CAF50', /* Verde principal más oscuro para elementos destacados */
-        'primary-200': '#81C784', /* Verde más claro para hover y elementos secundarios */
-        'primary-300': '#C8E6C9', /* Verde muy claro para fondos y acentos sutiles */
+        'primary-100': '#2E8B57', /* Verde principal más oscuro para elementos destacados */
+        'primary-200': '#61bc84', /* Verde más claro para hover y elementos secundarios */
+        'primary-300': '#c6ffe6', /* Verde muy claro para fondos y acentos sutiles */
 
-        'accent-100': '#FFC107', /* Amarillo como color de acento para botones o iconos */
-        'accent-200': '#FFECB3', /* Amarillo claro para fondos de elementos de acento */
+        'accent-100': '#FFFFFF', /* Amarillo como color de acento para botones o iconos */
+        'accent-200': '#e0e0e0', /* Amarillo claro para fondos de elementos de acento */
 
         'text-100': '#333333', /* Gris oscuro para texto principal */
-        'text-200': '#757575', /* Gris medio para texto secundario o descriptivo */
+        'text-200': '#e0e0e0', /* Gris medio para texto secundario o descriptivo */
 
-        'bg-100': '#FFFFFF', /* Blanco para el fondo principal */
-        'bg-200': '#F5F5F5', /* Gris muy claro para fondos secundarios o para diferenciar secciones */
-        'bg-300': '#EEEEEE' /* Gris aún más claro para variar entre fondos y crear profundidad */
+        'bg-100': '#1E1E1E', /* Blanco para el fondo principal */
+        'bg-200': '#2d2d2d', /* Gris muy claro para fondos secundarios o para diferenciar secciones */
+        'bg-300': '#454545' /* Gris aún más claro para variar entre fondos y crear profundidad */
       }
     }
   },
