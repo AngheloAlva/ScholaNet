@@ -1,0 +1,51 @@
+{
+  "users": [
+    {
+      "id": "user1",
+      "firstName": "Juan",
+      "lastName": "Pérez",
+      "email": "juan.perez@example.com",
+      "role": "student",
+      "RUT": "12345678-9",
+      "educationalLevel": "Secundaria",
+      "enrolledCourses": ["course1", "course2"]
+    },
+    {
+      "id": "user2",
+      "firstName": "María",
+      "lastName": "González",
+      "email": "maria.gonzalez@example.com",
+      "role": "teacher",
+      "RUT": "98765432-1",
+      "department": "Matemáticas",
+      "coursesTaught": ["course1"]
+    },
+    {
+      "id": "user3",
+      "firstName": "Carlos",
+      "lastName": "Rodríguez",
+      "email": "carlos.rodriguez@example.com",
+      "role": "administrator",
+      "RUT": "11223344-5",
+      "privileges": "full"
+    }
+  ],
+  "courses": [
+    {
+      "id": "course1",
+      "name": "Álgebra Avanzada",
+      "description": "Curso avanzado de álgebra.",
+      "assignedTeacher": "user2",
+      "enrolledStudents": ["user1"],
+      "schedule": "Lunes y Miércoles de 10:00 a 12:00"
+    },
+    {
+      "id": "course2",
+      "name": "Literatura Española",
+      "description": "Estudio de la literatura española.",
+      "assignedTeacher": "user4",
+      "enrolledStudents": ["user1"],
+      "schedule": "Martes y Jueves de 14:00 a 16:00"
+    }
+  ]
+}
