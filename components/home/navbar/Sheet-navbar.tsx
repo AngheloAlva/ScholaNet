@@ -7,9 +7,9 @@ import {
   SheetTitle,
   SheetTrigger,
   SheetFooter
-} from '../ui/sheet'
-import { Button } from '../ui/button'
-import { Separator } from '../ui/separator'
+} from '../../ui/sheet'
+import { Button } from '../../ui/button'
+import { Separator } from '../../ui/separator'
 
 import { MdMenuOpen } from 'react-icons/md'
 import { FaRegDotCircle } from 'react-icons/fa'

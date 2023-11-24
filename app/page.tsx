@@ -1,5 +1,5 @@
-import CourseSlider from '@/components/HomePage/Course-slider'
-import Navbar from '@/components/navbar/Navbar'
+import CourseSlider from '@/components/home/Course-slider'
+import Navbar from '@/components/home/navbar/Navbar'
 import Image from 'next/image'
 
 import primaryCourses from '@/data/primary-courses.json'
