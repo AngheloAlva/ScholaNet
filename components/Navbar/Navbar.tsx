@@ -2,6 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 
 import SheetNavbar from './Sheet-navbar'
+import NavMenu from './Nav-menu'
 
 function Navbar (): React.ReactElement {
   return (
@@ -13,10 +14,12 @@ function Navbar (): React.ReactElement {
           width={50}
           height={50}
         />
-        <h1 className='text-xl font-bold'>ScholaNet</h1>
+        <h3 className='text-xl font-bold'>ScholaNet</h3>
       </div>
 
       <SheetNavbar />
+
+      <NavMenu />
     </nav>
   )
 }

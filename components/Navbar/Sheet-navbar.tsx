@@ -18,7 +18,7 @@ import MenuItem from './Menu-item'
 function SheetNavbar (): React.ReactElement {
   return (
     <Sheet>
-        <SheetTrigger className='text-3xl'>
+        <SheetTrigger className='text-3xl lg:hidden'>
           <MdMenuOpen />
         </SheetTrigger>
         <SheetContent className='text-white'>
@@ -50,12 +50,20 @@ function SheetNavbar (): React.ReactElement {
 
             <Separator />
 
-            <SheetFooter className='flex gap-2 flex-row w-full'>
+            {/* <MenuItem text={<><PiStudentDuotone className='text-lg' /> Studen Access</>} className='px-6 font-normal flex items-center gap-2' />
+          <MenuItem text={<><PiChalkboardTeacherDuotone className='text-lg' /> Teacher Access</>} className='px-6 font-normal flex items-center gap-2' />
+          <MenuItem text={<><MdOutlineAddToPhotos className='text-lg' /> Request a place</>} className='px-6 font-normal flex items-center gap-2' /> */}
+            <SheetFooter className='flex gap-2 flex-col w-full'>
+              <div className='flex gap-2'>
+                <Button variant={'outline'} className='w-full'>
+                  Studen Access
+                </Button>
+                <Button variant={'outline'} className='w-full'>
+                  Teacher Access
+                </Button>
+              </div>
               <Button variant={'outline'} className='w-full'>
-                Sign In
-              </Button>
-              <Button variant={'outline'} className='w-full'>
-                Enroll
+                Request a place
               </Button>
             </SheetFooter>
           </SheetHeader>

@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Language & Literature",
+    "description": "Focused on the development of reading, writing and reading comprehension skills.",
+    "image": "/courses/language-literature.png",
+    "href": "#"
+  },
+  {
+    "title": "Math",
+    "description": "Basic math concepts, including arithmetic, basic geometry, and introduction to problem solving.",
+    "image": "/courses/math.png",
+    "href": "#"
+  },
+  {
+    "title": "Natural Science",
+    "description": "Exploration of the natural world, basic biology, introduction to ecology, and simple scientific experiments.",
+    "image": "/courses/natural-science.png",
+    "href": "#"
+  },
+  {
+    "title": "History & Social Sciences",
+    "description": "Basic history, geography, and cultural studies, with an emphasis on community and citizenship.",
+    "image": "/courses/history-social-sciences.png",
+    "href": "#"
+  },
+  {
+    "title": "Physical Education",
+    "description": "Hands-on art and music classes to encourage creativity and artistic expression.",
+    "image": "/courses/physical-education.png",
+    "href": "#"
+  },
+  {
+    "title": "Art & Music",
+    "description": "Activities to promote physical development, coordination and teamwork.",
+    "image": "/courses/art-music.png",
+    "href": "#"
+  },
+  {
+    "title": "English",
+    "description": "Focused on the development of reading, writing and reading comprehension skills.",
+    "image": "/courses/english.png",
+    "href": "#"
+  }
+]
