@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Programing & Technology",
+    "description": "Basic courses in programming, web design, robotics, and digital literacy.",
+    "image": "/courses/programming-technology.png",
+    "href": "#"
+  },
+  {
+    "title": "Arts & Creativity",
+    "description": "Art, music, theatre and dance classes.",
+    "image": "/courses/arts-creativity.png",
+    "href": "#"
+  },
+  {
+    "title": "Science & Experimentation",
+    "description": "Laboratories for science, astronomy and nature exploration.",
+    "image": "/courses/science-experimentation.png",
+    "href": "#"
+  },
+  {
+    "title": "Sport & Wellness",
+    "description": "Various sports activities and physical wellness programs.",
+    "image": "/courses/sport-wellness.png",
+    "href": "#"
+  }
+]

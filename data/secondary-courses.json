@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Language & Literature",
+    "description": "Development of advanced reading and writing skills, literary analysis, and composition.",
+    "image": "/courses/language-literature-secondary.png",
+    "href": "#"
+  },
+  {
+    "title": "Math",
+    "description": "Algebra, geometry, statistics, and preparation for calculus.",
+    "image": "/courses/math-secondary.png",
+    "href": "#"
+  },
+  {
+    "title": "Science",
+    "description": "Biology, chemistry and physics, with more complex laboratories and experiments.",
+    "image": "/courses/science-secondary.png",
+    "href": "#"
+  },
+  {
+    "title": "History & Social Sciences",
+    "description": "World history, advanced geography, political and economic studies.",
+    "image": "/courses/history-social-sciences-secondary.png",
+    "href": "#"
+  },
+  {
+    "title": "Physical Education",
+    "description": "Programs that encompass specific sports, fitness, and health education.",
+    "image": "/courses/physical-education-secondary.png",
+    "href": "#"
+  },
+  {
+    "title": "Art & Music",
+    "description": "More advanced classes in art and music, including options to specialize in specific areas.",
+    "image": "/courses/art-music-secondary.png",
+    "href": "#"
+  },
+  {
+    "title": "English",
+    "description": "Advanced English classes for non-native speakers, including preparation for the TOEFL exam.",
+    "image": "/courses/english-secondary.png",
+    "href": "#"
+  }
+]
