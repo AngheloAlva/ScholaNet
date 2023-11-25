@@ -1,0 +1,20 @@
+[
+  {
+    "title": "21st Century Skills Workshops",
+    "description": "Workshops on soft skills such as leadership, teamwork, and problem solving.",
+    "image": "/courses/21st-century-skills-workshops.png",
+    "href": "#"
+  },
+  {
+    "title": "Clubs & Societies",
+    "description": "Robotics, chess, debate, and other special interest clubs.",
+    "image": "/courses/clubs-societies.png",
+    "href": "#"
+  },
+  {
+    "title": "Community Projects & Volunteering",
+    "description": "Community service and volunteer programs.",
+    "image": "/courses/community-projects-volunteering.png",
+    "href": "#"
+  }
+]

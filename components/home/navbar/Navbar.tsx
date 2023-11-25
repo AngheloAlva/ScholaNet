@@ -6,7 +6,7 @@ import NavMenu from './Nav-menu'
 
 function Navbar (): React.ReactElement {
   return (
-    <nav className='w-screen dark:bg-primary-100 h-16 flex items-center px-5 justify-between dark:text-text-200'>
+    <nav className='fixed z-10 backdrop-blur-2xl w-11/12 rounded-lg top-5 left-1/2 transform -translate-x-1/2 px-5 py-2 flex justify-between'>
       <div className='flex items-center gap-1'>
         <Image
           src={'/logo-white.png'}

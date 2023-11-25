@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 function Footer (): React.ReactElement {
   return (
-    <footer className='flex flex-row px-5 pt-5 pb-20 bg-bg-200'>
+    <footer className='flex flex-row px-5 pt-5 pb-20 bg-bg-100 justify-between flex-wrap'>
       <div className='flex flex-col gap-7'>
         <div className='flex flex-col'>
           <h3 className='font-bold text-lg'>Quick Links</h3>
@@ -20,7 +20,7 @@ function Footer (): React.ReactElement {
           <p className='text-sm'>Street N° 123, City</p>
           <p className='text-sm'>info@scholanet.com</p>
         </div>
-        <div className='flex flex-col'>
+        <div className='flex flex-col mb-7'>
           <h3 className='font-bold text-lg'>Folow us</h3>
           <div className='flex gap-4 items-center'>
             <Link href='https://www.instagram.com'>
@@ -37,14 +37,14 @@ function Footer (): React.ReactElement {
             </Link>
           </div>
         </div>
+      </div>
 
-        <div className='flex flex-col'>
-          <h3 className='font-bold text-lg'>Overview</h3>
-          <p className='text-sm'>Basic Education Program</p>
-          <p className='text-sm'>Secondary Education Program</p>
-          <p className='text-sm'>Special Programs</p>
-          <p className='text-sm'>Extracurricular Activities</p>
-        </div>
+      <div className='flex flex-col'>
+        <h3 className='font-bold text-lg'>Overview</h3>
+        <p className='text-sm'>Basic Education Program</p>
+        <p className='text-sm'>Secondary Education Program</p>
+        <p className='text-sm'>Special Programs</p>
+        <p className='text-sm'>Extracurricular Activities</p>
       </div>
     </footer>
   )
