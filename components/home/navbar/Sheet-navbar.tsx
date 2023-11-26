@@ -56,7 +56,7 @@ function SheetNavbar (): React.ReactElement {
             <SheetFooter className='flex gap-2 flex-col w-full'>
               <div className='flex gap-2'>
                 <Button variant={'outline'} className='w-full'>
-                  Studen Access
+                  Student Access
                 </Button>
                 <Button variant={'outline'} className='w-full'>
                   Teacher Access
