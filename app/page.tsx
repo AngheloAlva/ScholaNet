@@ -21,8 +21,8 @@ function Home (): React.ReactElement {
             fill
             className='object-cover object-center rounded-lg'
           />
-          <div className='absolute font-bold border-2 border-accent-200 text-5xl backdrop-blur-xl px-10 py-5 rounded-lg top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-            <h1>SholaNet</h1>
+          <div className='absolute font-bold border-2 border-accent-200 text-5xl backdrop-blur-xl px-7 py-5 rounded-lg top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+            <h1>ScholaNet</h1>
           </div>
 
           <div className='absolute font-bold border-2 border-accent-200 text-3xl backdrop-blur-xl px-10 py-5 rounded-lg bottom-10 left-1/2 transform -translate-x-1/2 w-5/6'>

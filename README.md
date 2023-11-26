@@ -7,7 +7,7 @@ ScholaNet es un sistema de gestión educativa moderno, diseñado para facilitar 
 - [Tailwind CSS](https://tailwindcss.com/) - Framework de CSS para diseño rápido y responsivo.
 - [Express](https://expressjs.com/) - Framework de Node.js para construir el servidor.
 - [MongoDB](https://www.mongodb.com/) con [Mongoose](https://mongoosejs.com/) - Base de datos NoSQL y su ODM.
-- [AuthJS](https://auth0.com/docs/quickstart/webapp/nextjs) - Autenticación para Next.js.
+- [Clerk](https://clerk.com/) - Autenticación para Next.js.
 - [Stripe](https://stripe.com/) - Plataforma de pagos en línea.
 - [Uploadthing](https://uploadthingy.com/) - Solución para la carga de archivos.
 - [Zustand](https://zustand-demo.pmnd.rs/) - Biblioteca para manejo de estados en React.
