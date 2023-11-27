@@ -30,7 +30,7 @@ function SheetNavbar (): React.ReactElement {
           <Separator />
 
           <ul className='flex flex-col font-bold pt-4 pb-6'>
-            <MenuItem text='Home' />
+            <MenuItem text='Dashboard' />
             <MenuItem text='About' />
             <MenuItem text='Admissions' />
             <li className='w-full rounded-sm py-1 transition-colors text-left px-4 mt-4'>
@@ -53,13 +53,11 @@ function SheetNavbar (): React.ReactElement {
         <SheetFooter className='flex gap-2 flex-col w-full mt-5'>
           <SignInButton
             className='border border-input bg-background hover:bg-accent hover:text-accent-foreground py-2 rounded-md inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50'
-            afterSignInUrl='/'
-            afterSignUpUrl='/'
+            afterSignInUrl='/dashboard'
           />
           <SignUpButton
             className='border border-input bg-background hover:bg-accent hover:text-accent-foreground py-2 rounded-md inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50'
-            afterSignInUrl='/'
-            afterSignUpUrl='/'
+            afterSignUpUrl='/dashboard'
           />
         </SheetFooter>
       </SheetContent>

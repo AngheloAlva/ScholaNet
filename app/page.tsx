@@ -2,7 +2,6 @@ import Image from 'next/image'
 import CourseSection from '@/components/home/Course-section'
 import BeneficCard from '@/components/home/Benefic-card'
 import Navbar from '@/components/home/navbar/Navbar'
-import Footer from '@/components/home/footer/Footer'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 
@@ -90,8 +89,6 @@ function Home (): React.ReactElement {
           }
         </div>
       </section>
-
-      <Footer />
     </>
   )
 }

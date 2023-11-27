@@ -19,7 +19,7 @@ function CourseSection ({ title, description, courses }: CourseSectionProps): Re
         {description}
       </p>
 
-      <div className='flex my-10'>
+      <div className='flex mt-10 mb-5'>
         <CourseSlider courses={courses} />
       </div>
     </section>
