@@ -2,22 +2,26 @@ import type { CourseIconProps } from '@/components/dashboard/Course-icon'
 export const coursesIcons: CourseIconProps[] = [
   {
     image: '/courses-icons/primary-icon.png',
-    alt: 'Primary courses icon',
-    buttonText: 'Go to Primary'
+    alt: 'Alumns section image',
+    buttonText: 'Go to Alumns',
+    href: '/dashboard/alumns'
   },
   {
     image: '/courses-icons/secondary-icon.png',
-    alt: 'Secondary courses icon',
-    buttonText: 'Go to Secondary'
+    alt: 'Payments section image',
+    buttonText: 'Go to Payments',
+    href: '/dashboard/payments'
   },
   {
     image: '/courses-icons/workshop-icon.png',
-    alt: 'Workshop courses icon',
-    buttonText: 'Go to Workshops'
+    alt: 'Support section image',
+    buttonText: 'Go to Support',
+    href: '/dashboard/support'
   },
   {
     image: '/courses-icons/special-icon.png',
-    alt: 'Special courses icon',
-    buttonText: 'Go to Specials'
+    alt: 'Announcements section image',
+    buttonText: 'Go to Announcements',
+    href: '/dashboard/announcements'
   }
 ]
