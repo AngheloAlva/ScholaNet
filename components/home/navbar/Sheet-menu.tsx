@@ -4,21 +4,18 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
-  SheetFooter
+  SheetTrigger
 } from '../../ui/sheet'
 import { Separator } from '../../ui/separator'
 import MenuItem from './Menu-item'
 import { MdMenuOpen } from 'react-icons/md'
 import { FaRegDotCircle } from 'react-icons/fa'
+import SheetFooterNav from './Sheet-footer'
 
 function SheetNavbar (): React.ReactElement {
   return (
     <Sheet>
       <SheetTrigger className='text-3xl lg:hidden flex items-center gap-5'>
-        {/* <SignedIn>
-          <UserButton afterSignOutUrl='/' />
-        </SignedIn> */}
         <MdMenuOpen />
       </SheetTrigger>
       <SheetContent className='text-white'>
@@ -51,25 +48,8 @@ function SheetNavbar (): React.ReactElement {
 
           <Separator />
         </SheetHeader>
-        <SheetFooter className='flex gap-2 flex-row items-center w-full mt-5'>
-          {/* <SignedIn>
-            <Button className='w-full p-0'>
-              <Link href={'/dashboard'} className='w-full h-full flex items-center justify-center'>
-                Go to Dashboard
-              </Link>
-            </Button>
-          </SignedIn>
-          <SignedOut>
-            <SignInButton
-              className='border border-input bg-background hover:bg-accent hover:text-accent-foreground py-2 rounded-md inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50'
-              afterSignInUrl='/dashboard'
-            />
-            <SignUpButton
-              className='border border-input bg-background hover:bg-accent hover:text-accent-foreground py-2 rounded-md inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50'
-              afterSignUpUrl='/dashboard'
-            />
-          </SignedOut> */}
-        </SheetFooter>
+
+        <SheetFooterNav />
       </SheetContent>
     </Sheet>
   )

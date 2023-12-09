@@ -6,6 +6,7 @@ import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 
 import { beneficCards, coursesSections } from '../data/home-sections'
+import Footer from '@/components/home/footer/Footer'
 
 function Home (): React.ReactElement {
   return (
@@ -89,6 +90,8 @@ function Home (): React.ReactElement {
           }
         </div>
       </section>
+
+      <Footer />
     </>
   )
 }

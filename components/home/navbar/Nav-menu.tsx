@@ -2,18 +2,13 @@ import MenuItem from './Menu-item'
 
 function NavMenu (): React.ReactElement {
   return (
-    <ul className='hidden lg:flex'>
+    <ul className='hidden lg:flex items-center'>
       <MenuItem href='dashboard' text='Dashboard' className='w-auto' />
-      <MenuItem href='#' text='About' className='w-auto' />
-      <MenuItem href='#' text='Programs & Courses' className='w-auto' />
-      <MenuItem href='#' text='News & Events' className='w-auto' />
-      {/* <SignedIn>
-        <UserButton />
-      </SignedIn>
-      <SignedOut>
-        <SignInButton className='hover:bg-accent-100 hover:text-bg-100 rounded-sm py-1 transition-colors text-left px-4' afterSignInUrl='/dashboard'/>
-        <SignUpButton className='hover:bg-accent-100 hover:text-bg-100 rounded-sm py-1 transition-colors text-left px-4' afterSignUpUrl='/dashboard' />
-      </SignedOut> */}
+      <MenuItem href='about' text='About' className='w-auto' />
+      <MenuItem href='programs-courses' text='Programs & Courses' className='w-auto' />
+      <MenuItem href='news-events' text='News & Events' className='w-auto' />
+      <MenuItem href='auth/sign-in' text='Sign In' className='w-auto' />
+      <MenuItem href='auth/sign-up' text='Sign Up' className='w-auto' />
     </ul>
   )
 }
