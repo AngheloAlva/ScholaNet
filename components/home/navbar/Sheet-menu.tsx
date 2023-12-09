@@ -1,4 +1,3 @@
-import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import {
   Sheet,
   SheetContent,
@@ -12,16 +11,14 @@ import { Separator } from '../../ui/separator'
 import MenuItem from './Menu-item'
 import { MdMenuOpen } from 'react-icons/md'
 import { FaRegDotCircle } from 'react-icons/fa'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 
 function SheetNavbar (): React.ReactElement {
   return (
     <Sheet>
       <SheetTrigger className='text-3xl lg:hidden flex items-center gap-5'>
-        <SignedIn>
+        {/* <SignedIn>
           <UserButton afterSignOutUrl='/' />
-        </SignedIn>
+        </SignedIn> */}
         <MdMenuOpen />
       </SheetTrigger>
       <SheetContent className='text-white'>
@@ -55,7 +52,7 @@ function SheetNavbar (): React.ReactElement {
           <Separator />
         </SheetHeader>
         <SheetFooter className='flex gap-2 flex-row items-center w-full mt-5'>
-          <SignedIn>
+          {/* <SignedIn>
             <Button className='w-full p-0'>
               <Link href={'/dashboard'} className='w-full h-full flex items-center justify-center'>
                 Go to Dashboard
@@ -71,7 +68,7 @@ function SheetNavbar (): React.ReactElement {
               className='border border-input bg-background hover:bg-accent hover:text-accent-foreground py-2 rounded-md inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50'
               afterSignUpUrl='/dashboard'
             />
-          </SignedOut>
+          </SignedOut> */}
         </SheetFooter>
       </SheetContent>
     </Sheet>

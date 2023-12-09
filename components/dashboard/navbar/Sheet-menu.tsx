@@ -1,4 +1,3 @@
-import { SignedIn, UserButton } from '@clerk/nextjs'
 import {
   Sheet,
   SheetContent,
@@ -36,9 +35,9 @@ function DashboardSheetMenu (): React.ReactElement {
           </ul>
         </SheetHeader>
         <SheetFooter className='flex flex-row items-center justify-between'>
-          <SignedIn>
+          {/* <SignedIn>
             <UserButton />
-          </SignedIn>
+          </SignedIn> */}
           <Button variant={'outline'}>
             <Link href='/'>
               Back to home
