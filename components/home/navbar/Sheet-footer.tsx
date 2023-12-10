@@ -7,13 +7,13 @@ function SheetFooterNav (): React.ReactElement {
   return (
     <SheetFooter className='flex gap-2 flex-row items-center w-full mt-5'>
       <Button variant={'outline'} className='w-full'>
-        <Link href={'auth/sign-in'}>
-          Sign In
+        <Link href={'auth/login'}>
+          Login
         </Link>
       </Button>
       <Button variant={'secondary'} className='w-full'>
-        <Link href={'auth/sign-up'}>
-          Sign Up
+        <Link href={'auth/register'}>
+          Register
         </Link>
       </Button>
     </SheetFooter>

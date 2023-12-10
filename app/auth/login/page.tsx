@@ -27,7 +27,7 @@ const signInSchema = z.object({
   password: z.string().min(1, { message: 'Please enter a password' })
 })
 
-function SignInPage (): React.ReactElement {
+function LoginPage (): React.ReactElement {
   const { toast } = useToast()
   const [isLoading, setIsLoading] = useState(false)
 
@@ -55,8 +55,9 @@ function SignInPage (): React.ReactElement {
   return (
     <main className='w-screen h-screen flex items-center justify-center'>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='w-5/6 bg-bg-200 p-5 rounded-md flex flex-col gap-3'>
-          <h1 className='text-3xl font-bold text-center my-2'>Sign In</h1>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='w-5/6 bg-bg-200 px-5 py-7 rounded-md flex flex-col gap-3'>
+          <h1 className='text-3xl font-bold'>Login</h1>
+          <p className='text-sm text-accent-200 mb-4'>Enter your email and password to login to your account.</p>
           <FormField
             control={form.control}
             name='email'
@@ -83,10 +84,10 @@ function SignInPage (): React.ReactElement {
               </FormItem>
             )}
           />
-          <Link href='/auth/forgot-password' className='text-sm text-right hover:underline'>
+          <Link href='/auth/forgot-password' className='text-sm text-left text-blue-500 hover:underline'>
             Forgot password?
           </Link>
-          <Button type='submit' className='w-full'>
+          <Button type='submit' className='w-full mt-2'>
             {
               isLoading
                 ? <div className='lds-ring'><div /><div /><div /><div /></div>
@@ -95,7 +96,7 @@ function SignInPage (): React.ReactElement {
           </Button>
           <p className='text-center text-sm'>
             Don't have an account? {' '}
-            <Link href='/auth/sign-up' className='font-semibold hover:underline'>
+            <Link href='/auth/register' className='font-semibold text-blue-500 hover:underline'>
               Register
             </Link>
           </p>
@@ -105,4 +106,4 @@ function SignInPage (): React.ReactElement {
   )
 }
 
-export default SignInPage
+export default LoginPage
