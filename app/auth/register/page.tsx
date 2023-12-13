@@ -1,58 +1,41 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 'use client'
 
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import AuthFormField from '@/components/auth/Auth-form-field'
+import { useRegisterForm } from '@/hooks/useRegisterForm'
+import useAuthStore from '@/app/store/authStore'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import Link from 'next/link'
-import { z } from 'zod'
 
 import { useToast } from '@/components/ui/use-toast'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { register } from '@/api/user/auth'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from '@/components/ui/form'
+import { Form } from '@/components/ui/form'
 
-const registerSchema = z.object({
-  name: z.string().min(3, { message: 'Please enter your name' }),
-  lastName: z.string().min(3, { message: 'Please enter your last name' }),
-  rut: z.string().min(9, { message: 'Please enter your rut' }),
-  email: z.string().email({ message: 'Please enter a valid email' }),
-  password: z.string().min(6, { message: 'Please enter a password' })
-})
+import type { registerSchema } from '@/lib/registerSchema'
+import type { z } from 'zod'
 
 function RegisterPage (): React.ReactElement {
-  const { toast } = useToast()
   const [isLoading, setIsLoading] = useState(false)
-
-  const form = useForm<z.infer<typeof registerSchema>>({
-    resolver: zodResolver(registerSchema),
-    defaultValues: {
-      name: '',
-      lastName: '',
-      rut: '',
-      email: '',
-      password: ''
-    }
-  })
+  const { toast } = useToast()
+  const form = useRegisterForm()
+  const router = useRouter()
 
   const onSubmit = async (values: z.infer<typeof registerSchema>): Promise<void> => {
     try {
       setIsLoading(true)
-      const { user } = await register({
+      const user = await register({
         name: values.name,
         lastName: values.lastName,
         rut: values.rut,
         email: values.email,
         password: values.password
       })
+      useAuthStore.getState().setEmail(user.email)
+      router.push('/auth/register/verify')
     } catch (error) {
+      setIsLoading(false)
       toast({
         title: 'Error',
         duration: 4000,
@@ -69,73 +52,14 @@ function RegisterPage (): React.ReactElement {
           <p className='text-sm text-accent-200 mb-4'>Please fill in your details to create an account.</p>
 
           <div className='flex items-center justify-center gap-2 w-full'>
-            <FormField
-              control={form.control}
-              name='name'
-              render={({ field }) => (
-                <FormItem className='w-full'>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder='Name' {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name='lastName'
-              render={({ field }) => (
-                <FormItem className='w-full'>
-                  <FormLabel>Last Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder='Last Name' {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <AuthFormField control={form.control} name='name' label='Name' placeholder='Name' />
+            <AuthFormField control={form.control} name='lastName' label='Last Name' placeholder='Last Name' />
           </div>
-          <FormField
-            control={form.control}
-            name='rut'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Rut</FormLabel>
-                <FormControl>
-                  <Input placeholder='Rut' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='email'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder='Email' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='password'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input type='password' placeholder='Password' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type='submit' className='w-full mt-7'>
+          <AuthFormField control={form.control} name='rut' label='Rut' placeholder='Rut' />
+          <AuthFormField control={form.control} name='email' label='Email' placeholder='Email' />
+          <AuthFormField control={form.control} name='password' label='Password' placeholder='Password' type='password' />
+
+          <Button type='submit' className='w-full mt-7' disabled={isLoading}>
             {
               isLoading
                 ? <div className='lds-ring'><div /><div /><div /><div /></div>

@@ -30,8 +30,8 @@ export const login = async ({
 
 export const verifyEmail = async ({
   email, code
-}: VerifyEmail): Promise<string> => {
-  const { data } = await axios.post(`${API_URL}/user/verify-email`, {
+}: VerifyEmail): Promise<{ token: string, refreshToken: string }> => {
+  const { data } = await axios.post<{ token: string, refreshToken: string }>(`${API_URL}/user/verify-email`, {
     email,
     code
   })

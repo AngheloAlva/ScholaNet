@@ -55,7 +55,7 @@ function LoginPage (): React.ReactElement {
           <Link href='/auth/forgot-password' className='text-sm w-fit text-left text-blue-500 hover:underline'>
             Forgot password?
           </Link>
-          <Button type='submit' className='w-full mt-2'>
+          <Button type='submit' className='w-full mt-2' disabled={isLoading}>
             {
               isLoading
                 ? <div className='lds-ring'><div /><div /><div /><div /></div>
