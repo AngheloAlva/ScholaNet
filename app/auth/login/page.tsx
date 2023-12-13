@@ -2,11 +2,11 @@
 'use client'
 
 import { useLoginForm } from '@/hooks/useLoginForm'
-import useAuthStore from '@/app/store/authStore'
 import { useRouter } from 'next/navigation'
 import { login } from '@/api/user/auth'
 import { useState } from 'react'
 import Link from 'next/link'
+import Cookies from 'js-cookie'
 
 import AuthFormField from '@/components/auth/Auth-form-field'
 import { useToast } from '@/components/ui/use-toast'
@@ -26,7 +26,8 @@ function LoginPage (): React.ReactElement {
     try {
       setIsLoading(true)
       const { token, refreshToken } = await login({ email: values.email, password: values.password })
-      useAuthStore.getState().setTokens(token, refreshToken)
+      Cookies.set('token', token, { expires: 7, secure: true, sameSite: 'strict' })
+      Cookies.set('refreshToken', refreshToken, { expires: 7, secure: true, sameSite: 'strict' })
       toast({
         title: 'Success',
         duration: 3000,

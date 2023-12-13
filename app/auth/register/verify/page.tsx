@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Cookies from 'js-cookie'
 
 function VerifyEmailPage (): React.ReactElement {
   const email = useAuthStore.getState().email
@@ -34,7 +35,8 @@ function VerifyEmailPage (): React.ReactElement {
     try {
       const response = await verifyEmail({ email, code })
       setIsVerified(true)
-      useAuthStore.getState().setTokens(response.token, response.refreshToken)
+      Cookies.set('token', response.token, { expires: 7, secure: true, sameSite: 'strict' })
+      Cookies.set('refreshToken', response.refreshToken, { expires: 7, secure: true, sameSite: 'strict' })
       toast({
         title: 'Success',
         duration: 3000,

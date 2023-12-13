@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import UserTitle from '@/components/dashboard/User-title'
 import { coursesIcons } from '@/data/dashboard-sections'

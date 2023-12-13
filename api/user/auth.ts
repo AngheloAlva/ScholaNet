@@ -65,3 +65,11 @@ export const refreshToken = async (refreshToken: string): Promise<string> => {
 
   return data
 }
+
+export const verifyToken = async (token: string): Promise<{ valid: boolean, userId: string }> => {
+  const { data } = await axios.post(`${API_URL}/user/verifytoken`, {
+    token
+  })
+
+  return data
+}
