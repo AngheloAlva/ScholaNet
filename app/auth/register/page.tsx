@@ -47,9 +47,9 @@ function RegisterPage (): React.ReactElement {
   return (
     <main className='w-screen h-screen flex items-center justify-center'>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='w-5/6 bg-bg-200 px-5 py-7 rounded-md flex flex-col gap-3'>
-          <h1 className='text-3xl font-bold'>Register</h1>
-          <p className='text-sm text-accent-200 mb-4'>Please fill in your details to create an account.</p>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='w-5/6 bg-bg-200 shadow-lg shadow-bg-300 px-5 py-7 rounded-md flex flex-col gap-3'>
+          <h1 className='text-3xl text-text-100 font-bold'>Register</h1>
+          <p className='text-sm text-text-200 mb-4'>Please fill in your details to create an account.</p>
 
           <div className='flex items-center justify-center gap-2 w-full'>
             <AuthFormField control={form.control} name='name' label='Name' placeholder='Name' />
@@ -68,7 +68,7 @@ function RegisterPage (): React.ReactElement {
           </Button>
           <p className='text-center text-sm'>
             Already have an account? {' '}
-            <Link href='/auth/login' className='font-semibold text-blue-500 hover:underline'>
+            <Link href='/auth/login' className='font-semibold text-accent-100 hover:underline'>
               Login
             </Link>
           </p>

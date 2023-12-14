@@ -2,7 +2,7 @@ import MenuItem from './Menu-item'
 
 function NavMenu (): React.ReactElement {
   return (
-    <ul className='hidden lg:flex items-center'>
+    <ul className='hidden lg:flex items-center text-text-100'>
       <MenuItem href='dashboard' text='Dashboard' className='w-auto' />
       <MenuItem href='about' text='About' className='w-auto' />
       <MenuItem href='programs-courses' text='Programs & Courses' className='w-auto' />

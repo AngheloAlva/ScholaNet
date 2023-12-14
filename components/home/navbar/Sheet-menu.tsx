@@ -15,10 +15,10 @@ import SheetFooterNav from './Sheet-footer'
 function SheetNavbar (): React.ReactElement {
   return (
     <Sheet>
-      <SheetTrigger className='text-3xl lg:hidden flex items-center gap-5'>
+      <SheetTrigger className='text-3xl lg:hidden flex text-text-100 items-center gap-5'>
         <MdMenuOpen />
       </SheetTrigger>
-      <SheetContent className='text-white'>
+      <SheetContent className='text-text-100'>
         <SheetHeader>
           <SheetTitle>ScholaNet</SheetTitle>
           <SheetDescription>
@@ -28,22 +28,22 @@ function SheetNavbar (): React.ReactElement {
 
           <ul className='flex flex-col font-bold pt-4 pb-6'>
             <MenuItem href='/dashboard' text='Dashboard' />
-            <MenuItem href='#' text='About' />
+            <MenuItem href='/about' text='About' />
             <li className='w-full rounded-sm py-1 transition-colors text-left px-4 mt-4'>
               Educational Level
             </li>
             <MenuItem
               text={<><FaRegDotCircle className='text-xs' /> Primary</>}
-              href='#'
+              href='/programs/primary'
               className='px-6 font-normal flex items-center gap-2'
             />
             <MenuItem
               text={<><FaRegDotCircle className='text-xs' /> Secondary</>}
-              href='#'
+              href='/programs/secondary'
               className='px-6 font-normal flex items-center gap-2'
             />
-            <MenuItem href='#' text='Programs & Courses' className='mt-4' />
-            <MenuItem href='#' text='News & Events' />
+            <MenuItem href='/programs' text='Programs & Courses' className='mt-4' />
+            <MenuItem href='/news-events' text='News & Events' />
           </ul>
 
           <Separator />

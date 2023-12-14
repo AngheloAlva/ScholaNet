@@ -15,7 +15,7 @@ import { FaCaretRight } from 'react-icons/fa'
 
 const CourserCard = ({ title, description, image, href }: CourseCard): React.ReactElement => {
   return (
-    <Card className='h-full justify-between flex flex-col'>
+    <Card className='h-full bg-bg-200 justify-between flex flex-col'>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
@@ -26,7 +26,7 @@ const CourserCard = ({ title, description, image, href }: CourseCard): React.Rea
             alt={title}
             width={500}
             height={500}
-            className='rounded-sm'
+            className='rounded-md'
           />
       </CardContent>
       <CardFooter>

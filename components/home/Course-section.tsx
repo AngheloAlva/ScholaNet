@@ -4,18 +4,20 @@ import CourseSlider from './Course-slider'
 
 interface CourseSectionProps {
   title: string
+  subTitle: string
   description: string
   courses: CourseCard[]
 }
 
-function CourseSection ({ title, description, courses }: CourseSectionProps): React.ReactElement {
+function CourseSection ({ title, subTitle, description, courses }: CourseSectionProps): React.ReactElement {
   return (
-    <section className='p-5 w-screen'>
-      <h2 className='text-2xl px-2 font-bold mb-2'>
+    <section className='p-5 py-7 w-screen'>
+      <h2 className='text-2xl text-text-100 px-2 font-bold mb-2'>
         {title}
+        <span className='text-accent-100'>{subTitle}</span>
       </h2>
-      <div className='h-3 border-t-[1px] border-x-[1px] w-full border-accent-200 opacity-50' />
-      <p className='text-accent-200 my-3 px-2'>
+      <div className='h-3 border-t-[1px] border-x-[1px] w-full border-text-100 opacity-50' />
+      <p className='text-text-200 my-3 px-2'>
         {description}
       </p>
 

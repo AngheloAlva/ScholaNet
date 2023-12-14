@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 function Footer (): React.ReactElement {
   return (
-    <footer className='flex flex-row px-5 pt-5 pb-20 bg-bg-100 justify-between flex-wrap'>
+    <footer className='flex text-text-100 flex-row px-5 pt-5 pb-20 bg-bg-100 justify-between flex-wrap'>
       <div className='flex flex-col gap-7'>
         <div className='flex flex-col'>
           <h3 className='font-bold text-lg'>Quick Links</h3>
@@ -24,7 +24,7 @@ function Footer (): React.ReactElement {
           <h3 className='font-bold text-lg'>Folow us</h3>
           <div className='flex gap-4 items-center'>
             <Link href='https://www.instagram.com'>
-              <IoLogoInstagram className='text-2xl hover:text-pink-400 transition-colors' />
+              <IoLogoInstagram className='text-2xl hover:text-accent-100 transition-colors' />
             </Link>
             <Link href='https://www.twitter.com'>
               <FaXTwitter className='text-2xl hover:text-neutral-900 transition-colors' />

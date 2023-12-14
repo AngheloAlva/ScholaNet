@@ -55,7 +55,7 @@ function VerifyEmailPage (): React.ReactElement {
 
   return (
     <main className='w-screen h-screen flex items-center justify-center'>
-      <Card className='bg-bg-200'>
+      <Card className='bg-bg-200 shadow-lg shadow-bg-300'>
         <CardHeader>
           <CardTitle>Validation Form</CardTitle>
           <CardDescription>Please enter the 6-digit code to continue.</CardDescription>

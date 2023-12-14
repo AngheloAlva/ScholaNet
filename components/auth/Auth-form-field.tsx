@@ -19,7 +19,7 @@ function AuthFormField ({
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{label}</FormLabel>
+          <FormLabel className='text-text-100'>{label}</FormLabel>
           <FormControl>
             <Input placeholder={placeholder} type={type} {...field} />
           </FormControl>

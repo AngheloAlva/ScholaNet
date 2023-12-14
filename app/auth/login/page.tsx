@@ -49,14 +49,14 @@ function LoginPage (): React.ReactElement {
   return (
     <main className='w-screen h-screen flex items-center justify-center'>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='w-5/6 bg-bg-200 px-5 py-7 rounded-md flex flex-col gap-3'>
-          <h1 className='text-3xl font-bold'>Login</h1>
-          <p className='text-sm text-accent-200 mb-4'>Enter your email and password to login to your account.</p>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='w-5/6 bg-bg-200 shadow-lg shadow-bg-300 px-5 py-7 rounded-md flex flex-col gap-3'>
+          <h1 className='text-3xl text-text-100 font-bold'>Login</h1>
+          <p className='text-sm text-text-200 mb-4'>Enter your email and password to login to your account.</p>
           <AuthFormField control={form.control} name='email' label='Email' placeholder='Email' />
           <AuthFormField control={form.control} name='password' label='Password' placeholder='Password' type='password' />
 
           <Dialog>
-            <DialogTrigger className='text-sm w-fit text-left text-blue-500 hover:underline'>Forgot password?</DialogTrigger>
+            <DialogTrigger className='text-sm w-fit text-left text-accent-100 hover:underline'>Forgot password?</DialogTrigger>
             <DialogResetPassword />
           </Dialog>
 
@@ -69,7 +69,7 @@ function LoginPage (): React.ReactElement {
           </Button>
           <p className='text-center text-sm'>
             Don't have an account? {' '}
-            <Link href='/auth/register' className='font-semibold text-blue-500 hover:underline'>
+            <Link href='/auth/register' className='font-semibold text-accent-100 hover:underline'>
               Register
             </Link>
           </p>

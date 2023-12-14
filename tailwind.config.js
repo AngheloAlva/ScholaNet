@@ -50,19 +50,19 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        'primary-100': '#2E8B57',
-        'primary-200': '#61bc84',
-        'primary-300': '#c6ffe6',
+        'primary-100': '#499c80',
+        'primary-200': '#2a8065',
+        'primary-300': '#00412b',
 
-        'accent-100': '#FFFFFF',
-        'accent-200': '#e0e0e0',
+        'accent-100': '#e44982',
+        'accent-200': '#ffe6ff',
 
-        'text-100': '#333333',
-        'text-200': '#e0e0e0',
+        'text-100': '#353535',
+        'text-200': '#5f5f5f',
 
-        'bg-100': '#1E1E1E',
-        'bg-200': '#2d2d2d',
-        'bg-300': '#454545'
+        'bg-100': '#ffffff',
+        'bg-200': '#f5f5f5',
+        'bg-300': '#cccccc'
       },
       borderRadius: {
         lg: "var(--radius)",

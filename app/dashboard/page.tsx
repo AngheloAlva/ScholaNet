@@ -11,10 +11,10 @@ function DashboardPage (): React.ReactElement {
       <header className='flex flex-col w-screen px-5 bg-bg-200 pb-10 items-center pt-28'>
         <div className='md:flex md: justify-between'>
           <UserTitle />
-          <Image src={'/dashboard-intro.png'} alt='Dashboard Presentation' width={768} height={500} className='md:w-96' />
+          <Image src={'/intro-dashboard.png'} alt='Dashboard Presentation' width={768} height={500} className='md:w-96' />
         </div>
 
-        <div className='grid grid-cols-2 gap-2 border-2 p-2 mb-10 rounded-lg mt-10 bg-bg-300 w-full md:grid-cols-4 max-w-4xl'>
+        <div className='grid shadow-lg grid-cols-2 gap-2 p-2 mb-10 rounded-lg mt-10 bg-bg-100 w-full md:grid-cols-4 max-w-4xl'>
           {
             coursesIcons.map((course) => (
               <CourseIcon

@@ -11,7 +11,7 @@ export interface CourseIconProps {
 
 function CourseIcon ({ image, alt, buttonText, href }: CourseIconProps): React.ReactElement {
   return (
-    <div className='border-2 rounded-lg border-accent-200 p-1'>
+    <div className='rounded-lg shadow-md shadow-text-200 bg-bg-200 p-2'>
       <Image
         src={image}
         alt={alt}

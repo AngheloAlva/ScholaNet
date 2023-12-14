@@ -19,11 +19,11 @@ function DashboardSheetMenu (): React.ReactElement {
       <SheetTrigger className='text-3xl lg:hidden flex items-center gap-5'>
         <MdMenuOpen />
       </SheetTrigger>
-      <SheetContent className='text-white flex flex-col justify-between'>
+      <SheetContent className='text-text-100 flex flex-col justify-between'>
         <SheetHeader>
           <SheetTitle>Dashboard</SheetTitle>
           <SheetDescription>
-            Dashboard for tutors
+            Dashboard for guardians
           </SheetDescription>
           <Separator />
 
@@ -35,9 +35,6 @@ function DashboardSheetMenu (): React.ReactElement {
           </ul>
         </SheetHeader>
         <SheetFooter className='flex flex-row items-center justify-between'>
-          {/* <SignedIn>
-            <UserButton />
-          </SignedIn> */}
           <Button variant={'outline'}>
             <Link href='/'>
               Back to home
