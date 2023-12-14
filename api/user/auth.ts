@@ -39,7 +39,7 @@ export const verifyEmail = async ({
   return data
 }
 
-export const requestResetPassword = async (email: string): Promise<string> => {
+export const requestResetPassword = async (email: string): Promise<{ message: string }> => {
   const { data } = await axios.post(`${API_URL}/user/request-password-reset`, {
     email
   })

@@ -15,6 +15,8 @@ import { Form } from '@/components/ui/form'
 
 import type { loginSchema } from '@/lib/loginSchema'
 import type { z } from 'zod'
+import { Dialog, DialogTrigger } from '@/components/ui/dialog'
+import DialogResetPassword from '@/components/auth/Dialog-reset-password'
 
 function LoginPage (): React.ReactElement {
   const { toast } = useToast()
@@ -53,9 +55,11 @@ function LoginPage (): React.ReactElement {
           <AuthFormField control={form.control} name='email' label='Email' placeholder='Email' />
           <AuthFormField control={form.control} name='password' label='Password' placeholder='Password' type='password' />
 
-          <Link href='/auth/forgot-password' className='text-sm w-fit text-left text-blue-500 hover:underline'>
-            Forgot password?
-          </Link>
+          <Dialog>
+            <DialogTrigger className='text-sm w-fit text-left text-blue-500 hover:underline'>Forgot password?</DialogTrigger>
+            <DialogResetPassword />
+          </Dialog>
+
           <Button type='submit' className='w-full mt-2' disabled={isLoading}>
             {
               isLoading
