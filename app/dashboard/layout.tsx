@@ -8,7 +8,7 @@ function DashboardLayout ({
 }): React.ReactElement {
   return (
     <>
-      <DashboardNavbar />
+      {/* <DashboardNavbar /> */}
       {children}
       <Footer />
     </>
