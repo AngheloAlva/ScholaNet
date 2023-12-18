@@ -13,53 +13,36 @@ export async function middleware (req: NextRequest) {
   const token = (tokenCookie != null) ? tokenCookie.value : ''
   const refreshTokenValue = (refreshTokenCookie != null) ? refreshTokenCookie.value : ''
 
-  const role = (token != null) ? getRoleFromToken(token) : null
-
-  if (isTokenExpired(token) && refreshTokenValue.length > 0) {
-    try {
-      const newToken = await refreshToken(refreshTokenValue)
-      if (newToken.length > 0) {
-        const response = NextResponse.next()
-        response.cookies.set('token', newToken, { httpOnly: true, sameSite: 'strict' })
-        return response
+  if ((token.length === 0) || isTokenExpired(token)) {
+    if (refreshTokenValue.length === 0) {
+      try {
+        const newToken = await refreshToken(refreshTokenValue)
+        if (newToken.length > 0) {
+          const response = NextResponse.next()
+          response.cookies.set('token', newToken, { httpOnly: true, sameSite: 'strict' })
+          return response
+        }
+      } catch (error) {
+        const url = req.nextUrl.clone()
+        url.pathname = '/auth/login'
+        return NextResponse.redirect(url.toString(), { status: 302 })
       }
-    } catch (error) {
+    } else {
       const url = req.nextUrl.clone()
       url.pathname = '/auth/login'
       return NextResponse.redirect(url.toString(), { status: 302 })
     }
   }
 
-  if (role == null) {
-    const url = req.nextUrl.clone()
-    url.pathname = '/auth/login'
-    return NextResponse.redirect(url.toString(), { status: 302 })
-  }
+  const role = getRoleFromToken(token)
 
-  if (req.nextUrl.pathname.startsWith('/dashboard')) {
-    if (token.length === 0) {
+  if (role != null) {
+    const basePath = `/dashboard/${role}`
+    if (!req.nextUrl.pathname.startsWith(basePath)) {
       const url = req.nextUrl.clone()
-      url.pathname = '/auth/login'
+      url.pathname = basePath
       return NextResponse.redirect(url.toString(), { status: 302 })
     }
-  }
-
-  if (role !== 'admin' && role !== 'teacher' && !req.nextUrl.pathname.startsWith('/dashboard/user')) {
-    const url = req.nextUrl.clone()
-    url.pathname = '/dashboard/guardian'
-    return NextResponse.redirect(url.toString(), { status: 302 })
-  }
-
-  if (role === 'teacher' && !req.nextUrl.pathname.startsWith('/dashboard/teacher')) {
-    const url = req.nextUrl.clone()
-    url.pathname = '/dashboard/teacher'
-    return NextResponse.redirect(url.toString(), { status: 302 })
-  }
-
-  if (role === 'admin' && !req.nextUrl.pathname.startsWith('/dashboard/admin')) {
-    const url = req.nextUrl.clone()
-    url.pathname = '/dashboard/admin'
-    return NextResponse.redirect(url.toString(), { status: 302 })
   }
 
   return NextResponse.next()
