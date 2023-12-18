@@ -1,3 +1,5 @@
+'use client'
+
 import { ResponsiveBar } from '@nivo/bar'
 
 function BarChart (props: React.ComponentPropsWithoutRef<'div'>): React.ReactElement {

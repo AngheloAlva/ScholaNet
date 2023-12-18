@@ -1,7 +1,6 @@
-'use client'
-
 import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from '@/components/ui/table'
 import { CardTitle, CardHeader, CardContent, Card } from '@/components/ui/card'
+import BarChart from '@/components/dashboard/guardian/BarChart'
 import { Button } from '@/components/ui/button'
 import {
   FaCalendarDays,
@@ -10,7 +9,6 @@ import {
   FaPhone,
   FaPenRuler
 } from 'react-icons/fa6'
-import BarChart from '@/components/dashboard/BarChart'
 
 function DashboardPage (): React.ReactElement {
   return (
