@@ -5,9 +5,11 @@ import { useLoginForm } from '@/hooks/useLoginForm'
 import { useRouter } from 'next/navigation'
 import { login } from '@/api/user/auth'
 import { useState } from 'react'
-import Link from 'next/link'
 import Cookies from 'js-cookie'
+import Link from 'next/link'
 
+import DialogResetPassword from '@/components/auth/Dialog-reset-password'
+import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import AuthFormField from '@/components/auth/Auth-form-field'
 import { useToast } from '@/components/ui/use-toast'
 import { Button } from '@/components/ui/button'
@@ -15,8 +17,6 @@ import { Form } from '@/components/ui/form'
 
 import type { loginSchema } from '@/lib/loginSchema'
 import type { z } from 'zod'
-import { Dialog, DialogTrigger } from '@/components/ui/dialog'
-import DialogResetPassword from '@/components/auth/Dialog-reset-password'
 
 function LoginPage (): React.ReactElement {
   const { toast } = useToast()
