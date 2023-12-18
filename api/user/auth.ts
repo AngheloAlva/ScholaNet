@@ -6,7 +6,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL
 export const register = async ({
   name, lastName, rut, email, password
 }: CreateUser): Promise<User> => {
-  const { data } = await axios.post(`${API_URL}/user`, {
+  const { data } = await axios.post(`${API_URL}/auth`, {
     name,
     lastName,
     rut,
@@ -20,7 +20,7 @@ export const register = async ({
 export const login = async ({
   email, password
 }: LoginUser): Promise<{ token: string, refreshToken: string }> => {
-  const { data } = await axios.post(`${API_URL}/user/login`, {
+  const { data } = await axios.post(`${API_URL}/auth/login`, {
     email,
     password
   })
@@ -31,7 +31,7 @@ export const login = async ({
 export const verifyEmail = async ({
   email, code
 }: VerifyEmail): Promise<{ token: string, refreshToken: string }> => {
-  const { data } = await axios.post<{ token: string, refreshToken: string }>(`${API_URL}/user/verify-email`, {
+  const { data } = await axios.post<{ token: string, refreshToken: string }>(`${API_URL}/auth/verify-email`, {
     email,
     code
   })
@@ -40,7 +40,7 @@ export const verifyEmail = async ({
 }
 
 export const requestResetPassword = async (email: string): Promise<{ message: string }> => {
-  const { data } = await axios.post(`${API_URL}/user/request-password-reset`, {
+  const { data } = await axios.post(`${API_URL}/auth/request-password-reset`, {
     email
   })
 
@@ -50,7 +50,7 @@ export const requestResetPassword = async (email: string): Promise<{ message: st
 export const resetPassword = async ({
   token, password
 }: ResetPassword): Promise<string> => {
-  const { data } = await axios.post(`${API_URL}/user/reset-password`, {
+  const { data } = await axios.post(`${API_URL}/auth/reset-password`, {
     token,
     password
   })
@@ -59,7 +59,7 @@ export const resetPassword = async ({
 }
 
 export const refreshToken = async (refreshToken: string): Promise<string> => {
-  const { data } = await axios.post(`${API_URL}/user/refresh-token`, {
+  const { data } = await axios.post(`${API_URL}/auth/refresh-token`, {
     refreshToken
   })
 
@@ -67,7 +67,7 @@ export const refreshToken = async (refreshToken: string): Promise<string> => {
 }
 
 export const verifyToken = async (token: string): Promise<{ valid: boolean, userId: string }> => {
-  const { data } = await axios.post(`${API_URL}/user/verifytoken`, {
+  const { data } = await axios.post(`${API_URL}/auth/verifytoken`, {
     token
   })
 

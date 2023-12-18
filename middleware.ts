@@ -7,13 +7,17 @@ import type { NextRequest } from 'next/server'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export async function middleware (req: NextRequest) {
-  const token = String(req.cookies.get('token'))
-  const refreshTokenCookie = String(req.cookies.get('refreshToken'))
+  const tokenCookie = req.cookies.get('token')
+  const refreshTokenCookie = req.cookies.get('refreshToken')
+
+  const token = (tokenCookie != null) ? tokenCookie.value : ''
+  const refreshTokenValue = (refreshTokenCookie != null) ? refreshTokenCookie.value : ''
+
   const role = (token != null) ? getRoleFromToken(token) : null
 
-  if (isTokenExpired(token) && refreshTokenCookie.length > 0) {
+  if (isTokenExpired(token) && refreshTokenValue.length > 0) {
     try {
-      const newToken = await refreshToken(refreshTokenCookie)
+      const newToken = await refreshToken(refreshTokenValue)
       if (newToken.length > 0) {
         const response = NextResponse.next()
         response.cookies.set('token', newToken, { httpOnly: true, sameSite: 'strict' })
