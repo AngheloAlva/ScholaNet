@@ -1,5 +1,6 @@
 import axios from 'axios'
-import type { CreateUser, LoginUser, User, VerifyEmail, ResetPassword } from '@/types/user'
+import type { LoginUser, VerifyEmail, ResetPassword, CreateUser } from '@/types/user/auth'
+import type { User } from '@/types/user/user'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
