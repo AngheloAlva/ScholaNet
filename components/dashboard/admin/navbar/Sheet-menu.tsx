@@ -3,7 +3,6 @@ import MenuItem from '@/components/home/navbar/Menu-item'
 import { Separator } from '@/components/ui/separator'
 
 import { MdMenuOpen } from 'react-icons/md'
-import { Button } from '@/components/ui/button'
 
 interface SheetMenuProps {
   menuList: Array<{
@@ -16,9 +15,7 @@ function SheetMenu ({ menuList }: SheetMenuProps): React.ReactElement {
   return (
     <Sheet>
       <SheetTrigger className='text-3xl xl:hidden flex items-center gap-5'>
-        <Button className="rounded-full text-3xl bg-text-200 text-bg-100" size="icon" variant="ghost">
-          <MdMenuOpen />
-        </Button>
+        <MdMenuOpen className="rounded-full text-3xl bg-text-200 p-1 hover:bg-bg-300 hover:text-text-200 transition-colors text-bg-100 h-10 w-10" />
       </SheetTrigger>
 
       <SheetContent className='text-text-100 flex flex-col justify-between'>
