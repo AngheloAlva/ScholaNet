@@ -3,8 +3,8 @@ import { Input } from '../ui/input'
 
 import type { Control } from 'react-hook-form'
 
-interface AuthFormFieldProps {
-  control: Control<any>
+export interface AuthFormFieldProps {
+  control?: Control<any>
   name: string
   label: string
   type?: string
