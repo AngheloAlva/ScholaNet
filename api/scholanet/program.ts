@@ -11,7 +11,7 @@ interface GetProgramsResponse {
 export const getPrograms = async ({
   limit = 5, page = 1
 }): Promise<GetProgramsResponse> => {
-  const { data } = await axios.get<GetProgramsResponse>(`${API_URL}/programs`)
+  const { data } = await axios.get<GetProgramsResponse>(`${API_URL}/programs?limit=${limit}&page=${page}`)
   return data
 }
 

@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 function Footer (): React.ReactElement {
   return (
-    <footer className='flex text-text-100 flex-row px-5 pt-5 pb-20 bg-bg-100 justify-between flex-wrap'>
+    <footer className='flex text-text-100 flex-row px-5 pt-5 pb-20 bg-bg-200 justify-between flex-wrap'>
       <div className='flex flex-col gap-7'>
         <div className='flex flex-col'>
           <h3 className='font-bold text-lg'>Quick Links</h3>

@@ -1,6 +1,6 @@
 import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from '@/components/ui/table'
 import { CardTitle, CardHeader, Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
 
 interface TableCardProps {
   title: string
@@ -17,8 +17,8 @@ function TableCard ({
         <CardTitle className="text-sm font-medium">
           { title }
         </CardTitle>
-        <Button variant="link">Go to Grades Page</Button>
       </CardHeader>
+      <Separator />
       <Table>
         <TableHeader>
           <TableRow>
