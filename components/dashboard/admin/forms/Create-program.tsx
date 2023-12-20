@@ -1,7 +1,7 @@
 import { createProgramSchema } from '@/lib/createProgramSchema'
 import { useState } from 'react'
 
-import AuthFormField from '@/components/auth/Auth-form-field'
+import AuthFormField from '@/components/Form-field'
 import { createProgram } from '@/api/scholanet/program'
 import { useToast } from '@/components/ui/use-toast'
 import GenericForm from '@/components/Generic-form'

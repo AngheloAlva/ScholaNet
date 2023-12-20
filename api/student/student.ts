@@ -9,7 +9,7 @@ interface GetStudentsResponse {
 }
 
 export const getStudents = async ({
-  total = 10, page = 1
+  limit = 10, page = 1
 }): Promise<GetStudentsResponse> => {
   const { data } = await axios.get<GetStudentsResponse>(`${API_URL}/students`)
   return data

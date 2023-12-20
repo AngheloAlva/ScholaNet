@@ -6,7 +6,7 @@ import React from 'react'
 
 import { Form } from './ui/form'
 
-import type { AuthFormFieldProps } from '@/components/auth/Auth-form-field'
+import type { AuthFormFieldProps } from '@/components/Form-field'
 
 interface GenericFormProps {
   schema: any

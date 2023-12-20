@@ -10,7 +10,7 @@ import Link from 'next/link'
 
 import DialogResetPassword from '@/components/auth/Dialog-reset-password'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
-import AuthFormField from '@/components/auth/Auth-form-field'
+import AuthFormField from '@/components/Form-field'
 import { useToast } from '@/components/ui/use-toast'
 import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'

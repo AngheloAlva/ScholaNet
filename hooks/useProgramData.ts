@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { getPrograms } from '@/api/scholanet/program'
 
 import { useToast } from '@/components/ui/use-toast'
-
 import type { Program } from '@/types/schola-net/program'
 
 const useProgramData = (): {

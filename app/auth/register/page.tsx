@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 'use client'
 
-import AuthFormField from '@/components/auth/Auth-form-field'
+import AuthFormField from '@/components/Form-field'
 import { useRegisterForm } from '@/hooks/useRegisterForm'
 import useAuthStore from '@/app/store/authStore'
 import { useRouter } from 'next/navigation'
