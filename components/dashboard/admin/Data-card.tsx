@@ -1,4 +1,5 @@
 import { CardTitle, CardHeader, CardContent, Card } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
 
 interface DataCardProps {
   title: string
@@ -19,7 +20,11 @@ function DataCard ({
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold">
-          { value }
+          {
+            (value !== 0)
+              ? value
+              : <Skeleton className='w-10 h-8 bg-bg-200' />
+          }
         </div>
       </CardContent>
     </Card>

@@ -8,6 +8,7 @@ import GenericForm from '@/components/Generic-form'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -17,7 +18,9 @@ import {
 
 import type { z } from 'zod'
 
-function CreateProgram (): React.ReactElement {
+function CreateProgram (
+  { onProgramCreated }: { onProgramCreated: () => Promise<void> }
+): React.ReactElement {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const { toast } = useToast()
   const defaultValues = {
@@ -34,6 +37,7 @@ function CreateProgram (): React.ReactElement {
         duration: 3000,
         description: 'You have successfully created a new program.'
       })
+      await onProgramCreated()
       setIsLoading(false)
     } catch (error) {
       setIsLoading(false)
@@ -48,7 +52,7 @@ function CreateProgram (): React.ReactElement {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Create Program</Button>
+        <Button>Create Program</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -62,13 +66,15 @@ function CreateProgram (): React.ReactElement {
             <AuthFormField name='name' label='Name' placeholder='Name' />
             <AuthFormField name='description' label='Description' placeholder='Description' />
 
-            <Button type='submit' className='w-full mt-2' disabled={isLoading}>
-              {
-                isLoading
-                  ? <div className='lds-ring'><div /><div /><div /><div /></div>
-                  : 'Create Program'
-              }
-            </Button>
+            <DialogClose>
+              <Button type='submit' className='w-full mt-2' disabled={isLoading}>
+                {
+                  isLoading
+                    ? <div className='lds-ring'><div /><div /><div /><div /></div>
+                    : 'Create Program'
+                }
+              </Button>
+            </DialogClose>
           </GenericForm>
         </div>
       </DialogContent>
