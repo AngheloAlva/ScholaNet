@@ -1,25 +1,22 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 
-import { useForm } from 'react-hook-form'
+import { useForm, type FieldValues, type SubmitHandler } from 'react-hook-form'
 import { useEffect } from 'react'
-
-import { Textarea } from '@/components/ui/textarea'
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 
-import type { FieldValues, SubmitHandler } from 'react-hook-form'
-
-interface ProgramFormProps {
+interface CourseFormProps {
   initialValues: {
-    name: string
+    title: string
     description: string
+    href: string
   }
   onSubmit: SubmitHandler<FieldValues>
 }
 
-function ProgramForm ({ initialValues, onSubmit }: ProgramFormProps): React.ReactElement {
+function CourseForm ({ initialValues, onSubmit }: CourseFormProps): React.ReactElement {
   const { register, handleSubmit, reset } = useForm()
 
   useEffect(() => {
@@ -29,33 +26,44 @@ function ProgramForm ({ initialValues, onSubmit }: ProgramFormProps): React.Reac
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='items-end flex flex-col gap-4'>
       <div className='w-full'>
-        <Label htmlFor='name'>Name</Label>
+        <Label htmlFor='title'>Title</Label>
         {
-          (initialValues.name.length > 0)
+          (initialValues.title.length > 0)
             ? <Input
-              id='name'
+              id='title'
               type='text'
-              placeholder='Name'
-              {...register('name')}
+              placeholder='Title'
+              {...register('title')}
             />
             : <Skeleton className='w-full h-10 bg-bg-200' />
         }
       </div>
-
       <div className='w-full'>
         <Label htmlFor='description'>Description</Label>
         {
           (initialValues.description.length > 0)
-            ? <Textarea
-              className='h-52 max-h-96'
+            ? <Input
               id='description'
+              type='text'
               placeholder='Description'
               {...register('description')}
             />
-            : <Skeleton className='w-full h-52 max-h-96 bg-bg-200' />
+            : <Skeleton className='w-full h-10 bg-bg-200' />
         }
       </div>
-
+      <div className='w-full'>
+        <Label htmlFor='href'>Href</Label>
+        {
+          (initialValues.href.length > 0)
+            ? <Input
+              id='href'
+              type='text'
+              placeholder='Href'
+              {...register('href')}
+            />
+            : <Skeleton className='w-full h-10 bg-bg-200' />
+        }
+      </div>
       <Button type='submit' className='w-full mt-2'>
         Submit
       </Button>
@@ -63,4 +71,4 @@ function ProgramForm ({ initialValues, onSubmit }: ProgramFormProps): React.Reac
   )
 }
 
-export default ProgramForm
+export default CourseForm

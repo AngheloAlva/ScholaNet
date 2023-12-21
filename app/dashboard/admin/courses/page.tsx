@@ -5,7 +5,7 @@ import TableCard from '@/components/dashboard/admin/Table-card'
 import CreateCourse from '@/components/dashboard/admin/forms/Create-course'
 import useCourseData from '@/hooks/useCourseData'
 import { useRouter } from 'next/navigation'
-import { FaConnectdevelop } from 'react-icons/fa6'
+import { FiBook } from 'react-icons/fi'
 
 function AdminCoursesPage (): React.ReactElement {
   const router = useRouter()
@@ -29,7 +29,7 @@ function AdminCoursesPage (): React.ReactElement {
   return (
     <main className='pt-7 mb-20 flex flex-col gap-5 w-screen px-5 md:px-16 lg:px-32 xl:px-60 2xl:px-80'>
       <DataCard
-        icon={<FaConnectdevelop />}
+        icon={<FiBook />}
         title={'Courses'}
         value={totalCourses}
       />
