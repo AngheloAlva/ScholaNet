@@ -8,7 +8,6 @@ import GenericForm from '@/components/Generic-form'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -66,15 +65,13 @@ function CreateProgram (
             <AuthFormField name='name' label='Name' placeholder='Name' />
             <AuthFormField name='description' label='Description' placeholder='Description' />
 
-            <DialogClose>
-              <Button type='submit' className='w-full mt-2' disabled={isLoading}>
-                {
-                  isLoading
-                    ? <div className='lds-ring'><div /><div /><div /><div /></div>
-                    : 'Create Program'
-                }
-              </Button>
-            </DialogClose>
+            <Button type='submit' className='w-full mt-2' disabled={isLoading}>
+              {
+                isLoading
+                  ? <div className='lds-ring'><div /><div /><div /><div /></div>
+                  : 'Create Program'
+              }
+            </Button>
           </GenericForm>
         </div>
       </DialogContent>

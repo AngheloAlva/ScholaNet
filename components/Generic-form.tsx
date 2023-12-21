@@ -34,6 +34,7 @@ function GenericForm ({
                 { control: form.control }
               )
             }
+            return child
           })
         }
       </form>

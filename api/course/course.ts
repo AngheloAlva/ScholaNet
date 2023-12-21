@@ -21,15 +21,14 @@ export const getCourse = async (id: string): Promise<Course> => {
 }
 
 export const createCourse = async ({
-  title, description, href, image, program, section
+  title, description, href, image, program
 }: CreateCourse): Promise<Course> => {
   const { data } = await axios.post<Course>(`${API_URL}/course`, {
     title,
     description,
     href,
     image,
-    program,
-    section
+    program
   })
   return data
 }
