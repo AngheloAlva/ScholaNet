@@ -17,7 +17,7 @@ function AdminCoursesPage (): React.ReactElement {
         course._id,
         course.title,
         course.description,
-        course.program
+        course.program.name
       ]
     })
     : [['No hay cursos']]

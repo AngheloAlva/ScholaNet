@@ -1,8 +1,10 @@
+import type { Program } from '../schola-net/program'
+
 export interface Course {
   _id: string
   title: string
   description: string
-  program: string
+  program: Program
   image: string
   href: string
 }
