@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Skeleton } from '@/components/ui/skeleton'
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { useForm, type FieldValues, type SubmitHandler } from 'react-hook-form'
 
 interface SemesterFormProps {
@@ -19,25 +19,12 @@ interface SemesterFormProps {
 }
 
 function SemesterForm ({ initialValues, onSubmit }: SemesterFormProps): React.ReactElement {
-  const { register, handleSubmit, setValue } = useForm({
-    defaultValues: initialValues
+  const { register, handleSubmit, reset } = useForm({
   })
-  const [startDate, setStartDate] = useState<Date>(new Date(initialValues.startDate))
-  const [endDate, setEndDate] = useState<Date>(new Date(initialValues.endDate))
 
-  const handleStartDateSelect = (date: Date): void => {
-    if (date) {
-      setStartDate(date)
-      setValue('startDate', date.toISOString().split('T')[0])
-    }
-  }
-
-  const handleEndDateSelect = (date: Date): void => {
-    if (date) {
-      setEndDate(date)
-      setValue('endDate', date.toISOString().split('T')[0])
-    }
-  }
+  useEffect(() => {
+    reset(initialValues)
+  }, [initialValues, reset])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='items-end flex flex-col gap-4'>
@@ -57,35 +44,44 @@ function SemesterForm ({ initialValues, onSubmit }: SemesterFormProps): React.Re
       </div>
       <div className='w-full flex flex-col gap-1'>
         <Label htmlFor='startDate'>Start Date</Label>
+        <Input type='text' value={initialValues.startDate} disabled/>
         <Popover>
           <PopoverTrigger asChild>
             <Button variant={'outline'}>
-              {startDate.toDateString()}
+              {
+                (initialValues.startDate.length > 0)
+                  ? initialValues.startDate
+                  : <Skeleton className='w-full h-6 bg-bg-200' />
+              }
             </Button>
           </PopoverTrigger>
           <PopoverContent>
             <Calendar
               mode='single'
-              selected={startDate}
-              onSelect={(date) => { handleStartDateSelect(date ?? new Date('2024-01-01')) }}
+              selected={new Date(initialValues.startDate)}
               initialFocus
+              {...register('startDate')}
             />
           </PopoverContent>
         </Popover>
       </div>
       <div className='w-full flex flex-col gap-1'>
         <Label htmlFor='endDate'>End Date</Label>
+        <Input type='text' value={initialValues.endDate} disabled/>
         <Popover>
           <PopoverTrigger asChild>
             <Button variant={'outline'}>
-              {endDate.toDateString()}
+              {
+                (initialValues.endDate.length > 0)
+                  ? initialValues.endDate
+                  : <Skeleton className='w-full h-6 bg-bg-200' />
+              }
             </Button>
           </PopoverTrigger>
           <PopoverContent>
             <Calendar
               mode='single'
               selected={new Date(initialValues.endDate)}
-              onSelect={(date) => { handleEndDateSelect(date ?? new Date('2024-07-01')) }}
               initialFocus
             />
           </PopoverContent>
