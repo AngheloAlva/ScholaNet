@@ -3,15 +3,20 @@ import type { CreateSemester, Semester, UpdateSemester } from '@/types/schola-ne
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
-interface GetSemestersParams {
-  total?: number
-  page?: number
+interface GetSemestersResponse {
+  semesters: Semester[]
+  total: number
 }
 
 export const getSemesters = async ({
-  total = 5, page = 1
-}): Promise<GetSemestersParams> => {
-  const { data } = await axios.get<GetSemestersParams>(`${API_URL}/semesters?total=${total}&page=${page}`)
+  limit = 5, page = 1
+}): Promise<GetSemestersResponse> => {
+  const { data } = await axios.get<GetSemestersResponse>(`${API_URL}/semesters?total=${limit}&page=${page}`)
+  return data
+}
+
+export const getSemester = async (id: string): Promise<Semester> => {
+  const { data } = await axios.get<Semester>(`${API_URL}/semester/${id}`)
   return data
 }
 

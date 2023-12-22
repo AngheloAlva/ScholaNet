@@ -1,12 +1,12 @@
 [
-  { "href": "", "text": "Dashboard" },
-  { "href": "/dashboard/admin/guardians", "text": "Guardians" },
-  { "href": "/dashboard/admin/teachers", "text": "Teachers" },
-  { "href": "/dashboard/admin/students", "text": "Students" },
-  { "href": "/dashboard/admin/courses", "text": "Courses" },
-  { "href": "/dashboard/admin/programs", "text": "Programs" },
+  { "href": "/dashboard/admin", "text": "Dashboard" },
   { "href": "/dashboard/admin/semesters", "text": "Semesters" },
-  { "href": "/dashboard/admin/statistics", "text": "Statistics" },
-  { "href": "/dashboard/admin/behaviors", "text": "Behaviors" },
-  { "href": "/dashboard/admin/inscriptions", "text": "Inscriptions" }
+  { "href": "/dashboard/admin/programs", "text": "Programs" },
+  { "href": "/dashboard/admin/courses", "text": "Courses" },
+  { "href": "/dashboard/admin/course-instances", "text": "Course Instances" },
+  { "href": "/dashboard/admin/inscriptions", "text": "Inscriptions" },
+  { "href": "/dashboard/admin/teachers", "text": "Teachers" },
+  { "href": "/dashboard/admin/guardians", "text": "Guardians" },
+  { "href": "/dashboard/admin/students", "text": "Students" },
+  { "href": "/dashboard/admin/behaviors", "text": "Behaviors" }
 ]
