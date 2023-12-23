@@ -1,20 +1,22 @@
 'use client'
 
 import { getProgram, updateProgram } from '@/api/scholanet/program'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import ProgramForm from '@/components/dashboard/admin/forms/Program-form'
+import { useToast } from '@/components/ui/use-toast'
+import { Skeleton } from '@/components/ui/skeleton'
 import { FaAngleLeft } from 'react-icons/fa6'
-import { useRouter } from 'next/navigation'
 
 import type { Program } from '@/types/schola-net/program'
-import Link from 'next/link'
-import { Skeleton } from '@/components/ui/skeleton'
 
 function ProgramByIdPage ({ params }: { params: { programId: string } }): React.ReactElement {
   const [program, setProgram] = useState<Program>()
   const router = useRouter()
+  const { toast } = useToast()
 
   useEffect(() => {
     const fetchProgram = async (): Promise<void> => {
@@ -26,8 +28,21 @@ function ProgramByIdPage ({ params }: { params: { programId: string } }): React.
   }, [params.programId])
 
   const handleUpdate = async (updatedData: any): Promise<void> => {
-    await updateProgram({ id: program?._id, ...updatedData })
-    router.push('/dashboard/admin/programs')
+    try {
+      await updateProgram({ id: program?._id, ...updatedData })
+      toast({
+        title: 'Program updated successfully',
+        description: 'The program has been updated successfully.',
+        duration: 2000
+      })
+      router.push('/dashboard/admin/programs')
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: (error as any)?.response?.data?.message ?? 'An error occurred while updating the program.',
+        duration: 2000
+      })
+    }
   }
 
   return (

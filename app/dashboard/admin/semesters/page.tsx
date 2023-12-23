@@ -1,11 +1,11 @@
 'use client'
 
-import DataCard from '@/components/dashboard/admin/Data-card'
-import TableCard from '@/components/dashboard/admin/Table-card'
-import CreateSemester from '@/components/dashboard/admin/forms/Create-semester'
 import useSemesterData from '@/hooks/useSemesterData'
 import { useRouter } from 'next/navigation'
 
+import CreateSemester from '@/components/dashboard/admin/forms/Create-semester'
+import TableCard from '@/components/dashboard/admin/Table-card'
+import DataCard from '@/components/dashboard/admin/Data-card'
 import { RxSection } from 'react-icons/rx'
 
 function AdminSemesterPage (): React.ReactElement {

@@ -1,12 +1,12 @@
 'use client'
 
-import DataCard from '@/components/dashboard/admin/Data-card'
-import { FaConnectdevelop } from 'react-icons/fa6'
+import useProgramData from '@/hooks/useProgramData'
+import { useRouter } from 'next/navigation'
 
 import CreateProgram from '@/components/dashboard/admin/forms/Create-program'
 import TableCard from '@/components/dashboard/admin/Table-card'
-import useProgramData from '@/hooks/useProgramData'
-import { useRouter } from 'next/navigation'
+import DataCard from '@/components/dashboard/admin/Data-card'
+import { FaConnectdevelop } from 'react-icons/fa6'
 
 function AdminProgramsPage (): React.ReactElement {
   const router = useRouter()

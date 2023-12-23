@@ -1,10 +1,11 @@
 'use client'
 
-import DataCard from '@/components/dashboard/admin/Data-card'
-import TableCard from '@/components/dashboard/admin/Table-card'
-import CreateCourse from '@/components/dashboard/admin/forms/Create-course'
 import useCourseData from '@/hooks/useCourseData'
 import { useRouter } from 'next/navigation'
+
+import CreateCourse from '@/components/dashboard/admin/forms/Create-course'
+import TableCard from '@/components/dashboard/admin/Table-card'
+import DataCard from '@/components/dashboard/admin/Data-card'
 import { FiBook } from 'react-icons/fi'
 
 function AdminCoursesPage (): React.ReactElement {

@@ -1,21 +1,25 @@
 'use client'
 
 import { getCourse, updateCourse } from '@/api/course/course'
-import CourseForm from '@/components/dashboard/admin/forms/Course-form'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Skeleton } from '@/components/ui/skeleton'
-import type { Course } from '@/types/course/course'
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import CourseForm from '@/components/dashboard/admin/forms/Course-form'
+import { useToast } from '@/components/ui/use-toast'
+import { Skeleton } from '@/components/ui/skeleton'
 import { FaAngleLeft } from 'react-icons/fa6'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+
+import type { Course } from '@/types/course/course'
 
 function CourseByIdPage ({ params }: { params: { courseId: string } }): React.ReactElement {
   const [course, setCourse] = useState<Course>()
   const router = useRouter()
+  const { toast } = useToast()
 
   useEffect(() => {
     const fetchCourse = async (): Promise<void> => {
@@ -27,8 +31,21 @@ function CourseByIdPage ({ params }: { params: { courseId: string } }): React.Re
   }, [params.courseId])
 
   const handleUpdate = async (updatedData: any): Promise<void> => {
-    await updateCourse({ id: course?._id, ...updatedData })
-    router.push('/dashboard/admin/courses')
+    try {
+      await updateCourse({ id: course?._id, ...updatedData })
+      toast({
+        title: 'Course updated successfully',
+        description: 'The course has been updated successfully.',
+        duration: 2000
+      })
+      router.push('/dashboard/admin/courses')
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: (error as any)?.response?.data?.message ?? 'An error occurred while updating the course.',
+        duration: 2000
+      })
+    }
   }
 
   return (

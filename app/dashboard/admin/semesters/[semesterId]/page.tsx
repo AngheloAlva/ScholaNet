@@ -1,18 +1,22 @@
 'use client'
 
 import { getSemester, updateSemester } from '@/api/scholanet/semester'
-import SemesterForm from '@/components/dashboard/admin/forms/Semester-form'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Skeleton } from '@/components/ui/skeleton'
-import type { Semester } from '@/types/schola-net/semester'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import SemesterForm from '@/components/dashboard/admin/forms/Semester-form'
+import { useToast } from '@/components/ui/use-toast'
+import { Skeleton } from '@/components/ui/skeleton'
 import { FaAngleLeft } from 'react-icons/fa6'
+
+import type { Semester } from '@/types/schola-net/semester'
 
 function SemesterByIdPage ({ params }: { params: { semesterId: string } }): React.ReactElement {
   const [semester, setSemester] = useState<Semester>()
   const router = useRouter()
+  const { toast } = useToast()
 
   useEffect(() => {
     const fetchSemester = async (): Promise<void> => {
@@ -24,8 +28,21 @@ function SemesterByIdPage ({ params }: { params: { semesterId: string } }): Reac
   }, [params.semesterId])
 
   const handleUpdate = async (updatedData: any): Promise<void> => {
-    await updateSemester({ id: semester?._id, ...updatedData })
-    router.push('/dashboard/admin/semesters')
+    try {
+      await updateSemester({ id: semester?._id, ...updatedData })
+      toast({
+        title: 'Semester updated successfully',
+        description: 'The semester has been updated successfully.',
+        duration: 2000
+      })
+      router.push('/dashboard/admin/semesters')
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: (error as any)?.response?.data?.message ?? 'An error occurred while updating the semester.',
+        duration: 2000
+      })
+    }
   }
 
   return (
