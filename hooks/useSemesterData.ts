@@ -30,7 +30,7 @@ const useSemesterData = (): {
     }
 
     void fetchSemesters()
-  })
+  }, [])
 
   const reloadSemesters = async (): Promise<void> => {
     try {

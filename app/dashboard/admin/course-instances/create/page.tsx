@@ -68,7 +68,6 @@ function CreateCourseInstancePage (): React.ReactElement {
   }
 
   const onSubmit = async (values: z.infer<typeof createCourseInstanceSchema>): Promise<void> => {
-    console.log(values)
     setIsLoading(true)
 
     try {
@@ -127,6 +126,7 @@ function CreateCourseInstancePage (): React.ReactElement {
                 <div key={field.id} className='flex flex-col gap-4 w-full'>
                   <Label>Schedule {index + 1}</Label>
                   <SelectField
+                    name={`schedule.${index}.day`}
                     placeholder='Select a day'
                     textTransform='capitalize'
                     options={dayOptions}
@@ -134,14 +134,17 @@ function CreateCourseInstancePage (): React.ReactElement {
                     form={form}
                   />
                   <SelectField
+                    name={`schedule.${index}.startTime`}
                     placeholder='Select a start time'
                     options={startTimes}
                     index={field.id}
                     form={form}
                   />
                   <SelectField
+                    name={`schedule.${index}.duration`}
                     placeholder='Select a duration'
                     options={durationnOptions}
+                    textTransform='block'
                     index={field.id}
                     form={form}
                   />

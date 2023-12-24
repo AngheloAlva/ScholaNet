@@ -4,6 +4,7 @@ import { Controller } from 'react-hook-form'
 
 interface SelectFieldProps {
   form: any
+  name: string
   index: string
   options: string[]
   placeholder: string
@@ -11,12 +12,12 @@ interface SelectFieldProps {
 }
 
 function SelectField ({
-  form, index, options, textTransform, placeholder
+  form, index, options, textTransform, placeholder, name
 }: SelectFieldProps): React.ReactElement {
   return (
     <Controller
       control={form.control}
-      name={`schedule.${index}.day`}
+      name={name}
       render={({ field }) => (
         <Select onValueChange={field.onChange} defaultValue={field.value}>
           <FormControl>
