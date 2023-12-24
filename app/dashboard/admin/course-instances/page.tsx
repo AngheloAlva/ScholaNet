@@ -12,10 +12,11 @@ import { FiBook } from 'react-icons/fi'
 function AdminCoursesPage (): React.ReactElement {
   const router = useRouter()
   const { courseInstances, totalCourseInstances } = useCourseInstanceData()
-  const tableHeader: string[] = ['classroom', 'course', 'schedule', 'teacher', 'students', 'semester', 'academicYear']
+  const tableHeader: string[] = ['id', 'classroom', 'course', 'schedule', 'teacher', 'students', 'semester', 'academicYear']
   const tableBody: string[][] = courseInstances.length >= 1
     ? courseInstances.map(courseInstance => {
       return [
+        courseInstance._id,
         courseInstance.classroom,
         courseInstance.course.title,
         courseInstance.schedule.map(schedule => `${schedule.day} ${schedule.startTime}-${schedule.endTime}`).join(', '),
@@ -41,7 +42,6 @@ function AdminCoursesPage (): React.ReactElement {
 
       <TableCard tableHeader={tableHeader} handleClick={handleCourseClick} tableBody={tableBody} title='Courses' />
 
-      {/* <CreateCourseInstance onProgramCreated={reloadCourseInstances} /> */}
       <Link href={'/dashboard/admin/course-instances/create'}>
         <Button className='w-full'>
           Create Course Instance

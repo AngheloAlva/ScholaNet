@@ -2,22 +2,30 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 
 import { createSemesterSchema } from '@/lib/createSemesterSchema'
+import { createSemester } from '@/api/scholanet/semester'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { format } from 'date-fns'
 import { useState } from 'react'
 
-import { createSemester } from '@/api/scholanet/semester'
-import { useToast } from '@/components/ui/use-toast'
-
-import type { z } from 'zod'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
-import AuthFormField from '@/components/Form-field'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { format } from 'date-fns'
-import { Calendar } from '@/components/ui/calendar'
 import { FaRegCalendar, FaRegCalendarCheck } from 'react-icons/fa6'
+import GenericFormField from '@/components/Form-field'
+import { useToast } from '@/components/ui/use-toast'
+import { Calendar } from '@/components/ui/calendar'
+import { Button } from '@/components/ui/button'
+import SubmitButton from './Submit-button'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from '@/components/ui/dialog'
+
+import type { z } from 'zod'
 
 function CreateSemester (
   { onSemesterCreated }: { onSemesterCreated: () => Promise<void> }
@@ -129,15 +137,9 @@ function CreateSemester (
                 </Popover>
               </FormItem>
             )} />
-            <AuthFormField name="name" label="Name" placeholder='name' control={form.control} />
+            <GenericFormField name="name" label="Name" placeholder='name' control={form.control} />
 
-            <Button type='submit' className='w-full mt-2' disabled={isLoading}>
-              {
-                isLoading
-                  ? <div className='lds-ring'><div /><div /><div /><div /></div>
-                  : 'Create Semester'
-              }
-            </Button>
+            <SubmitButton text='Create Semester' isLoading={isLoading} />
           </form>
         </Form>
       </DialogContent>

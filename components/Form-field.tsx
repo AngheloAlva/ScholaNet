@@ -3,7 +3,7 @@ import { Input } from './ui/input'
 
 import type { Control } from 'react-hook-form'
 
-export interface AuthFormFieldProps {
+export interface GenericFormFieldProps {
   control?: Control<any>
   name: string
   label: string
@@ -11,9 +11,9 @@ export interface AuthFormFieldProps {
   placeholder: string
 }
 
-function AuthFormField ({
+function GenericFormField ({
   control, name, label, type = 'text', placeholder
-}: AuthFormFieldProps): React.ReactElement {
+}: GenericFormFieldProps): React.ReactElement {
   return (
     <FormField
       control={control}
@@ -31,4 +31,4 @@ function AuthFormField ({
   )
 }
 
-export default AuthFormField
+export default GenericFormField

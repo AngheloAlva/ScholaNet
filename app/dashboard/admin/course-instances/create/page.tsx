@@ -3,21 +3,25 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 
 import { createCourseInstanceSchema } from '@/lib/createCourseInstanceSchema'
-import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { createCourseInstance } from '@/api/course/course-instance'
+import { useFieldArray, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import Link from 'next/link'
 
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import SemesterSelect from '@/components/dashboard/admin/forms/Semester-select'
+import TeacherSelect from '@/components/dashboard/admin/forms/Teacher-select'
 import CourseSelect from '@/components/dashboard/admin/forms/Course-select'
-import { Form, FormControl } from '@/components/ui/form'
+import SubmitButton from '@/components/dashboard/admin/forms/Submit-button'
+import SelectField from '@/components/dashboard/admin/forms/Select-field'
+import GenericFormField from '@/components/Form-field'
 import { Separator } from '@/components/ui/separator'
 import { useToast } from '@/components/ui/use-toast'
-import AuthFormField from '@/components/Form-field'
 import { Button } from '@/components/ui/button'
+import { FaAngleLeft } from 'react-icons/fa6'
 import { Label } from '@/components/ui/label'
+import { Form } from '@/components/ui/form'
 
 import type { z } from 'zod'
 
@@ -67,16 +71,6 @@ function CreateCourseInstancePage (): React.ReactElement {
     console.log(values)
     setIsLoading(true)
 
-    if (values.schedule.length === 0) {
-      toast({
-        title: 'Error',
-        duration: 3000,
-        description: 'You must add at least one schedule.'
-      })
-      setIsLoading(false)
-      return
-    }
-
     try {
       await createCourseInstance({
         academicYear: Number(values.academicYear),
@@ -113,87 +107,43 @@ function CreateCourseInstancePage (): React.ReactElement {
 
   return (
     <Form {...form}>
+      <Link href={'/dashboard/admin/course-instances'} className='ml-5 flex items-center gap-2 mt-5 font-semibold hover:underline'>
+        <FaAngleLeft className='text-lg' /> Go back
+      </Link>
       <form onSubmit={form.handleSubmit(onSubmit)} className='w-full pt-5 px-5 pb-20'>
         <div className='flex flex-col md:flex-row md:gap-5'>
           <div className='w-full flex flex-col gap-2'>
-            <AuthFormField label='Academic Year' name='academicYear' placeholder='2024' control={form.control} />
-            <AuthFormField label='Classroom' name='classroom' placeholder='Classroom 1A' control={form.control} />
-            <div className='flex flex-col gap-2 mt-1'>
-              <Label>Course</Label>
-              <CourseSelect onChange={handleCourseChange} value={form.watch('course')} />
-            </div>
-            <div className='flex flex-col gap-2 mt-1'>
-              <Label>Semester</Label>
-              <SemesterSelect value={form.watch('semester')} onChange={(semester: string) => { form.setValue('semester', semester) }} />
-            </div>
-            <AuthFormField label='Teacher' name='teacher' placeholder='Teacher' control={form.control} />
+            <GenericFormField label='Academic Year' name='academicYear' placeholder='2024' control={form.control} />
+            <GenericFormField label='Classroom' name='classroom' placeholder='Classroom 1A' control={form.control} />
+            <CourseSelect label='Course' onChange={handleCourseChange} value={form.watch('course')} />
+            <SemesterSelect label='Semester' value={form.watch('semester')} onChange={(semester: string) => { form.setValue('semester', semester) }} />
+            <TeacherSelect label='Teacher' value={form.watch('teacher')} onChange={(teacher: string) => { form.setValue('teacher', teacher) }} />
           </div>
-          <Separator className='mt-4 md:hidden' />
+          <Separator className='my-4 md:hidden' />
           <div className='flex flex-col w-full gap-5'>
 
             {
               fields.map((field, index) => (
                 <div key={field.id} className='flex flex-col gap-4 w-full'>
                   <Label>Schedule {index + 1}</Label>
-                  <Controller
-                    control={form.control}
-                    name={`schedule.${index}.day`}
-                    render={({ field }) => (
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder='Select a day' />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {dayOptions.map(day => (
-                            <SelectItem key={day} value={day}>
-                              {day.charAt(0).toUpperCase() + day.slice(1)}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    )}
+                  <SelectField
+                    placeholder='Select a day'
+                    textTransform='capitalize'
+                    options={dayOptions}
+                    index={field.id}
+                    form={form}
                   />
-                  <Controller
-                    control={form.control}
-                    name={`schedule.${index}.startTime`}
-                    render={({ field }) => (
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder='Select a start time' />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {startTimes.map(startTime => (
-                            <SelectItem key={startTime} value={startTime}>
-                              {startTime}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    )}
+                  <SelectField
+                    placeholder='Select a start time'
+                    options={startTimes}
+                    index={field.id}
+                    form={form}
                   />
-                  <Controller
-                    control={form.control}
-                    name={`schedule.${index}.duration`}
-                    render={({ field }) => (
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder='Select a duration' />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {durationnOptions.map(duration => (
-                            <SelectItem key={duration} value={duration}>
-                              {duration} block{duration === '1' ? '' : 's'}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    )}
+                  <SelectField
+                    placeholder='Select a duration'
+                    options={durationnOptions}
+                    index={field.id}
+                    form={form}
                   />
                   <Button type='button' variant={'destructive'} onClick={() => { remove(index) }}>
                     Remove schedule
@@ -208,13 +158,7 @@ function CreateCourseInstancePage (): React.ReactElement {
         </div>
         <div className='flex flex-col'>
           <Separator className='my-5' />
-          <Button type='submit'>
-            {
-              isLoading
-                ? <div className='lds-ring'><div /><div /><div /><div /></div>
-                : 'Create Program'
-            }
-          </Button>
+          <SubmitButton text='Create Course Instance' isLoading={isLoading} />
         </div>
       </form>
     </Form>

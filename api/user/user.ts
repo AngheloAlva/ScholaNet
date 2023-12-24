@@ -40,3 +40,8 @@ export const updateUser = async ({
   })
   return data
 }
+
+export const getTeachers = async (): Promise<User[]> => {
+  const { data } = await axios.get<User[]>(`${API_URL}/users/teachers`)
+  return data
+}

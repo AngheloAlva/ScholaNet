@@ -1,7 +1,7 @@
 import { createProgramSchema } from '@/lib/createProgramSchema'
 import { useState } from 'react'
 
-import AuthFormField from '@/components/Form-field'
+import GenericFormField from '@/components/Form-field'
 import { createProgram } from '@/api/scholanet/program'
 import { useToast } from '@/components/ui/use-toast'
 import GenericForm from '@/components/Generic-form'
@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/dialog'
 
 import type { z } from 'zod'
+import SubmitButton from './Submit-button'
 
 function CreateProgram (
   { onProgramCreated }: { onProgramCreated: () => Promise<void> }
@@ -62,16 +63,10 @@ function CreateProgram (
         </DialogHeader>
         <div>
           <GenericForm schema={createProgramSchema} defaultValues={defaultValues} onSubmit={onSubmit}>
-            <AuthFormField name='name' label='Name' placeholder='Name' />
-            <AuthFormField name='description' label='Description' placeholder='Description' />
+            <GenericFormField name='name' label='Name' placeholder='Name' />
+            <GenericFormField name='description' label='Description' placeholder='Description' />
 
-            <Button type='submit' className='w-full mt-2' disabled={isLoading}>
-              {
-                isLoading
-                  ? <div className='lds-ring'><div /><div /><div /><div /></div>
-                  : 'Create Program'
-              }
-            </Button>
+            <SubmitButton text='Create program' isLoading={isLoading} />
           </GenericForm>
         </div>
       </DialogContent>

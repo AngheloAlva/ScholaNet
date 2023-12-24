@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 import { useToast } from '@/components/ui/use-toast'
 import GenericForm from '@/components/Generic-form'
-import AuthFormField from '@/components/Form-field'
+import GenericFormField from '@/components/Form-field'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import ProgramSelect from './Program-select'
@@ -20,6 +20,7 @@ import {
 
 import '@uploadthing/react/styles.css'
 import type { z } from 'zod'
+import SubmitButton from './Submit-button'
 
 function CreateCourse (
   { onProgramCreated }: { onProgramCreated: () => Promise<void> }
@@ -108,9 +109,9 @@ function CreateCourse (
         </DialogHeader>
 
         <GenericForm schema={createCourseSchema} defaultValues={defaultValues} onSubmit={onSubmit}>
-          <AuthFormField name="title" label="Title" placeholder='Title' />
-          <AuthFormField name="description" label="Description" placeholder='Description...' />
-          <AuthFormField name="href" label="Href" placeholder='/dashboard/admin/course' />
+          <GenericFormField name="title" label="Title" placeholder='Title' />
+          <GenericFormField name="description" label="Description" placeholder='Description...' />
+          <GenericFormField name="href" label="Href" placeholder='/dashboard/admin/course' />
           <div>
             <Label>Image</Label>
             <UploadButton
@@ -130,13 +131,7 @@ function CreateCourse (
               <ProgramSelect value={programId} onChange={setProgramId} />
           </div>
 
-          <Button type='submit' className='w-full mt-2' disabled={isLoading}>
-            {
-              isLoading
-                ? <div className='lds-ring'><div /><div /><div /><div /></div>
-                : 'Create Course'
-            }
-          </Button>
+          <SubmitButton text='Create course' isLoading={isLoading} />
         </GenericForm>
       </DialogContent>
     </Dialog>

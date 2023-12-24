@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 'use client'
 
-import AuthFormField from '@/components/Form-field'
+import GenericFormField from '@/components/Form-field'
 import { useRegisterForm } from '@/hooks/useRegisterForm'
 import useAuthStore from '@/app/store/authStore'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import Link from 'next/link'
 
+import SubmitButton from '@/components/dashboard/admin/forms/Submit-button'
 import { useToast } from '@/components/ui/use-toast'
-import { Button } from '@/components/ui/button'
-import { register } from '@/api/user/auth'
 import { Form } from '@/components/ui/form'
+import { register } from '@/api/user/auth'
 
 import type { registerSchema } from '@/lib/registerSchema'
 import type { z } from 'zod'
@@ -52,20 +52,14 @@ function RegisterPage (): React.ReactElement {
           <p className='text-sm text-text-200 mb-4'>Please fill in your details to create an account.</p>
 
           <div className='flex items-center justify-center gap-2 w-full'>
-            <AuthFormField control={form.control} name='name' label='Name' placeholder='Name' />
-            <AuthFormField control={form.control} name='lastName' label='Last Name' placeholder='Last Name' />
+            <GenericFormField control={form.control} name='name' label='Name' placeholder='Name' />
+            <GenericFormField control={form.control} name='lastName' label='Last Name' placeholder='Last Name' />
           </div>
-          <AuthFormField control={form.control} name='rut' label='Rut' placeholder='Rut' />
-          <AuthFormField control={form.control} name='email' label='Email' placeholder='Email' />
-          <AuthFormField control={form.control} name='password' label='Password' placeholder='Password' type='password' />
+          <GenericFormField control={form.control} name='rut' label='Rut' placeholder='Rut' />
+          <GenericFormField control={form.control} name='email' label='Email' placeholder='Email' />
+          <GenericFormField control={form.control} name='password' label='Password' placeholder='Password' type='password' />
 
-          <Button type='submit' className='w-full mt-7' disabled={isLoading}>
-            {
-              isLoading
-                ? <div className='lds-ring'><div /><div /><div /><div /></div>
-                : 'Sign Up'
-            }
-          </Button>
+          <SubmitButton text='Sign up' isLoading={isLoading} />
           <p className='text-center text-sm'>
             Already have an account? {' '}
             <Link href='/auth/login' className='font-semibold text-accent-100 hover:underline'>

@@ -6,7 +6,7 @@ import React from 'react'
 
 import { Form } from './ui/form'
 
-import type { AuthFormFieldProps } from '@/components/Form-field'
+import type { GenericFormFieldProps } from '@/components/Form-field'
 
 interface GenericFormProps {
   schema: any
@@ -30,7 +30,7 @@ function GenericForm ({
           React.Children.map(children, child => {
             if (React.isValidElement(child)) {
               return React.cloneElement(
-                (child as React.ReactElement<AuthFormFieldProps>),
+                (child as React.ReactElement<GenericFormFieldProps>),
                 { control: form.control }
               )
             }

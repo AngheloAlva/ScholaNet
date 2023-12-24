@@ -11,7 +11,7 @@ export interface CourseInstance {
   academicYear: string
   classroom: string
   schedule: Array<{
-    day: 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday'
+    day: string
     startTime: string
     endTime: string
   }>
@@ -32,11 +32,11 @@ export interface CreateCourseInstance {
 
 export interface UpdateCourseInstance {
   id: string
-  teacher?: string
+  teacher?: User
   classroom?: string
   schedule?: Array<{
-    day: 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday'
-    startTime: string
-    endTime: string
+    day?: string
+    startTime?: string
+    endTime?: string
   }>
 }
