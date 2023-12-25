@@ -14,6 +14,7 @@ export interface CourseInstance {
     day: string
     startTime: string
     endTime: string
+    duration: number
   }>
 }
 
@@ -27,6 +28,7 @@ export interface CreateCourseInstance {
     day: string
     startTime: string
     endTime: string
+    duration: number
   }>
 }
 
@@ -38,5 +40,6 @@ export interface UpdateCourseInstance {
     day?: string
     startTime?: string
     endTime?: string
+    duration?: number
   }>
 }

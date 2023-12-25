@@ -71,7 +71,8 @@ function CourseInstanceByIdPage ({ params }: { params: { courseInstanceId: strin
               schedule: [{
                 day: '',
                 startTime: '',
-                endTime: ''
+                endTime: '',
+                duration: 1
               }]
             }}
           />

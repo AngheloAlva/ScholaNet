@@ -4,6 +4,7 @@
 
 import { createCourseInstanceSchema } from '@/lib/createCourseInstanceSchema'
 import { createCourseInstance } from '@/api/course/course-instance'
+import { calculateEndTime } from '@/helpers/calculateEndTime'
 import { useFieldArray, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
@@ -54,19 +55,6 @@ function CreateCourseInstancePage (): React.ReactElement {
     name: 'schedule'
   })
 
-  const calculateEndTime = (startTime: string, durationBlocks: number): string => {
-    const [hours, minutes] = startTime.split(':').map(Number)
-    const startTimeInMinutes = hours * 60 + minutes
-
-    const totalDurationInMinutes = durationBlocks * 45 + (durationBlocks - 1) * 10
-    const endTimeInMinutes = startTimeInMinutes + totalDurationInMinutes
-
-    const endHours = Math.floor(endTimeInMinutes / 60)
-    const endMinutes = endTimeInMinutes % 60
-
-    return `${endHours.toString().padStart(2, '0')}:${endMinutes.toString().padStart(2, '0')}`
-  }
-
   const onSubmit = async (values: z.infer<typeof createCourseInstanceSchema>): Promise<void> => {
     setIsLoading(true)
 
@@ -80,6 +68,7 @@ function CreateCourseInstancePage (): React.ReactElement {
         schedule: values.schedule.map((schedule) => ({
           day: schedule.day,
           startTime: schedule.startTime,
+          duration: Number(schedule.duration),
           endTime: calculateEndTime(schedule.startTime, Number(schedule.duration))
         }))
       })
