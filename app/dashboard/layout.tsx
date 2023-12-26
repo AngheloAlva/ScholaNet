@@ -1,3 +1,4 @@
+import GuardianNavbar from '@/components/dashboard/guardian/Guardian-navbar'
 import Footer from '@/components/home/footer/Footer'
 
 function DashboardLayout ({
@@ -7,6 +8,7 @@ function DashboardLayout ({
 }): React.ReactElement {
   return (
     <>
+      <GuardianNavbar />
       {children}
       <Footer />
     </>

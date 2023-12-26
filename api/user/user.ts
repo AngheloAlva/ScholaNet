@@ -1,5 +1,7 @@
 import axios from 'axios'
+
 import type { User, UpdateUser } from '@/types/user/user'
+import type { Student } from '@/types/student/student'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
@@ -50,5 +52,10 @@ export const getTeachers = async ({
   limit = 5, page = 1
 }): Promise<GetTeachersResponse> => {
   const { data } = await axios.get<GetTeachersResponse>(`${API_URL}/users/teachers?limit=${limit}&page=${page}`)
+  return data
+}
+
+export const getUsersByGuardian = async (id: string): Promise<Student[]> => {
+  const { data } = await axios.get<Student[]>(`${API_URL}/user/${id}/students`)
   return data
 }

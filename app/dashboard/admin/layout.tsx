@@ -1,4 +1,4 @@
-import AdminNavbar from '@/components/dashboard/admin/navbar/Navbar'
+import AdminNavbar from '@/components/dashboard/admin/navbar/Admin-navbar'
 
 function AdminDashboardLayout ({
   children
