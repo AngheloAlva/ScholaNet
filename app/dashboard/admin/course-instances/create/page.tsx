@@ -25,10 +25,7 @@ import { Label } from '@/components/ui/label'
 import { Form } from '@/components/ui/form'
 
 import type { z } from 'zod'
-
-export const dayOptions = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
-export const startTimes = ['8:30', '9:30', '10:30', '11:30', '12:30', '13:30', '14:30']
-export const durationnOptions = ['1', '2', '3']
+import { dayOptions, durationnOptions, startTimes } from '@/data/consts'
 
 function CreateCourseInstancePage (): React.ReactElement {
   const [isLoading, setIsLoading] = useState<boolean>(false)

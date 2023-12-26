@@ -13,7 +13,7 @@ import type { User } from '@/types/user/user'
 import { Separator } from '@/components/ui/separator'
 import TeacherSelect from './Teacher-select'
 import SelectField from './Select-field'
-import { dayOptions, durationnOptions, startTimes } from '@/app/dashboard/admin/course-instances/create/page'
+import { dayOptions, durationnOptions, startTimes } from '@/data/consts'
 
 interface CourseInstanceFormProps {
   initialValues: {
@@ -69,10 +69,6 @@ function CourseInstanceForm ({ initialValues, onSubmit }: CourseInstanceFormProp
           <div key={field.id} className='w-full gap-4 flex flex-col'>
             <Separator />
             <Label>Schedule {index + 1}</Label>
-            {/* <Input {...register(`schedule.${index}.day`)} />
-            <Input {...register(`schedule.${index}.startTime`)} />
-            <Input {...register(`schedule.${index}.endTime`)} />
-            <Input {...register(`schedule.${index}.duration`)} /> */}
             <SelectField
               form={control}
               name={`schedule.${index}.day`}

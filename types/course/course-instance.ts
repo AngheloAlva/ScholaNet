@@ -11,6 +11,7 @@ export interface CourseInstance {
   academicYear: string
   classroom: string
   schedule: Array<{
+    _id: string
     day: string
     startTime: string
     endTime: string
@@ -34,7 +35,7 @@ export interface CreateCourseInstance {
 
 export interface UpdateCourseInstance {
   id: string
-  teacher?: User
+  teacher?: string
   classroom?: string
   schedule?: Array<{
     day?: string

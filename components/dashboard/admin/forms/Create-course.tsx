@@ -128,7 +128,7 @@ function CreateCourse (
           </div>
           <div>
             <Label>Program</Label>
-              <ProgramSelect value={programId} onChange={setProgramId} />
+            <ProgramSelect value={programId} onChange={setProgramId} />
           </div>
 
           <SubmitButton text='Create course' isLoading={isLoading} />
