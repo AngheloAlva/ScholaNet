@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react'
+
+import { getCourseInstance } from '@/api/course/course-instance'
 import {
   Card,
   CardContent,
@@ -8,22 +11,71 @@ import {
 import type { CourseInstance } from '@/types/course/course-instance'
 
 function CourseInstanceData ({
-  data
-}: { data: CourseInstance }): React.ReactElement {
+  courseInstanceId
+}: { courseInstanceId: string }): React.ReactElement {
+  const [currentData, setCurrentData] = useState<CourseInstance>({
+    _id: '',
+    course: {
+      title: '',
+      description: '',
+      _id: '',
+      program: {
+        _id: '',
+        name: '',
+        description: '',
+        courses: []
+      },
+      image: '',
+      href: ''
+    },
+    teacher: {
+      _id: '',
+      name: '',
+      lastName: '',
+      rut: '',
+      email: '',
+      password: '',
+      role: 'teacher',
+      state: 'active',
+      verificationCode: '',
+      emailVerified: false,
+      refreshToken: ''
+    },
+    students: [],
+    semester: {
+      _id: '',
+      name: '',
+      startDate: '',
+      endDate: ''
+    },
+    academicYear: '',
+    classroom: '',
+    schedule: []
+  })
+
+  useEffect(() => {
+    const loadData = async (): Promise<void> => {
+      const data = await getCourseInstance(courseInstanceId)
+      setCurrentData(data)
+    }
+
+    void loadData()
+  }, [courseInstanceId])
+
   return (
     <Card>
       <CardHeader>
         <CardTitle>Course Instance Data</CardTitle>
       </CardHeader>
       <CardContent>
-        <p><strong>Course: </strong> {data.course.title}</p>
-        <p><strong>Teacher: </strong> {data.teacher.name}</p>
-        <p><strong>Semester: </strong> {data.semester.name}</p>
-        <p><strong>Year: </strong> {data.academicYear}</p>
-        <p><strong>Classroom: </strong> {data.classroom}</p>
+        <p><strong>Course: </strong> {currentData.course.title}</p>
+        <p><strong>Teacher: </strong> {currentData.teacher.name}</p>
+        <p><strong>Semester: </strong> {currentData.semester.name}</p>
+        <p><strong>Year: </strong> {currentData.academicYear}</p>
+        <p><strong>Classroom: </strong> {currentData.classroom}</p>
         <p><strong>Schedule: </strong></p>
         {
-          data.schedule.map((schedule) => (
+          currentData.schedule.map((schedule) => (
             <div key={schedule._id}>
               <p>Day: {schedule.day}</p>
               <p>Start time: {schedule.startTime}</p>

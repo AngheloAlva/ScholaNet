@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 
 import { createCourseInstanceSchema } from '@/lib/createCourseInstanceSchema'
+import { dayOptions, durationnOptions, startTimes } from '@/data/consts'
 import { createCourseInstance } from '@/api/course/course-instance'
 import { calculateEndTime } from '@/helpers/calculateEndTime'
 import { useFieldArray, useForm } from 'react-hook-form'
@@ -25,7 +26,6 @@ import { Label } from '@/components/ui/label'
 import { Form } from '@/components/ui/form'
 
 import type { z } from 'zod'
-import { dayOptions, durationnOptions, startTimes } from '@/data/consts'
 
 function CreateCourseInstancePage (): React.ReactElement {
   const [isLoading, setIsLoading] = useState<boolean>(false)

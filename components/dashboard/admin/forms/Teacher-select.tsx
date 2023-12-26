@@ -6,9 +6,15 @@ import { Label } from '@/components/ui/label'
 
 import type { User } from '@/types/user/user'
 
-function TeacherSelect (
-  { value, onChange, label }: { value: string, label: string, onChange: (value: string) => void }
-): React.ReactElement {
+interface TeacherSelectProps {
+  value: string
+  onChange: (value: string) => void
+  label: string
+}
+
+function TeacherSelect ({
+  value, onChange, label
+}: TeacherSelectProps): React.ReactElement {
   const [teachers, setTeachers] = useState<User[]>([])
 
   useEffect(() => {
