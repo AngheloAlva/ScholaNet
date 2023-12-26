@@ -6,7 +6,5 @@
   { "href": "/dashboard/admin/course-instances", "text": "Course Instances" },
   { "href": "/dashboard/admin/inscriptions", "text": "Inscriptions" },
   { "href": "/dashboard/admin/teachers", "text": "Teachers" },
-  { "href": "/dashboard/admin/guardians", "text": "Guardians" },
-  { "href": "/dashboard/admin/students", "text": "Students" },
-  { "href": "/dashboard/admin/behaviors", "text": "Behaviors" }
+  { "href": "/dashboard/admin/students", "text": "Students" }
 ]

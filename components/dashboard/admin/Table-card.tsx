@@ -8,7 +8,7 @@ interface TableCardProps {
   title: string
   tableHeader: string[]
   tableBody: string[][]
-  handleClick: (id: string) => void
+  handleClick?: (id: string) => void
 }
 
 function TableCard ({
@@ -37,7 +37,15 @@ function TableCard ({
         <TableBody>
           {
             tableBody.map((row, index) => (
-              <TableRow key={index} onClick={() => { handleClick(row[0]) }} className='cursor-pointer hover:bg-bg-200'>
+              <TableRow
+                key={index}
+                onClick={() => {
+                  if (handleClick != null) {
+                    handleClick(row[0])
+                  }
+                }}
+                className='cursor-pointer hover:bg-bg-200'
+              >
                 {
                   row.map((cell, index) => (
                     <TableCell key={index} className='min-w-[15rem]'>

@@ -5,6 +5,7 @@ import format from 'date-fns/format'
 
 import TableCard from '@/components/dashboard/admin/Table-card'
 import DataCard from '@/components/dashboard/admin/Data-card'
+import { FaRegRectangleList } from 'react-icons/fa6'
 
 function InscriptionsPage (): React.ReactElement {
   const { inscriptions, totalInscriptions } = useInscriptionData()
@@ -28,7 +29,7 @@ function InscriptionsPage (): React.ReactElement {
   return (
     <main className='pt-7 mb-20 flex flex-col gap-5 w-screen px-5 md:px-16 lg:px-32 xl:px-60 2xl:px-80'>
       <DataCard
-        icon={<></>}
+        icon={<FaRegRectangleList />}
         title={'Inscriptions'}
         value={totalInscriptions}
       />

@@ -1,10 +1,7 @@
-import { getTeachers } from '@/api/user/user'
-import { useEffect, useState } from 'react'
+import useTeacherData from '@/hooks/useTeacherData'
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Label } from '@/components/ui/label'
-
-import type { User } from '@/types/user/user'
 
 interface TeacherSelectProps {
   value: string
@@ -15,16 +12,7 @@ interface TeacherSelectProps {
 function TeacherSelect ({
   value, onChange, label
 }: TeacherSelectProps): React.ReactElement {
-  const [teachers, setTeachers] = useState<User[]>([])
-
-  useEffect(() => {
-    const fetchTeachers = async (): Promise<void> => {
-      const response = await getTeachers()
-      setTeachers(response)
-    }
-
-    void fetchTeachers()
-  }, [])
+  const { teachers } = useTeacherData()
 
   return (
     <div className='flex flex-col gap-2 mt-1'>

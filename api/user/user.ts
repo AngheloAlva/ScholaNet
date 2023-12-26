@@ -8,10 +8,15 @@ interface GetUsersResponse {
   total: number
 }
 
+interface GetTeachersResponse {
+  teachers: User[]
+  total: number
+}
+
 export const getUsers = async ({
   limit = 10, page = 1
 }): Promise<GetUsersResponse> => {
-  const { data } = await axios.get<GetUsersResponse>(`${API_URL}/users`)
+  const { data } = await axios.get<GetUsersResponse>(`${API_URL}/users?limit=${limit}&page=${page}`)
   return data
 }
 
@@ -41,7 +46,9 @@ export const updateUser = async ({
   return data
 }
 
-export const getTeachers = async (): Promise<User[]> => {
-  const { data } = await axios.get<User[]>(`${API_URL}/users/teachers`)
+export const getTeachers = async ({
+  limit = 5, page = 1
+}): Promise<GetTeachersResponse> => {
+  const { data } = await axios.get<GetTeachersResponse>(`${API_URL}/users/teachers?limit=${limit}&page=${page}`)
   return data
 }

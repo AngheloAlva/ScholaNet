@@ -1,7 +1,8 @@
 export interface Student {
   _id: string
   name: string
-  dateOfBirth: string
+  lastName: string
+  dateOfBirth: Date
   password: string
   guardian: string
   rut: string
