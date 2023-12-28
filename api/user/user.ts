@@ -55,7 +55,7 @@ export const getTeachers = async ({
   return data
 }
 
-export const getUsersByGuardian = async (id: string): Promise<Student[]> => {
+export const getStudentsByGuardian = async (id: string): Promise<Student[]> => {
   const { data } = await axios.get<Student[]>(`${API_URL}/user/${id}/students`)
   return data
 }

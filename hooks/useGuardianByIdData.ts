@@ -1,11 +1,12 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { getUser } from '@/api/user/user'
+import { getStudentsByGuardian, getUser } from '@/api/user/user'
 
 import type { User } from '@/types/user/user'
+import type { Student } from '@/types/student/student'
 
-const useGuardianByIdData = (id: string): { guardian: User } => {
+const useGuardianByIdData = (id: string): { guardian: User, students: Student[] } => {
   const [guardian, setGuardian] = useState<User>({
     _id: '',
     name: '',
@@ -20,18 +21,22 @@ const useGuardianByIdData = (id: string): { guardian: User } => {
     emailVerified: true,
     refreshToken: ''
   })
+  const [students, setStudents] = useState<Student[]>([])
 
   useEffect(() => {
-    const fetchGuardian = async (): Promise<void> => {
+    const fetchData = async (): Promise<void> => {
       const guardian = await getUser(id)
+      const students = await getStudentsByGuardian(id)
       setGuardian(guardian)
+      setStudents(students)
     }
 
-    void fetchGuardian()
+    void fetchData()
   }, [])
 
   return {
-    guardian
+    guardian,
+    students
   }
 }
 

@@ -9,7 +9,7 @@ export interface Inscription {
 export interface CreateInscription {
   name: string
   lastName: string
-  dateOfBirth: Date
+  dateOfBirth: string
   password: string
   rut: string
   program: string

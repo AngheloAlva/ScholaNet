@@ -14,9 +14,7 @@ function DashboardPage (): React.ReactElement {
   const token = Cookies.get('refreshToken')
   const { userId } = (token != null) ? jwtDecode(token) as { userId: string } : { userId: '' }
 
-  const { guardian } = useGuardianByIdData(userId)
-  // console.log(guardian.students)
-  // const tableHeader: string[] = ['Student ID', 'Student Name']
+  const { guardian, students } = useGuardianByIdData(userId)
 
   return (
     <>
@@ -27,27 +25,12 @@ function DashboardPage (): React.ReactElement {
         </div>
 
         <div className='shadow-lg flex flex-col gap-4 py-7 mb-10 items-center rounded-lg mt-10 bg-bg-100 w-full max-w-4xl text-text-100'>
-          {/* <TableCard /> */}
-          {
-            guardian.students.length > 0
-              ? (
-                  guardian.students.map((student) => (
-                    <div className='flex flex-col items-center justify-center' key={student._id}>
-                      <p className='text-lg font-semibold text-text-100'>{student.name + ' ' + student.lastName}</p>
-                    </div>
-                  ))
-                )
-              : (
-                  <>
-                    <p className='text-xl font-semibold'>No students registered</p>
-                    <Button className='text-lg'>
-                      <Link href={'/dashboard/guardian/add-student'}>
-                        Add a student to your account
-                      </Link>
-                    </Button>
-                  </>
-                )
-          }
+          <p className='text-xl font-semibold'>No students registered</p>
+          <Button className='text-lg'>
+            <Link href={'/dashboard/guardian/add-student'}>
+              Add a student to your account
+            </Link>
+          </Button>
         </div>
       </header>
     </>
