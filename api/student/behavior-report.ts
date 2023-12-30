@@ -20,6 +20,11 @@ export const getBehaviorReport = async (id: string): Promise<BehaviorReport> => 
   return data
 }
 
+export const getBehaviorReportsByStudent = async (studentId: string): Promise<BehaviorReport[]> => {
+  const { data } = await axios.get<BehaviorReport[]>(`${API_URL}/behavior-reports/student/${studentId}`)
+  return data
+}
+
 export const createBehaviorReport = async ({
   student, description, severity, resolved
 }: BehaviorReport): Promise<BehaviorReport> => {

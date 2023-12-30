@@ -4,19 +4,19 @@ import type { Attendance, CreateAttendance } from '@/types/course/attendance'
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 export const getAttendancesByCourse = async (courseId: string): Promise<Attendance[]> => {
-  const { data } = await axios.get<Attendance[]>(`${API_URL}/api/attendance/course/${courseId}`)
+  const { data } = await axios.get<Attendance[]>(`${API_URL}/attendance/course/${courseId}`)
   return data
 }
 
-export const getAttendanceByPerson = async (personId: string): Promise<Attendance> => {
-  const { data } = await axios.get<Attendance>(`${API_URL}/api/attendance/person/${personId}`)
+export const getAttendanceByPerson = async (personId: string): Promise<Attendance[]> => {
+  const { data } = await axios.get<Attendance[]>(`${API_URL}/attendance/person/${personId}`)
   return data
 }
 
 export const createAttendance = async ({
   courseInstance, date, onModel, person, status
 }: CreateAttendance): Promise<Attendance> => {
-  const { data } = await axios.post<Attendance>(`${API_URL}/api/attendance`, {
+  const { data } = await axios.post<Attendance>(`${API_URL}/attendance`, {
     courseInstance,
     date,
     onModel,

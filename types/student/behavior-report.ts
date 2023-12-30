@@ -1,4 +1,5 @@
 export interface BehaviorReport {
+  _id: string
   date: Date
   student: string
   description: string

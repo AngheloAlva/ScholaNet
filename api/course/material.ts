@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { Material, CreateMaterial, UpdateMaterial } from '@/types/course/material'
+import type { Material } from '@/types/course/material'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
