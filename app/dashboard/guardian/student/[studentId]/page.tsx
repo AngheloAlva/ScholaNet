@@ -16,7 +16,7 @@ function ViewGuardianStudentPage (
   const tableBody: string[][] = behaviorReports.map((behaviorReport) => {
     return [
       behaviorReport._id,
-      format(behaviorReport.date, 'ppp'),
+      format(new Date(behaviorReport.date), 'PPP'),
       behaviorReport.description,
       behaviorReport.severity,
       behaviorReport.resolved ? 'Yes' : 'No'
