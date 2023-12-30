@@ -35,6 +35,7 @@ function ViewGuardianStudentPage (
           }
         </h1>
         <InfoCardSection attendance={attendance} averageGrades={averageGrades} behaviorReports={behaviorReports.length} isLoading={isLoading} />
+
         <div className='flex flex-col gap-4 md:gap-8'>
           <StadisticSection />
 

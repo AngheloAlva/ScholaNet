@@ -21,7 +21,7 @@ function InfoCardSection ({
       >
         {isLoading
           ? <Skeleton className='w-16 h-8' />
-          : `${attendance} %`
+          : `${attendance.toFixed(2)} %`
         }
       </InfoCard>
       <InfoCard

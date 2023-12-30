@@ -54,7 +54,7 @@ const useStudentById = (id: string): Response => {
       } catch (error) {
         toast({
           title: 'Error',
-          description: 'Error getting student',
+          description: (error as Error)?.message ?? 'Something went wrong',
           duration: 3000
         })
       } finally {

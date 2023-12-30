@@ -1,7 +1,8 @@
 export interface Attendance {
   _id: string
   date: Date
-  onModel: 'Student' | 'Teacher'
+  student?: string
+  teacher?: string
   person: string
   courseInstance: string
   status: 'present' | 'absent' | 'late' | 'excused'
