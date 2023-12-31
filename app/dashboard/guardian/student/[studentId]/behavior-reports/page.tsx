@@ -1,6 +1,6 @@
 'use client'
 
-import useAttendance from '@/hooks/useAttendance'
+import useBehaviorReport from '@/hooks/useBehaviorReport'
 import { columns } from './columns'
 import Link from 'next/link'
 
@@ -8,10 +8,10 @@ import { Skeleton } from '@/components/ui/skeleton'
 import DataTable from '@/components/ui/data-table'
 import { FaAngleLeft } from 'react-icons/fa6'
 
-function AttendanceByStudentPage (
+function BehaviorReportPage (
   { params }: { params: { studentId: string } }
 ): React.ReactElement {
-  const { attendances, isLoading } = useAttendance(params.studentId)
+  const { behaviorReports, isLoading } = useBehaviorReport(params.studentId)
 
   return (
     <main className='w-screen px-10 mb-20'>
@@ -22,10 +22,10 @@ function AttendanceByStudentPage (
       {
         isLoading
           ? <Skeleton className='w-full h-96' />
-          : <DataTable columns={columns} data={attendances} filterColumn='status' />
+          : <DataTable columns={columns} data={behaviorReports} filterColumn='severity' />
       }
     </main>
   )
 }
 
-export default AttendanceByStudentPage
+export default BehaviorReportPage

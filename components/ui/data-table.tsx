@@ -25,10 +25,11 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: Array<ColumnDef<TData, TValue>>
   data: TData[]
+  filterColumn: string
 }
 
 function DataTable<TData, TValue> ({
-  columns, data
+  columns, data, filterColumn
 }: DataTableProps<TData, TValue>): React.ReactElement {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 
@@ -47,10 +48,10 @@ function DataTable<TData, TValue> ({
   return (
     <div className='flex flex-col gap-4'>
       <Input
-        placeholder='Filter by status'
-        value={(table.getColumn('status')?.getFilterValue() as string) ?? ''}
+        placeholder={`Filter by ${filterColumn}`}
+        value={(table.getColumn(filterColumn)?.getFilterValue() as string) ?? ''}
         onChange={(e) =>
-          table.getColumn('status')?.setFilterValue(e.target.value)
+          table.getColumn(filterColumn)?.setFilterValue(e.target.value)
         }
       />
 
