@@ -64,14 +64,10 @@ export const updateCourseInstance = async ({
 
 export const getAverageGradeByStudent = async ({
   courseInstanceId, studentId
-}: { courseInstanceId: string, studentId: string }): Promise<number | string> => {
-  const { data } = await axios.get<{ averageGrade: number, message: string }>(
+}: { courseInstanceId: string, studentId: string }): Promise<number> => {
+  const { data } = await axios.get<number>(
     `${API_URL}/course-instance/${courseInstanceId}/student/${studentId}`
   )
 
-  if (data.message.length > 0) {
-    return data.message
-  }
-
-  return data.averageGrade
+  return data
 }

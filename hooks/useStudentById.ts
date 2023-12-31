@@ -28,8 +28,6 @@ const useStudentById = (id: string): Response => {
 
   useEffect(() => {
     const fetchStudent = async (): Promise<void> => {
-      setIsLoading(true)
-
       try {
         const studentData = await getStudent(id)
         setStudent(studentData)

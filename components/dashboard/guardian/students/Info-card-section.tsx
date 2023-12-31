@@ -7,10 +7,11 @@ interface InfoCardSectionProps {
   attendance: number
   behaviorReports: number
   isLoading: boolean
+  studentId: string
 }
 
 function InfoCardSection ({
-  averageGrades, attendance, behaviorReports, isLoading
+  averageGrades, attendance, behaviorReports, isLoading, studentId
 }: InfoCardSectionProps): React.ReactElement {
   return (
     <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-4'>
@@ -18,6 +19,7 @@ function InfoCardSection ({
         icon={<FaCalendarDays className='w-4 h-4 text-gray-500' />}
         description='of 180 days'
         title='Attendance'
+        href={`/dashboard/guardian/student/${studentId}/attendance`}
       >
         {isLoading
           ? <Skeleton className='w-16 h-8' />
@@ -28,6 +30,7 @@ function InfoCardSection ({
         icon={<FaBookOpen className='w-4 h-4 text-gray-500' />}
         description='of 180 days'
         title='Academic Performance'
+        href={`/dashboard/guardian/student/${studentId}/academic-performance`}
       >
         {isLoading
           ? <Skeleton className='w-16 h-8' />
@@ -44,6 +47,7 @@ function InfoCardSection ({
         icon={<FaTriangleExclamation className='w-4 h-4 text-gray-500' />}
         description='Incidents this year'
         title='Behavior Reports'
+        href={`/dashboard/guardian/student/${studentId}/behavior-reports`}
       >
         {isLoading
           ? <Skeleton className='w-16 h-8' />
@@ -54,6 +58,7 @@ function InfoCardSection ({
         icon={<FaPhone className='w-4 h-4 text-gray-500' />}
         description='New announcements this week'
         title='School Announcements'
+        href={`/dashboard/guardian/student/${studentId}/announcements`}
       >
         {
           isLoading
