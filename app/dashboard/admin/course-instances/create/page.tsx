@@ -3,12 +3,10 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 
 import { createCourseInstanceSchema } from '@/lib/createCourseInstanceSchema'
-import { dayOptions, durationnOptions, startTimes } from '@/data/consts'
 import { createCourseInstance } from '@/api/course/course-instance'
-import { calculateEndTime } from '@/helpers/calculateEndTime'
-import { useFieldArray, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
+import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import Link from 'next/link'
 
@@ -16,13 +14,10 @@ import SemesterSelect from '@/components/dashboard/admin/forms/Semester-select'
 import TeacherSelect from '@/components/dashboard/admin/forms/Teacher-select'
 import CourseSelect from '@/components/dashboard/admin/forms/Course-select'
 import SubmitButton from '@/components/dashboard/admin/forms/Submit-button'
-import SelectField from '@/components/dashboard/admin/forms/Select-field'
 import GenericFormField from '@/components/Form-field'
 import { Separator } from '@/components/ui/separator'
 import { useToast } from '@/components/ui/use-toast'
-import { Button } from '@/components/ui/button'
 import { FaAngleLeft } from 'react-icons/fa6'
-import { Label } from '@/components/ui/label'
 import { Form } from '@/components/ui/form'
 
 import type { z } from 'zod'
@@ -37,19 +32,9 @@ function CreateCourseInstancePage (): React.ReactElement {
       academicYear: '',
       classroom: '',
       course: '',
-      schedule: [{
-        day: '',
-        duration: '',
-        startTime: ''
-      }],
       semester: '',
       teacher: ''
     }
-  })
-
-  const { fields, append, remove } = useFieldArray({
-    control: form.control,
-    name: 'schedule'
   })
 
   const onSubmit = async (values: z.infer<typeof createCourseInstanceSchema>): Promise<void> => {
@@ -61,13 +46,7 @@ function CreateCourseInstancePage (): React.ReactElement {
         classroom: values.classroom,
         course: values.course,
         semester: values.semester,
-        teacher: values.teacher,
-        schedule: values.schedule.map((schedule) => ({
-          day: schedule.day,
-          startTime: schedule.startTime,
-          duration: Number(schedule.duration),
-          endTime: calculateEndTime(schedule.startTime, Number(schedule.duration))
-        }))
+        teacher: values.teacher
       })
       toast({
         title: 'Success',
@@ -103,46 +82,6 @@ function CreateCourseInstancePage (): React.ReactElement {
             <CourseSelect label='Course' onChange={handleCourseChange} value={form.watch('course')} />
             <SemesterSelect label='Semester' value={form.watch('semester')} onChange={(semester: string) => { form.setValue('semester', semester) }} />
             <TeacherSelect label='Teacher' value={form.watch('teacher')} onChange={(teacher: string) => { form.setValue('teacher', teacher) }} />
-          </div>
-          <Separator className='my-4 md:hidden' />
-          <div className='flex flex-col w-full gap-5'>
-
-            {
-              fields.map((field, index) => (
-                <div key={field.id} className='flex flex-col gap-4 w-full'>
-                  <Label>Schedule {index + 1}</Label>
-                  <SelectField
-                    name={`schedule.${index}.day`}
-                    placeholder='Select a day'
-                    textTransform='capitalize'
-                    options={dayOptions}
-                    index={field.id}
-                    form={form}
-                  />
-                  <SelectField
-                    name={`schedule.${index}.startTime`}
-                    placeholder='Select a start time'
-                    options={startTimes}
-                    index={field.id}
-                    form={form}
-                  />
-                  <SelectField
-                    name={`schedule.${index}.duration`}
-                    placeholder='Select a duration'
-                    options={durationnOptions}
-                    textTransform='block'
-                    index={field.id}
-                    form={form}
-                  />
-                  <Button type='button' variant={'destructive'} onClick={() => { remove(index) }}>
-                    Remove schedule
-                  </Button>
-                </div>
-              ))
-            }
-            <Button type='button' variant={'secondary'} className='hover:bg-text-100 bg-text-200 text-bg-100' onClick={() => { append({ day: '', startTime: '', duration: '' }) }}>
-              Add schedule
-            </Button>
           </div>
         </div>
         <div className='flex flex-col'>

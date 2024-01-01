@@ -31,13 +31,12 @@ export const getMaterialsByCourseInstance = async (id: string): Promise<CourseIn
 }
 
 export const createCourseInstance = async ({
-  academicYear, classroom, course, schedule, semester, teacher
+  academicYear, classroom, course, semester, teacher
 }: CreateCourseInstance): Promise<CourseInstance> => {
   const { data } = await axios.post<CourseInstance>(`${API_URL}/course-instance`, {
     academicYear,
     classroom,
     course,
-    schedule,
     semester,
     teacher
   })
@@ -52,11 +51,10 @@ export const addStudentToCourseInstance = async (id: string, studentId: string):
 }
 
 export const updateCourseInstance = async ({
-  id, classroom, schedule, teacher
+  id, classroom, teacher
 }: UpdateCourseInstance): Promise<CourseInstance> => {
   const { data } = await axios.put<CourseInstance>(`${API_URL}/course-instance/${id}`, {
     classroom,
-    schedule,
     teacher
   })
   return data

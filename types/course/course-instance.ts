@@ -10,13 +10,7 @@ export interface CourseInstance {
   semester: Semester
   academicYear: string
   classroom: string
-  schedule: Array<{
-    _id: string
-    day: string
-    startTime: string
-    endTime: string
-    duration: number
-  }>
+  schedule: string
 }
 
 export interface CreateCourseInstance {
@@ -25,22 +19,10 @@ export interface CreateCourseInstance {
   semester: string
   academicYear: number
   classroom: string
-  schedule: Array<{
-    day: string
-    startTime: string
-    endTime: string
-    duration: number
-  }>
 }
 
 export interface UpdateCourseInstance {
   id: string
   teacher?: string
   classroom?: string
-  schedule?: Array<{
-    day?: string
-    startTime?: string
-    endTime?: string
-    duration?: number
-  }>
 }

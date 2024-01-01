@@ -39,7 +39,8 @@ function CourseInstanceData ({
       state: 'active',
       verificationCode: '',
       emailVerified: false,
-      refreshToken: ''
+      refreshToken: '',
+      students: []
     },
     students: [],
     semester: {
@@ -50,7 +51,7 @@ function CourseInstanceData ({
     },
     academicYear: '',
     classroom: '',
-    schedule: []
+    schedule: ''
   })
 
   useEffect(() => {
@@ -74,16 +75,6 @@ function CourseInstanceData ({
         <p><strong>Year: </strong> {currentData.academicYear}</p>
         <p><strong>Classroom: </strong> {currentData.classroom}</p>
         <p><strong>Schedule: </strong></p>
-        {
-          currentData.schedule.map((schedule) => (
-            <div key={schedule._id}>
-              <p>Day: {schedule.day}</p>
-              <p>Start time: {schedule.startTime}</p>
-              <p>End time: {schedule.endTime}</p>
-              <p>Duration: {schedule.duration}</p>
-            </div>
-          ))
-        }
       </CardContent>
     </Card>
   )

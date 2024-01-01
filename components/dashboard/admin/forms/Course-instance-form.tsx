@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 
-import { useFieldArray, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { useEffect } from 'react'
 
 import { Skeleton } from '@/components/ui/skeleton'
@@ -10,33 +10,19 @@ import { Label } from '@/components/ui/label'
 
 import type { FieldValues, SubmitHandler } from 'react-hook-form'
 import type { User } from '@/types/user/user'
-import { Separator } from '@/components/ui/separator'
 import TeacherSelect from './Teacher-select'
-import SelectField from './Select-field'
-import { dayOptions, durationnOptions, startTimes } from '@/data/consts'
 
 interface CourseInstanceFormProps {
   initialValues: {
     teacher?: User
     classroom: string
-    schedule: Array<{
-      day: string
-      startTime: string
-      endTime: string
-      duration: number
-    }>
   }
   onSubmit: SubmitHandler<FieldValues>
 }
 
 function CourseInstanceForm ({ initialValues, onSubmit }: CourseInstanceFormProps): React.ReactElement {
-  const { register, handleSubmit, control, reset } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     defaultValues: initialValues
-  })
-
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: 'schedule'
   })
 
   useEffect(() => {
@@ -65,42 +51,6 @@ function CourseInstanceForm ({ initialValues, onSubmit }: CourseInstanceFormProp
         onChange={(teacherId) => { reset({ ...initialValues, teacher: { _id: teacherId } }) }}
         />
       </div>
-      {fields.map((field, index) => (
-          <div key={field.id} className='w-full gap-4 flex flex-col'>
-            <Separator />
-            <Label>Schedule {index + 1}</Label>
-            <SelectField
-              form={control}
-              name={`schedule.${index}.day`}
-              options={dayOptions}
-              placeholder='Select a day'
-              textTransform='capitalize'
-              index={field.id}
-            />
-            <SelectField
-              name='startTime'
-              form={control}
-              options={startTimes}
-              placeholder='Select a start time'
-              index={field.id}
-            />
-            <SelectField
-              name='duration'
-              form={control}
-              options={durationnOptions}
-              placeholder='Select a duration'
-              index={field.id}
-            />
-            <Input {...register(`schedule.${index}.duration`)} />
-
-            <Button variant={'destructive'} onClick={() => { remove(index) }}>Remove</Button>
-          </div>
-      ))}
-      <Button type='button' className='bg-text-200 w-full' onClick={() => { append({ day: '', startTime: '', endTime: '', duration: 1 }) }}>
-        Add Schedule
-      </Button>
-
-      <Separator />
 
       <Button type='submit' className='w-full mt-2'>
         Submit

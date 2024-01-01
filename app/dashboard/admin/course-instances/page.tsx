@@ -19,7 +19,7 @@ function AdminCoursesPage (): React.ReactElement {
         courseInstance._id,
         courseInstance.classroom,
         courseInstance.course.title,
-        courseInstance.schedule.map(schedule => `${schedule.day} ${schedule.startTime}-${schedule.endTime} - ${schedule.duration} block(s)`).join(', '),
+        courseInstance.schedule,
         courseInstance.teacher.name + ' ' + courseInstance.teacher.lastName,
         courseInstance.students.length.toString(),
         courseInstance.academicYear,
