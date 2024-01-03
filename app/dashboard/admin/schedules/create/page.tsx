@@ -3,10 +3,26 @@
 import ScheduleCreator from '@/components/dashboard/admin/schedule/Schedule-creator'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { FaAngleLeft } from 'react-icons/fa6'
 
 function CreateSchedulePage (): React.ReactElement {
-  const isPageWide = window.innerWidth > 1500
+  const [isPageWide, setIsPageWide] = useState<boolean>(false)
+
+  useEffect(() => {
+    const checkWidth = (): boolean => window.innerWidth > 1500
+    setIsPageWide(checkWidth())
+
+    window.addEventListener('resize', () => {
+      setIsPageWide(checkWidth())
+    })
+
+    return () => {
+      window.removeEventListener('resize', () => {
+        setIsPageWide(checkWidth())
+      })
+    }
+  }, [])
 
   return (
     <>
