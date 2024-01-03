@@ -8,6 +8,7 @@ const useCourseInstanceData = (): {
   courseInstances: CourseInstance[]
   totalCourseInstances: number
   reloadCourseInstances: () => Promise<void>
+  setCourseInstances: React.Dispatch<React.SetStateAction<CourseInstance[]>>
 } => {
   const [courseInstances, setCourseInstances] = useState<CourseInstance[]>([])
   const [totalCourseInstances, setTotalCourseInstances] = useState(0)
@@ -50,7 +51,8 @@ const useCourseInstanceData = (): {
   return {
     courseInstances,
     totalCourseInstances,
-    reloadCourseInstances
+    reloadCourseInstances,
+    setCourseInstances
   }
 }
 

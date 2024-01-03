@@ -1,4 +1,5 @@
 import type { Semester } from '../schola-net/semester'
+import type { Student } from '../student/student'
 import type { User } from '../user/user'
 import type { Course } from './course'
 
@@ -6,7 +7,7 @@ export interface CourseInstance {
   _id: string
   course: Course
   teacher: User
-  students: string[]
+  students: Student[]
   semester: Semester
   academicYear: string
   classroom: string

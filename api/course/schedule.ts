@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import type { Schedule } from '@/types/course/schedule'
+import type { Schedule, CreateSchedule } from '@/types/course/schedule'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
@@ -25,7 +25,7 @@ export const getCoursesWithoutSchedule = async (): Promise<Schedule> => {
 
 export const createSchedule = async ({
   name, days
-}: Schedule): Promise<Schedule> => {
+}: CreateSchedule): Promise<Schedule> => {
   const { data } = await axios.post<Schedule>(`${API_URL}/schedule`, {
     name, days
   })
