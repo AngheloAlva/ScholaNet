@@ -1,10 +1,11 @@
+import type { CourseInstance } from './course-instance'
 import type { Question } from './question'
 
 export interface Evaluation {
   _id: string
   title: string
   description: string
-  courseInstance: string
+  courseInstance: CourseInstance
   dueDate: Date
   type: 'paper' | 'online' | 'presentation' | 'project'
   questions: Question[]

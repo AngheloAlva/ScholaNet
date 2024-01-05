@@ -1,5 +1,8 @@
 import axios from 'axios'
 import type { CourseInstance, UpdateCourseInstance, CreateCourseInstance } from '../../types/course/course-instance'
+import type { SimpleSchedule } from '@/types/course/schedule'
+import type { Evaluation } from '@/types/course/evaluation'
+import type { Material } from '@/types/course/material'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
@@ -20,13 +23,13 @@ export const getCourseInstance = async (id: string): Promise<CourseInstance> => 
   return data
 }
 
-export const getEvaluationsByCourseInstance = async (id: string): Promise<CourseInstance> => {
-  const { data } = await axios.get<CourseInstance>(`${API_URL}/course-instance/evaluations/${id}`)
+export const getEvaluationsByCourseInstance = async (id: string): Promise<Evaluation[]> => {
+  const { data } = await axios.get<Evaluation[]>(`${API_URL}/course-instance/evaluations/${id}`)
   return data
 }
 
-export const getMaterialsByCourseInstance = async (id: string): Promise<CourseInstance> => {
-  const { data } = await axios.get<CourseInstance>(`${API_URL}/course-instance/materials/${id}`)
+export const getMaterialsByCourseInstance = async (id: string): Promise<Material[]> => {
+  const { data } = await axios.get<Material[]>(`${API_URL}/course-instance/materials/${id}`)
   return data
 }
 
@@ -65,6 +68,21 @@ export const getAverageGradeByStudent = async ({
 }: { courseInstanceId: string, studentId: string }): Promise<number> => {
   const { data } = await axios.get<number>(
     `${API_URL}/course-instance/${courseInstanceId}/student/${studentId}`
+  )
+
+  return data
+}
+
+interface CourseInstanceByStudentResponse {
+  schedules: SimpleSchedule[]
+  courseInstances: CourseInstance[]
+}
+
+export const getCoursesInstancesByTeacher = async ({
+  teacherId, academicYear
+}: { teacherId: string, academicYear: string }): Promise<CourseInstanceByStudentResponse> => {
+  const { data } = await axios.get<CourseInstanceByStudentResponse>(
+    `${API_URL}/course-instance/teacher/${teacherId}?academicYear=${academicYear}`
   )
 
   return data

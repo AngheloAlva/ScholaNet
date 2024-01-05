@@ -1,0 +1,4 @@
+[
+  { "href": "/dashboard/teacher", "text": "Dashboard" },
+  { "href": "/dashboard/teacher/intranet", "text": "Intranet"}
+]

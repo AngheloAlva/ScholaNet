@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
-
 'use client'
 
 import useGuardianByIdData from '@/hooks/useGuardianByIdData'
+import { getUserIdFromToken } from '@/lib/getUserIdFromToken'
 import { useRouter } from 'next/navigation'
-import { jwtDecode } from 'jwt-decode'
-import Cookies from 'js-cookie'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -14,8 +11,7 @@ import UserTitle from '@/components/dashboard/User-title'
 import { Button } from '@/components/ui/button'
 
 function DashboardPage (): React.ReactElement {
-  const token = Cookies.get('refreshToken')
-  const { userId } = (token != null) ? jwtDecode(token) as { userId: string } : { userId: '' }
+  const userId = getUserIdFromToken()
   const { guardian, students } = useGuardianByIdData(userId)
   const router = useRouter()
 
