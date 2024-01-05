@@ -30,13 +30,13 @@ const useDashboardTeacherData = (teacherId: string, academicYear: string): {
           const evaluationsResponse = await getEvaluationsByCourseInstance(courseInstance._id)
           setEvaluations((prev) => [...prev, ...evaluationsResponse])
         })
-
-        setIsLoading(false)
       } catch (error) {
         toast({
           title: 'Error',
           description: `We could not get the courses instances, ${(error as any).message}`
         })
+      } finally {
+        setIsLoading(false)
       }
     }
 
