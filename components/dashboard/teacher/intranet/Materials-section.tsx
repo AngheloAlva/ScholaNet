@@ -1,9 +1,7 @@
-import Link from 'next/link'
-
-import { Button } from '@/components/ui/button'
 import MaterialItem from './Material-item'
 
 import type { Material } from '@/types/course/material'
+import CreateMaterialForm from '../forms/Create-material'
 
 interface Props {
   materials: Material[]
@@ -18,14 +16,10 @@ function MaterialsSection ({
     <div>
       <div className='flex justify-between items-center'>
         <h2 className='text-xl font-bold'>Materials</h2>
-        <Link href={`/dashboard/teacher/${teacherId}/intranet/${courseId}/materials/create`}>
-          <Button variant={'outline'}>
-            Create evaluation
-          </Button>
-        </Link>
+        <CreateMaterialForm courseInstanceId={courseId} />
       </div>
 
-      <ul className='flex flex-col items-start justify-center w-full h-full gap-2'>
+      <ul className='flex mt-4 flex-col items-start justify-center w-full h-full gap-2'>
         {
           materials.length === 0
             ? <p>No materials</p>

@@ -10,7 +10,7 @@ export interface Material {
 export interface CreateMaterial {
   title: string
   description: string
-  type: 'pdf' | 'link' | 'file'
+  type: string
   url: string
   courseInstance: string
 }
