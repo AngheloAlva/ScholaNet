@@ -2,7 +2,7 @@
 
 import useDashboardTeacherData from '@/hooks/useDashboardTeacherData'
 
-import CourseCard from '@/components/dashboard/teacher/intranet/course-card'
+import CourseCard from '@/components/dashboard/teacher/intranet/Course-card'
 import { Skeleton } from '@/components/ui/skeleton'
 import BackButton from '@/components/Back-button'
 

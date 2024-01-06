@@ -19,7 +19,7 @@ function MaterialsSection ({
         <CreateMaterialForm courseInstanceId={courseId} />
       </div>
 
-      <ul className='flex mt-4 flex-col items-start justify-center w-full h-full gap-2'>
+      <ul className='flex pl-2 mt-4 flex-col items-start justify-center w-full h-full gap-2'>
         {
           materials.length === 0
             ? <p>No materials</p>

@@ -2,7 +2,7 @@ export interface Material {
   _id: string
   title: string
   description: string
-  type: 'pdf' | 'link' | 'file'
+  type: 'pdf' | 'link' | 'video'
   url: string
   courseInstance: string
 }
@@ -19,6 +19,6 @@ export interface UpdateMaterial {
   id: string
   title: string
   description: string
-  type: 'pdf' | 'link' | 'file'
+  type: 'pdf' | 'link' | 'video'
   url: string
 }
