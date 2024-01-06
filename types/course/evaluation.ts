@@ -7,7 +7,7 @@ export interface Evaluation {
   description: string
   courseInstance: CourseInstance
   dueDate: Date
-  type: 'paper' | 'online' | 'presentation' | 'project'
+  type: string
   questions: Question[]
   submissions: Submission[]
   totalScore: number
@@ -28,16 +28,15 @@ export interface CreateEvaluation {
   title: string
   description: string
   courseInstance: string
-  dueDate: Date
-  type: 'paper' | 'online' | 'presentation' | 'project'
-  questions: Question[]
+  dueDate: string
+  type: string
 }
 
 export interface UpdateEvaluation {
   id: string
   title?: string
   description?: string
-  dueDate?: Date
+  dueDate?: string
   questions?: Question[]
 }
 

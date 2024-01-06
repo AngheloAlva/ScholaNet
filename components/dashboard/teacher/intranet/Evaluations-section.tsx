@@ -18,7 +18,7 @@ function EvaluationSection ({
     <div>
       <div className='flex justify-between items-center'>
         <h2 className='text-xl font-bold'>Evaluations</h2>
-        <Link href={`/dashboard/teacher/${teacherId}/intranet/${courseId}/evaluations/create`}>
+        <Link href={`/dashboard/teacher/${teacherId}/intranet/${courseId}/create-evaluation`}>
           <Button variant={'outline'}>
             Create evaluation
           </Button>

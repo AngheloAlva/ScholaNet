@@ -5,7 +5,7 @@ import { Controller } from 'react-hook-form'
 interface SelectFieldProps {
   form: any
   name: string
-  index: string
+  index?: string
   options: string[]
   placeholder: string
   textTransform?: 'capitalize' | 'block'

@@ -21,13 +21,12 @@ export const getEvaluation = async (id: string): Promise<Evaluation> => {
 }
 
 export const createEvaluation = async ({
-  courseInstance, description, dueDate, questions, title, type
+  courseInstance, description, dueDate, title, type
 }: CreateEvaluation): Promise<Evaluation> => {
   const { data } = await axios.post<Evaluation>(`${API_URL}/evaluation`, {
     courseInstance,
     description,
     dueDate,
-    questions,
     title,
     type
   })

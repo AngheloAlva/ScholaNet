@@ -11,7 +11,7 @@ function MaterialItem (
       <div>
         <h3 className='font-bold'>{material.title}</h3>
         <p>{material.description}</p>
-       </div>
+      </div>
       <Button variant={'link'}>
         {
           isVideo

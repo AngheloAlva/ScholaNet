@@ -1,12 +1,20 @@
+import { Button } from '@/components/ui/button'
 import type { Evaluation } from '@/types/course/evaluation'
 
 function EvaluationItem (
   { evaluation }: { evaluation: Evaluation }
 ): React.ReactElement {
   return (
-    <li key={evaluation._id} className='flex flex-col items-start justify-center w-full h-full gap-2'>
-      <h3 className='text-xl font-bold'>{evaluation.title}</h3>
-      <p>{evaluation.description}</p>
+    <li key={evaluation._id} className='flex justify-between w-full h-full text-text-100'>
+      <div>
+        <h3 className='text-xl font-bold'>{evaluation.title}</h3>
+        <p>{evaluation.description}</p>
+      </div>
+      <Button variant={'link'}>
+        {/* <a href={evaluation.url} target='_blank'>
+          {evaluation.type === 'pdf' ? 'View' : 'Go'} {evaluation.type}
+        </a> */}
+      </Button>
     </li>
   )
 }
