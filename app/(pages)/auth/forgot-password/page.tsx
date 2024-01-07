@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 'use client'
 
@@ -9,6 +8,7 @@ import Link from 'next/link'
 
 import { CardTitle, CardDescription, CardHeader, CardContent, Card } from '@/app/components/ui/card'
 import { useToast } from '@/app/components/ui/use-toast'
+import BackButton from '@/app/components/ui/Back-button'
 import { Button } from '@/app/components/ui/button'
 import { Label } from '@/app/components/ui/label'
 import { Input } from '@/app/components/ui/input'
@@ -24,7 +24,7 @@ function ForgotPassword (): React.ReactElement {
   const token = searchParams.get('token')
 
   useEffect(() => {
-    if (!token) {
+    if (token == null) {
       router.push('/auth/login')
     }
   }, [token, router])
@@ -61,52 +61,55 @@ function ForgotPassword (): React.ReactElement {
   }
 
   return (
-    <main className='w-screen h-screen flex items-center justify-center'>
-      <Card className="mx-auto max-w-sm bg-bg-200">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold">Reset Password</CardTitle>
-          <CardDescription>Enter and confirm your new password below</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit}>
-            <div className="space-y-2">
-              <Label htmlFor="newPassword">New Password</Label>
-              <Input
-                placeholder="Enter your new password"
-                value={newPassword}
-                id="newPassword"
-                type="password"
-                required
-                onChange={(e) => {
-                  setNewPassword(e.target.value)
-                }}
-              />
-            </div>
-            <div className="space-y-2 mt-4">
-              <Label htmlFor="confirmPassword">Confirm Password</Label>
-              <Input
-                placeholder="Confirm your new password"
-                value={confirmPassword}
-                id="confirmPassword"
-                type="password"
-                required
-                onChange={(e) => {
-                  setConfirmPassword(e.target.value)
-                }}
-              />
-            </div>
-            <Button className="w-full mt-6" type="submit">
-              Update Password
-            </Button>
-            <div className="mt-3 text-center text-sm">
-              Remember your password? {' '}
-              <Link className="underline text-blue-500" href='/auth/login'>
-                Log in
-              </Link>
-            </div>
-          </form>
-        </CardContent>
-      </Card>
+    <main className='w-screen h-screen flex justify-center items-center'>
+      <div className='flex flex-col'>
+        <BackButton href='/' />
+        <Card className="mx-auto max-w-sm bg-bg-200">
+          <CardHeader className="space-y-1">
+            <CardTitle className="text-2xl font-bold">Reset Password</CardTitle>
+            <CardDescription>Enter and confirm your new password below</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit}>
+              <div className="space-y-2">
+                <Label htmlFor="newPassword">New Password</Label>
+                <Input
+                  placeholder="Enter your new password"
+                  value={newPassword}
+                  id="newPassword"
+                  type="password"
+                  required
+                  onChange={(e) => {
+                    setNewPassword(e.target.value)
+                  }}
+                />
+              </div>
+              <div className="space-y-2 mt-4">
+                <Label htmlFor="confirmPassword">Confirm Password</Label>
+                <Input
+                  placeholder="Confirm your new password"
+                  value={confirmPassword}
+                  id="confirmPassword"
+                  type="password"
+                  required
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value)
+                  }}
+                />
+              </div>
+              <Button className="w-full mt-6" type="submit">
+                Update Password
+              </Button>
+              <div className="mt-3 text-center text-sm">
+                Remember your password? {' '}
+                <Link className="underline text-blue-500" href='/auth/login'>
+                  Log in
+                </Link>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
     </main>
   )
 }

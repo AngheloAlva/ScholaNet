@@ -11,6 +11,7 @@ import Link from 'next/link'
 
 import SubmitButton from '@/app/components/forms/Submit-button'
 import { useToast } from '@/app/components/ui/use-toast'
+import BackButton from '@/app/components/ui/Back-button'
 import { Form } from '@/app/components/ui/form'
 
 import type { registerSchema } from '@/app/lib/registerSchema'
@@ -45,28 +46,31 @@ function RegisterPage (): React.ReactElement {
   }
 
   return (
-    <main className='w-screen h-screen flex items-center justify-center'>
+    <main className='w-screen h-screen flex justify-center items-center'>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='w-5/6 bg-bg-200 shadow-lg shadow-bg-300 px-5 py-7 rounded-md flex flex-col gap-3'>
-          <h1 className='text-3xl text-text-100 font-bold'>Register</h1>
-          <p className='text-sm text-text-200 mb-4'>Please fill in your details to create an account.</p>
+        <div className='flex flex-col'>
+          <BackButton href='/' />
+          <form onSubmit={form.handleSubmit(onSubmit)} className='w-full bg-bg-200 shadow-lg shadow-bg-300 px-5 py-7 rounded-md flex flex-col gap-3'>
+            <h1 className='text-3xl text-text-100 font-bold'>Register</h1>
+            <p className='text-sm text-text-200 mb-4'>Please fill in your details to create an account.</p>
 
-          <div className='flex items-center justify-center gap-2 w-full'>
-            <GenericFormField control={form.control} name='name' label='Name' placeholder='Name' />
-            <GenericFormField control={form.control} name='lastName' label='Last Name' placeholder='Last Name' />
-          </div>
-          <GenericFormField control={form.control} name='rut' label='Rut' placeholder='Rut' />
-          <GenericFormField control={form.control} name='email' label='Email' placeholder='Email' />
-          <GenericFormField control={form.control} name='password' label='Password' placeholder='Password' type='password' />
+            <div className='flex items-center justify-center gap-2 w-full'>
+              <GenericFormField control={form.control} name='name' label='Name' placeholder='Name' />
+              <GenericFormField control={form.control} name='lastName' label='Last Name' placeholder='Last Name' />
+            </div>
+            <GenericFormField control={form.control} name='rut' label='Rut' placeholder='Rut' />
+            <GenericFormField control={form.control} name='email' label='Email' placeholder='Email' />
+            <GenericFormField control={form.control} name='password' label='Password' placeholder='Password' type='password' />
 
-          <SubmitButton text='Sign up' isLoading={isLoading} />
-          <p className='text-center text-sm'>
-            Already have an account? {' '}
-            <Link href='/auth/login' className='font-semibold text-accent-100 hover:underline'>
-              Login
-            </Link>
-          </p>
-        </form>
+            <SubmitButton text='Sign up' isLoading={isLoading} />
+            <p className='text-center text-sm'>
+              Already have an account? {' '}
+              <Link href='/auth/login' className='font-semibold text-accent-100 hover:underline'>
+                Login
+              </Link>
+            </p>
+          </form>
+        </div>
       </Form>
 
     </main>
