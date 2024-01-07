@@ -1,5 +1,5 @@
-import { ThemeProvider } from '@/components/theme-provider'
-import { Toaster } from '@/components/ui/toaster'
+import { ThemeProvider } from '@/app/components/theme-provider'
+import { Toaster } from '@/app/components/ui/toaster'
 import { Nunito } from 'next/font/google'
 import './globals.css'
 

@@ -1,5 +1,5 @@
-import { getRoleFromToken } from './helpers/getRoleFromToken'
-import { isTokenExpired } from './helpers/isTokenExpired'
+import { getRoleFromToken } from './app/helpers/getRoleFromToken'
+import { isTokenExpired } from './app/helpers/isTokenExpired'
 import { refreshToken } from './api/user/auth'
 import { NextResponse } from 'next/server'
 

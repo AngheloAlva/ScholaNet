@@ -1,4 +1,4 @@
-import type { CourseIconProps } from '@/components/dashboard/Course-icon'
+import type { CourseIconProps } from '@/app/components/ui/Course-icon'
 export const coursesIcons: CourseIconProps[] = [
   {
     image: '/courses-icons/primary-icon.png',

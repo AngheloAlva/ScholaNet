@@ -1,12 +1,12 @@
 import Image from 'next/image'
-import CourseSection from '@/components/home/Course-section'
-import BeneficCard from '@/components/home/Benefic-card'
-import Navbar from '@/components/home/navbar/Navbar'
-import { Separator } from '@/components/ui/separator'
-import { Button } from '@/components/ui/button'
+import CourseSection from '@/app/components/home/ui/Course-section'
+import BeneficCard from '@/app/components/home/ui/Benefic-card'
+import Navbar from '@/app/components/home/navbar/Navbar'
+import { Separator } from '@/app/components/ui/separator'
+import { Button } from '@/app/components/ui/button'
 
 import { beneficCards, coursesSections } from '../data/home-sections'
-import Footer from '@/components/home/footer/Footer'
+import Footer from '@/app/components/home/footer/Footer'
 
 function Home (): React.ReactElement {
   return (

@@ -1,4 +1,4 @@
-import type { BeneficCardProps } from '@/components/home/Benefic-card'
+import type { BeneficCardProps } from '@/app/components/home/ui/Benefic-card'
 
 import primaryCourses from '@/data/primary-courses.json'
 import secondayCourses from '@/data/secondary-courses.json'
