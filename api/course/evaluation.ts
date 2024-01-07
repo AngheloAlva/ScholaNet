@@ -45,13 +45,14 @@ export const addSubmission = async ({
 }
 
 export const updateEvaluation = async ({
-  id, title, description, dueDate, questions
+  id, title, description, dueDate, questions, totalScore
 }: UpdateEvaluation): Promise<Evaluation> => {
   const { data } = await axios.put<Evaluation>(`${API_URL}/evaluation/${id}`, {
     title,
     description,
     dueDate,
-    questions
+    questions,
+    totalScore
   })
   return data
 }

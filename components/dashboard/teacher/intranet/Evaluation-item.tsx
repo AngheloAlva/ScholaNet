@@ -7,7 +7,7 @@ function EvaluationItem (
   return (
     <li key={evaluation._id} className='flex justify-between w-full h-full text-text-100'>
       <div>
-        <h3 className='text-xl font-bold'>{evaluation.title}</h3>
+        <h3 className='font-bold'>{evaluation.title}</h3>
         <p>{evaluation.description}</p>
       </div>
       <Button variant={'link'}>

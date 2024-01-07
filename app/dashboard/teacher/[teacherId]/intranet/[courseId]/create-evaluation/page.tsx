@@ -40,16 +40,20 @@ function CreateEvaluationPage (
       })
 
       if (values.type === 'online') {
-        router.push(`/dashboard/teacher/${params.teacherId}/intranet/${params.courseId}/create-evaluation/${evaluation._id}questions`)
+        router.push(`/dashboard/teacher/${params.teacherId}/intranet/${params.courseId}/create-evaluation/${evaluation._id}/questions`)
       } else {
         router.push(`/dashboard/teacher/${params.teacherId}/intranet/${params.courseId}`)
       }
     } catch (error) {
-      console.log(error)
       toast({
         title: 'Error',
         duration: 3000,
-        description: (error as any)?.response?.data?.message ?? 'An error occurred. Please try again later.'
+        variant: 'destructive',
+        description: (error as any)?.response?.data?.errors.map((error: any) => (
+          <p key={error.path}>
+            {error.path}: {error.value} - {error.msg}
+          </p>
+        )) ?? 'An error occurred. Please try again later.'
       })
     } finally {
       setIsLoading(false)
@@ -57,15 +61,17 @@ function CreateEvaluationPage (
   }
 
   return (
-    <main className='px-5 mb-20'>
-      <BackButton href={`/dashboard/teacher/${params.teacherId}/intranet/${params.courseId}`} />
+    <div className='px-5 mb-20'>
+      <header>
+        <BackButton href={`/dashboard/teacher/${params.teacherId}/intranet/${params.courseId}`} />
 
-      <h1 className='text-3xl font-bold text-primary-100'>Create evaluation</h1>
+        <h1 className='text-3xl font-bold text-primary-100'>Create evaluation</h1>
+      </header>
 
-      <div className='flex flex-col'>
+      <main className='flex flex-col'>
         <CreateEvaluationForm onSubmit={onSubmit} isLoading={isLoading} />
-      </div>
-    </main>
+      </main>
+    </div>
   )
 }
 

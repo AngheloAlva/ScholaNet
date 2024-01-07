@@ -37,7 +37,8 @@ export interface UpdateEvaluation {
   title?: string
   description?: string
   dueDate?: string
-  questions?: Question[]
+  questions?: string[]
+  totalScore?: number
 }
 
 export interface AddSubmission {

@@ -15,16 +15,12 @@ export const getQuestionsByEvaluation = async (
   return data
 }
 
-export const createQuestion = async ({
-  correctAnswer, evaluation, options, points, questionText, questionType
-}: CreateQuestion): Promise<Question> => {
-  const { data } = await axios.post(`${API_URL}/question`, {
-    correctAnswer,
+export const createQuestions = async ({
+  evaluation, questions
+}: CreateQuestion): Promise<Question[]> => {
+  const { data } = await axios.post<Question[]>(`${API_URL}/question`, {
     evaluation,
-    options,
-    points,
-    questionText,
-    questionType
+    questions
   })
   return data
 }

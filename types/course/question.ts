@@ -9,11 +9,7 @@ export interface Question {
 }
 
 export interface CreateQuestion {
-  questionText: string
-  options: string[]
-  correctAnswer: string
-  points: number
-  questionType: 'multipleChoice' | 'trueFalse' | 'shortAnswer'
+  questions: SimpleQuestion[]
   evaluation: string
 }
 
@@ -25,4 +21,12 @@ export interface UpdateQuestion {
   points?: number
   questionType?: 'multipleChoice' | 'trueFalse' | 'shortAnswer'
   evaluation?: string
+}
+
+export interface SimpleQuestion {
+  questionText: string
+  points: number
+  questionType: string
+  options: string[]
+  correctAnswer: string
 }

@@ -24,7 +24,7 @@ function EvaluationSection ({
           </Button>
         </Link>
       </div>
-      <ul className='flex flex-col items-start justify-center w-full h-full gap-2'>
+      <ul className='flex pl-2 mt-4 flex-col items-start justify-center w-full h-full gap-2'>
         {
           evaluations.length === 0
             ? <p>No evaluations</p>

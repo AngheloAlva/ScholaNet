@@ -45,10 +45,10 @@ function TableDataSection ({
         evaluation._id,
         evaluation.title,
         evaluation.courseInstance.classroom,
-        format(evaluation.dueDate, 'PPP'),
+        format(new Date(evaluation.dueDate), 'PPP'),
         evaluation.description,
         evaluation.type,
-        evaluation.totalScore.toString()
+        (evaluation.totalScore !== undefined) ? evaluation.totalScore.toString() : 'N/A'
       ]
     ))
 
