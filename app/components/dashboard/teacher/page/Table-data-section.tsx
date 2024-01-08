@@ -43,7 +43,6 @@ function TableDataSection ({
     ? [['No evaluations found']]
     : evaluations.map((evaluation) => (
       [
-        evaluation._id,
         evaluation.title,
         evaluation.courseInstance.classroom,
         format(new Date(evaluation.dueDate), 'PPP'),
@@ -72,7 +71,7 @@ function TableDataSection ({
       <div>
         <TableCard
           title='Evaluations this year'
-          tableHeader={['ID', 'Title', 'Course Instance', 'Due Date', 'Description', 'Type', 'Total Score']}
+          tableHeader={['Title', 'Course Instance', 'Due Date', 'Description', 'Type', 'Total Score']}
           tableBody={evaluationsBody}
         />
       </div>
