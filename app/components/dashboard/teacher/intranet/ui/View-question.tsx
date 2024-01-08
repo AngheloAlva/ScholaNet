@@ -8,11 +8,11 @@ import type { Question } from '@/types/course/question'
 interface ViewQuestionProps {
   questions: Question[]
   evaluationId: string
-  reloadData: () => Promise<void>
+  reloadQuestions: () => Promise<void>
 }
 
 function ViewQuestion ({
-  questions, evaluationId, reloadData
+  questions, evaluationId, reloadQuestions
 }: ViewQuestionProps): React.ReactElement {
   const { toast } = useToast()
 
@@ -24,28 +24,29 @@ function ViewQuestion ({
         description: 'The question was deleted successfully',
         duration: 2000
       })
-      await reloadData()
+      await reloadQuestions()
     } catch (error) {
+      console.log(error)
       toast({
         title: 'Error',
-        description: 'An error has occurred, please try again',
-        duration: 2000
+        description: (error as any).response.data.message ?? 'An error has occurred, please try again',
+        duration: 3000
       })
     }
   }
 
   return (
-    <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+    <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4'>
       {questions.map((question) => (
-        <Card>
-          <CardHeader key={question._id}>
+        <Card key={question._id}>
+          <CardHeader>
             <CardTitle className='underline'>{question.questionText}</CardTitle>
           </CardHeader>
           <CardContent>
-            <p>Type: {question.questionType}</p>
-            <p>Correct Answer: {question.correctAnswer}</p>
-            <p>Points: {question.points}</p>
-            <p>Options: </p>
+            <p><strong>Type: </strong>{question.questionType}</p>
+            <p><strong>Correct Answer: </strong>{question.correctAnswer}</p>
+            <p><strong>Points: </strong>{question.points}</p>
+            <p><strong>Options: </strong></p>
             {
               question.options.map((option) => (
                 <p key={option} className='ml-4'>-{option}</p>
@@ -54,6 +55,7 @@ function ViewQuestion ({
           </CardContent>
           <CardFooter>
             <Button
+              variant={'destructive'}
               className='w-full'
               onClick={async () => {
                 await handleDeleteQuestion(question._id)

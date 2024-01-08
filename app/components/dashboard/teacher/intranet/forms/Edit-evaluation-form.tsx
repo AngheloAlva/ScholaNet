@@ -7,15 +7,18 @@ import { useForm } from 'react-hook-form'
 import type { Question } from '@/types/course/question'
 import CreateQuestionForm from './Create-question-form'
 import ViewQuestion from '../ui/View-question'
+import { Separator } from '@/app/components/ui/separator'
 
 interface EditEvaluationFormProps {
   evaluation: Evaluation
   questions: Question[]
-  reloadData: () => Promise<void>
+  teacherId: string
+  courseInstanceId: string
+  reloadQuestions: () => Promise<void>
 }
 
 function EditEvaluationForm ({
-  evaluation, questions, reloadData
+  evaluation, questions, reloadQuestions, teacherId, courseInstanceId
 }: EditEvaluationFormProps): React.ReactElement {
   const { register, handleSubmit } = useForm({
     defaultValues: {
@@ -34,20 +37,27 @@ function EditEvaluationForm ({
       <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
         <Input {...register('title')} />
         <Textarea {...register('description')} />
-
-        <div>
-          <h3 className='text-2xl font-bold mb-2'>Questions</h3>
-          <ViewQuestion questions={questions} evaluationId={evaluation._id} reloadData={reloadData} />
-        </div>
-
         <SubmitButton isLoading={false} text='Update Evaluation' />
+
       </form>
+      <div>
+        <h3 className='text-2xl font-bold mb-2'>Questions of the evaluation</h3>
+        {
+          questions.length === 0
+            ? <p className='text-xl text-muted-foreground font-semibold mb-4'>There are no questions yet</p>
+            : <ViewQuestion questions={questions} evaluationId={evaluation._id} reloadQuestions={reloadQuestions} />
+
+        }
+      </div>
+
+      <Separator />
 
       <div>
-        <p>
+        <h3 className='text-2xl font-bold'>Add Question</h3>
+        <h3 className='text-xl text-muted-foreground font-semibold mb-4'>
           If you want to add a new question, you can do it here.
-        </p>
-        <CreateQuestionForm evaluationId={evaluation._id} courseInstanceId={''} teacherId={''} />
+        </h3>
+        <CreateQuestionForm evaluationId={evaluation._id} courseInstanceId={courseInstanceId} teacherId={teacherId} />
       </div>
     </div>
   )

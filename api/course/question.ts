@@ -10,8 +10,10 @@ export const getQuestionById = async (id: string): Promise<Question> => {
 
 export const getQuestionsByEvaluation = async (
   evaluation: string
-): Promise<Question[]> => {
-  const { data } = await axios.get(`${API_URL}/questions/evaluation/${evaluation}`)
+): Promise<{ questions: Question[], total: number }> => {
+  const { data } = await axios.get<{ questions: Question[], total: number }>(
+    `${API_URL}/questions/evaluation/${evaluation}`
+  )
   return data
 }
 

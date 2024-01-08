@@ -85,8 +85,8 @@ function CreateQuestionForm ({
             <h3 className='text-xl font-semibold text-text-100'>Creating questions...</h3>
             <p className='text-text-100'>Please wait</p>
           </div>
-      </div>
-      ) }
+        </div>
+      )}
       <form onSubmit={handleSubmit(onSubmit)} className='space-y-4 flex flex-col'>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-8 lg:grid-cols-3'>
           {fields.map((field, index) => (

@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react'
 
 import type { Evaluation } from '@/types/course/evaluation'
 import type { Question } from '@/types/course/question'
-import { getQuestionById } from '@/api/course/question'
+import { getQuestionsByEvaluation } from '@/api/course/question'
 
 const useEvaluationById = (id: string): {
   evaluation: Evaluation | null
   isLoading: boolean
   questions: Question[]
-  reloadData: () => Promise<void>
+  reloadQuestions: () => Promise<void>
 } => {
   const [evaluation, setEvaluation] = useState<Evaluation | null>(null)
   const [questions, setQuestions] = useState<Question[]>([])
@@ -23,10 +23,8 @@ const useEvaluationById = (id: string): {
         const response = await getEvaluation(id)
         setEvaluation(response)
 
-        await Promise.all(response.questions.map(async (question) => {
-          const questionRes = await getQuestionById(question)
-          setQuestions((prev) => [...prev, questionRes])
-        }))
+        const questionRes = await getQuestionsByEvaluation(id)
+        setQuestions(questionRes.questions)
       } catch (error) {
         toast({
           title: 'Error',
@@ -41,15 +39,10 @@ const useEvaluationById = (id: string): {
     void fetchEvaluation()
   }, [id])
 
-  const reloadData = async (): Promise<void> => {
+  const reloadQuestions = async (): Promise<void> => {
     try {
-      const response = await getEvaluation(id)
-      setEvaluation(response)
-
-      await Promise.all(response.questions.map(async (question) => {
-        const questionRes = await getQuestionById(question)
-        setQuestions((prev) => [...prev, questionRes])
-      }))
+      const questionRes = await getQuestionsByEvaluation(id)
+      setQuestions(questionRes.questions)
     } catch (error) {
       toast({
         title: 'Error',
@@ -65,7 +58,7 @@ const useEvaluationById = (id: string): {
     evaluation,
     isLoading,
     questions,
-    reloadData
+    reloadQuestions
   }
 }
 
