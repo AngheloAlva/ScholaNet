@@ -70,7 +70,11 @@ function CreateQuestionForm ({
       })
       router.push(`/dashboard/teacher/${teacherId}/intranet/${courseInstanceId}`)
     } catch (error) {
-      console.log(error)
+      toast({
+        title: 'Error',
+        description: (error as any)?.response?.data?.message ?? 'An error occurred while creating the questions',
+        duration: 2000
+      })
     } finally {
       setIsLoading(false)
       router.push(`/dashboard/teacher/${teacherId}/intranet/${courseInstanceId}`)
@@ -80,7 +84,7 @@ function CreateQuestionForm ({
   return (
     <div className='relative'>
       {isLoading && (
-        <div className='absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center'>
+        <div className='absolute inset-0 bg-bg-300 bg-opacity-50 flex justify-center items-center'>
           <div className='bg-white rounded-lg p-4 flex flex-col gap-4'>
             <h3 className='text-xl font-semibold text-text-100'>Creating questions...</h3>
             <p className='text-text-100'>Please wait</p>

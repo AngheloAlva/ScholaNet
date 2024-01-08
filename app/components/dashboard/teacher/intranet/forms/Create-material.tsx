@@ -59,7 +59,6 @@ function CreateMaterialForm (
           description: 'You must upload a file or add a link'
         })
       }
-
       await createMaterial({
         ...values,
         type,
@@ -67,7 +66,6 @@ function CreateMaterialForm (
         courseInstance: courseInstanceId
       })
     } catch (error) {
-      console.error(error)
       toast({
         title: 'Error',
         duration: 3000,

@@ -11,6 +11,7 @@ const useEvaluationById = (id: string): {
   isLoading: boolean
   questions: Question[]
   reloadQuestions: () => Promise<void>
+  reloadEvaluation: () => Promise<void>
 } => {
   const [evaluation, setEvaluation] = useState<Evaluation | null>(null)
   const [questions, setQuestions] = useState<Question[]>([])
@@ -54,11 +55,27 @@ const useEvaluationById = (id: string): {
     }
   }
 
+  const reloadEvaluation = async (): Promise<void> => {
+    try {
+      const response = await getEvaluation(id)
+      setEvaluation(response)
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: (error as Error)?.message ?? 'Something went wrong',
+        duration: 2000
+      })
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return {
     evaluation,
     isLoading,
     questions,
-    reloadQuestions
+    reloadQuestions,
+    reloadEvaluation
   }
 }
 

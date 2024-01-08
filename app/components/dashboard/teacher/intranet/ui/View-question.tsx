@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { deleteQuestion } from '@/api/course/question'
-import { Button } from '@/app/components/ui/button'
+
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/app/components/ui/card'
 import { useToast } from '@/app/components/ui/use-toast'
+import { Button } from '@/app/components/ui/button'
+
 import type { Question } from '@/types/course/question'
 
 interface ViewQuestionProps {
@@ -26,7 +28,6 @@ function ViewQuestion ({
       })
       await reloadQuestions()
     } catch (error) {
-      console.log(error)
       toast({
         title: 'Error',
         description: (error as any).response.data.message ?? 'An error has occurred, please try again',

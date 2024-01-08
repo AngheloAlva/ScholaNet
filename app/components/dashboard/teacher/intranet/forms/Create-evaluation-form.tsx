@@ -4,19 +4,15 @@
 import { createEvaluationSchema } from '@/app/lib/createEvaluationSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { format } from 'date-fns'
 
-import { Form, FormControl, FormField, FormItem, FormLabel } from '@/app/components/ui/form'
-import { Popover, PopoverContent, PopoverTrigger } from '@/app/components/ui/popover'
+import { Form } from '@/app/components/ui/form'
 import SelectField from '@/app/components/forms/Select-form-field'
 import GenericFormField from '@/app/components/forms/Form-field'
 import SubmitButton from '@/app/components/forms/Submit-button'
-import { Calendar } from '@/app/components/ui/calendar'
-import { Button } from '@/app/components/ui/button'
 import { Label } from '@/app/components/ui/label'
-import { FaRegCalendar } from 'react-icons/fa6'
 
 import type { z } from 'zod'
+import DueDatePicker from './Due-date-picker'
 
 interface CreateEvaluationFormProps {
   onSubmit: (values: z.infer<typeof createEvaluationSchema>) => Promise<void>
@@ -48,36 +44,7 @@ function CreateEvaluationForm (
           />
         </div>
 
-        <FormField control={form.control} name='dueDate' render={({ field }) => (
-          <FormItem className='flex flex-col'>
-            <FormLabel>Due Date</FormLabel>
-            <Popover>
-              <PopoverTrigger asChild>
-                <FormControl>
-                  <Button variant={'outline'}>
-                    { (field.value)
-                      ? (format(field.value, 'PPP '))
-                      : (<span className='flex items-center gap-2'>
-                          <FaRegCalendar /> Pick start date
-                        </span>)
-                    }
-                  </Button>
-                </FormControl>
-              </PopoverTrigger>
-              <PopoverContent>
-                <Calendar
-                  mode='single'
-                  selected={field.value}
-                  onSelect={field.onChange}
-                  disabled={(date) =>
-                    date < new Date()
-                  }
-                  initialFocus
-                />
-              </PopoverContent>
-            </Popover>
-          </FormItem>
-        )} />
+        <DueDatePicker form={form} />
 
         <SubmitButton text='Create Evaluation' isLoading={isLoading} />
       </form>

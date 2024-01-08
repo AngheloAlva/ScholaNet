@@ -24,10 +24,6 @@ function StudentsPage (): React.ReactElement {
     })
     : [['No hay estudiantes']]
 
-  const handleStudentClick = (id: string): void => {
-    console.log(id)
-  }
-
   return (
     <main className='pt-7 mb-20 flex flex-col gap-5 w-screen px-5 md:px-16 lg:px-32 xl:px-60 2xl:px-80'>
       <DataCard
@@ -38,7 +34,7 @@ function StudentsPage (): React.ReactElement {
 
       <TableCard
         tableHeader={tableHeader}
-        handleClick={handleStudentClick}
+        handleClick={() => {}}
         tableBody={tableBody}
         title='Students'
       />
