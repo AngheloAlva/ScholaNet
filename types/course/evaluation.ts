@@ -1,14 +1,13 @@
 import type { CourseInstance } from './course-instance'
-import type { Question } from './question'
 
 export interface Evaluation {
   _id: string
   title: string
   description: string
   courseInstance: CourseInstance
-  dueDate: Date
+  dueDate: string
   type: string
-  questions: Question[]
+  questions: string[]
   submissions: Submission[]
   totalScore: number
   feedback: string

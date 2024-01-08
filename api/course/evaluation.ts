@@ -11,12 +11,12 @@ interface CreateEvaluationResponse {
 export const getEvaluations = async ({
   page = 1, limit = 5
 }): Promise<CreateEvaluationResponse> => {
-  const { data } = await axios.get<CreateEvaluationResponse>(`${API_URL}/course/evaluations?page=${page}&limit=${limit}`)
+  const { data } = await axios.get<CreateEvaluationResponse>(`${API_URL}/evaluations?page=${page}&limit=${limit}`)
   return data
 }
 
 export const getEvaluation = async (id: string): Promise<Evaluation> => {
-  const { data } = await axios.get<Evaluation>(`${API_URL}/course/evaluation/${id}`)
+  const { data } = await axios.get<Evaluation>(`${API_URL}/evaluation/${id}`)
   return data
 }
 

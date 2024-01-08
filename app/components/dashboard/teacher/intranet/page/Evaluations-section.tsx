@@ -14,6 +14,8 @@ interface Props {
 function EvaluationSection ({
   teacherId, courseId, evaluations
 }: Props): React.ReactElement {
+  const today = new Date()
+
   return (
     <div>
       <div className='flex justify-between items-center'>
@@ -29,7 +31,7 @@ function EvaluationSection ({
           evaluations.length === 0
             ? <p>No evaluations</p>
             : evaluations?.map((evaluation) => (
-                <EvaluationItem evaluation={evaluation} />
+                <EvaluationItem evaluation={evaluation} today={today} teacherId={teacherId} courseInstanceId={courseId} />
             ))
         }
       </ul>
