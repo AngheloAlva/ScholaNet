@@ -1,11 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import NavMenuList from '../../navbar/Nav-menu-list'
 import UserDropdown from '../../../ui/User-dropdown'
-import SheetMenu from '../../navbar/Sheet-menu'
-
-import menuList from '@/data/dashboard/teacher-nav-menu.json'
 
 function TeacherNavBar (): React.ReactElement {
   return (
@@ -16,10 +12,6 @@ function TeacherNavBar (): React.ReactElement {
         </Link>
         <div className='flex xl:flex-row-reverse items-center gap-4'>
           <UserDropdown />
-
-          <SheetMenu menuList={menuList} description='Navbar menu for teachers' title='Teacher navbar' />
-
-          <NavMenuList menuList={menuList} />
         </div>
 
       </nav>
