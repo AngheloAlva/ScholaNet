@@ -33,3 +33,8 @@ export async function createMaterial ({
 
   return data
 }
+
+export async function deleteMaterial (id: string): Promise<{ message: string }> {
+  const { data } = await axios.delete<{ message: string }>(`${API_URL}/material/${id}`)
+  return data
+}

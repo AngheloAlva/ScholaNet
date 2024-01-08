@@ -11,7 +11,13 @@ import BackButton from '@/app/components/ui/Back-button'
 function CourseInstanceByIdPage (
   { params }: { params: { teacherId: string, courseId: string } }
 ): React.ReactElement {
-  const { courseInstance, evaluations, materials } = useCourseInstanceById(params.courseId)
+  const {
+    materials,
+    evaluations,
+    courseInstance,
+    reloadMaterials,
+    reloadEvaluations
+  } = useCourseInstanceById(params.courseId)
 
   return (
     <main className='px-5 mb-20'>
@@ -26,14 +32,15 @@ function CourseInstanceByIdPage (
           teacherId={params.teacherId}
           courseId={params.courseId}
           evaluations={evaluations}
+          reloadEvaluations={reloadEvaluations}
         />
 
         <Separator className='my-6'/>
 
         <MaterialsSection
-          teacherId={params.teacherId}
           courseId={params.courseId}
           materials={materials}
+          reloadMaterials={reloadMaterials}
         />
       </div>
     </main>

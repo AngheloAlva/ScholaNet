@@ -11,6 +11,8 @@ const useCourseInstanceById = (courseInstanceId: string): {
   materials: Material[]
   evaluations: Evaluation[]
   isLoading: boolean
+  reloadEvaluations: () => Promise<void>
+  reloadMaterials: () => Promise<void>
 } => {
   const [courseInstance, setCourseInstance] = useState<CourseInstance>()
   const [evaluations, setEvaluations] = useState<Evaluation[]>([])
@@ -45,11 +47,41 @@ const useCourseInstanceById = (courseInstanceId: string): {
     void fetchCourseInstances()
   }, [])
 
+  const reloadEvaluations = async (): Promise<void> => {
+    try {
+      const evaluationResponse = await getEvaluationsByCourseInstance(courseInstanceId)
+      setEvaluations(evaluationResponse)
+    } catch (error) {
+      toast({
+        title: 'Error while fetching evaluations',
+        description: (error as Error)?.message ?? 'Something went wrong',
+        duration: 4000,
+        variant: 'destructive'
+      })
+    }
+  }
+
+  const reloadMaterials = async (): Promise<void> => {
+    try {
+      const materialResponse = await getMaterialsByCourseInstance(courseInstanceId)
+      setMaterials(materialResponse)
+    } catch (error) {
+      toast({
+        title: 'Error while fetching materials',
+        description: (error as Error)?.message ?? 'Something went wrong',
+        duration: 4000,
+        variant: 'destructive'
+      })
+    }
+  }
+
   return {
     courseInstance,
     materials,
     evaluations,
-    isLoading
+    isLoading,
+    reloadEvaluations,
+    reloadMaterials
   }
 }
 
