@@ -5,7 +5,7 @@ import { columns } from './columns'
 import Link from 'next/link'
 
 import { Skeleton } from '@/app/components/ui/skeleton'
-import DataTable from '@/app/components/ui/data-table'
+import DataTable from '@/app/components/dashboard/guardian/students/attendance/Data-table'
 import { FaAngleLeft } from 'react-icons/fa6'
 
 function BehaviorReportPage (
