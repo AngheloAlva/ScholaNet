@@ -22,9 +22,9 @@ import GenericFormField from '@/app/components/forms/Form-field'
 import RutFormField from '@/app/components/forms/Rut-form-field'
 import SubmitButton from '@/app/components/forms/Submit-button'
 import { useToast } from '@/app/components/ui/use-toast'
-import { Input } from '@/app/components/ui/input'
 
 import type { z } from 'zod'
+import NumberPasswordField from '@/app/components/forms/Number-password-field'
 
 function AddStudentPage (): React.ReactElement {
   const { programs } = useProgramData()
@@ -85,28 +85,7 @@ function AddStudentPage (): React.ReactElement {
               <GenericFormField control={form.control} label='Student Name' name='name' placeholder='name' />
               <GenericFormField control={form.control} label='Student Last Name' name='lastName' placeholder='last name' />
               <CalendarFormField control={form.control} name='dateOfBirth' label='Student Date of Birth' />
-              <FormField
-                control={form.control}
-                name={'password'}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className='text-text-100'>Password</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder='1234'
-                        type='text'
-                        maxLength={4}
-                        {...field}
-                        onChange={(e) => {
-                          const value = e.target.value.replace(/[^0-9]/g, '')
-                          field.onChange(value)
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <NumberPasswordField form={form} />
               <RutFormField control={form.control} name='rut' label='Student RUT' />
               <FormField
                 control={form.control}

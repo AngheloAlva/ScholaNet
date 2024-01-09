@@ -21,10 +21,9 @@ export const register = async ({
 export const login = async ({
   email, password
 }: LoginUser): Promise<{ token: string, refreshToken: string }> => {
-  const { data } = await axios.post(`${API_URL}/auth/login`, {
-    email,
-    password
-  })
+  const { data } = await axios.post<{ token: string, refreshToken: string }>(
+    `${API_URL}/auth/login`, { email, password }
+  )
 
   return data
 }
@@ -32,10 +31,9 @@ export const login = async ({
 export const verifyEmail = async ({
   email, code
 }: VerifyEmail): Promise<{ token: string, refreshToken: string }> => {
-  const { data } = await axios.post<{ token: string, refreshToken: string }>(`${API_URL}/auth/verify-email`, {
-    email,
-    code
-  })
+  const { data } = await axios.post<{ token: string, refreshToken: string }>(
+    `${API_URL}/auth/verify-email`, { email, code }
+  )
 
   return data
 }
@@ -71,6 +69,16 @@ export const verifyToken = async (token: string): Promise<{ valid: boolean, user
   const { data } = await axios.post(`${API_URL}/auth/verifytoken`, {
     token
   })
+
+  return data
+}
+
+export const loginStudent = async (
+  { rut, password }: { rut: string, password: string }
+): Promise<{ token: string, refreshToken: string }> => {
+  const { data } = await axios.post<{ token: string, refreshToken: string }>(
+    `${API_URL}/auth/login-student`, { rut, password }
+  )
 
   return data
 }

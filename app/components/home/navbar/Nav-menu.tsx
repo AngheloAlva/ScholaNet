@@ -9,6 +9,7 @@ function NavMenu (): React.ReactElement {
       <MenuItem href='news-events' text='News & Events' className='w-auto' />
       <MenuItem href='auth/login' text='Sign In' className='w-auto' />
       <MenuItem href='auth/register' text='Sign Up' className='w-auto' />
+      <MenuItem href='auth/student' text='Student Access' className='w-auto hover:bg-accent-100' />
     </ul>
   )
 }
