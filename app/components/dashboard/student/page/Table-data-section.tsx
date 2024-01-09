@@ -37,18 +37,16 @@ function TableDataSection ({
 
   return (
     <>
-      <div className='flex flex-col gap-4'>
-        <TableCard
-          title='Schedules this Day'
-          tableHeader={['Classroom', 'Start Time', 'End Time', 'Course']}
-          tableBody={todaySchedulesBody}
-        />
-        <TableCard
-          title='Schedules'
-          tableHeader={['Classroom', 'Start Time', 'End Time', 'Course']}
-          tableBody={schedulesBody}
-        />
-      </div>
+      <TableCard
+        title='Schedules this Day'
+        tableHeader={['Classroom', 'Start Time', 'End Time', 'Course']}
+        tableBody={todaySchedulesBody}
+      />
+      <TableCard
+        title='Schedules'
+        tableHeader={['Classroom', 'Start Time', 'End Time', 'Course']}
+        tableBody={schedulesBody}
+      />
     </>
   )
 }

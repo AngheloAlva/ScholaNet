@@ -75,8 +75,8 @@ export const verifyToken = async (token: string): Promise<{ valid: boolean, user
 
 export const loginStudent = async (
   { rut, password }: { rut: string, password: string }
-): Promise<{ token: string, refreshToken: string }> => {
-  const { data } = await axios.post<{ token: string, refreshToken: string }>(
+): Promise<{ token: string, refreshToken: string, studentId: string }> => {
+  const { data } = await axios.post<{ token: string, refreshToken: string, studentId: string }>(
     `${API_URL}/auth/login-student`, { rut, password }
   )
 

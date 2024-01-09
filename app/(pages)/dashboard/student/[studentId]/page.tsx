@@ -1,24 +1,25 @@
 'use client'
 
-import { getUserIdFromToken } from '@/app/lib/getUserIdFromToken'
+import Link from 'next/link'
 
+import InfoCardSection from '@/app/components/dashboard/guardian/students/Info-card-section'
+import TableDataSection from '@/app/components/dashboard/student/page/Table-data-section'
+import useDashboardStudentData from '@/app/hooks/useDashboardStudentData'
 import StudentName from '@/app/components/ui/Student-name'
 import useStudentById from '@/app/hooks/useStudentById'
-import InfoCardSection from '@/app/components/dashboard/guardian/students/Info-card-section'
-import useDashboardStudentData from '@/app/hooks/useDashboardStudentData'
-import TableDataSection from '@/app/components/dashboard/student/navbar/page/Table-data-section'
+import { Button } from '@/app/components/ui/button'
 
-function AlumnsPage (): React.ReactElement {
-  const studentId = getUserIdFromToken()
-  const year = new Date().getFullYear().toString()
+function AlumnsPage (
+  { params }: { params: { studentId: string } }
+): React.ReactElement {
   const {
     student,
     isLoading,
     attendance,
     averageGrades,
     behaviorReports
-  } = useStudentById(studentId)
-  const { schedules } = useDashboardStudentData(studentId, year)
+  } = useStudentById(params.studentId)
+  const { schedules } = useDashboardStudentData(params.studentId)
 
   return (
     <div className='flex bg-bg-100 flex-col w-full min-h-screen'>
@@ -29,6 +30,10 @@ function AlumnsPage (): React.ReactElement {
           isLoading={isLoading}
           lastName={student?.lastName}
         />
+
+        <Link href={`/dashboard/student/${params.studentId}/intranet`} className='w-full flex justify-center'>
+          <Button className='w-full md:w-2/3 bg-accent-100 hover:opacity-80 hover:bg-accent-100'>Go to Intranet</Button>
+        </Link>
 
         <InfoCardSection
           isLoading={isLoading}

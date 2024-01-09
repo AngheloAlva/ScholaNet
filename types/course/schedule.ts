@@ -4,13 +4,14 @@ import type { Student } from '../student/student'
 export interface Schedule {
   _id: string
   name: string
+  asignedStudents: Student[]
   days: Array<{
     day: string
     blocks: Array<{
+      _id: string
       startTime: string
       endTime: string
       courseInstance: CourseInstance
-      assignedStudents: Student[]
     }>
   }>
 }
@@ -43,7 +44,6 @@ export interface SimpleSchedule {
     classroom: string
     schedule: string
   }
-  assignedStudents: []
   _id: string
 }
 

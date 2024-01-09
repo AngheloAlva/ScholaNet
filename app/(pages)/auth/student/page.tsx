@@ -26,7 +26,7 @@ function LoginUserPage (): React.ReactElement {
   const onSubmit = async (values: z.infer<typeof loginStudentSchema>): Promise<void> => {
     try {
       setIsLoading(true)
-      const { token, refreshToken } = await loginStudent({
+      const { token, refreshToken, studentId } = await loginStudent({
         rut: values.rut,
         password: values.password
       })
@@ -37,7 +37,7 @@ function LoginUserPage (): React.ReactElement {
         duration: 3000,
         description: 'You have successfully logged in.'
       })
-      router.push('/dashboard/student')
+      router.push(`/dashboard/student/${studentId}`)
     } catch (error) {
       setIsLoading(false)
       toast({
