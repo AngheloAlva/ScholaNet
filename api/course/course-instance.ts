@@ -73,15 +73,15 @@ export const getAverageGradeByStudent = async ({
   return data
 }
 
-interface CourseInstanceByStudentResponse {
+interface CourseInstanceByUserResponse {
   schedules: SimpleSchedule[]
   courseInstances: CourseInstance[]
 }
 
 export const getCoursesInstancesByTeacher = async ({
   teacherId, academicYear
-}: { teacherId: string, academicYear: string }): Promise<CourseInstanceByStudentResponse> => {
-  const { data } = await axios.get<CourseInstanceByStudentResponse>(
+}: { teacherId: string, academicYear: string }): Promise<CourseInstanceByUserResponse> => {
+  const { data } = await axios.get<CourseInstanceByUserResponse>(
     `${API_URL}/course-instance/teacher/${teacherId}?academicYear=${academicYear}`
   )
 

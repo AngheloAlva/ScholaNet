@@ -9,7 +9,7 @@ export interface Schedule {
     blocks: Array<{
       startTime: string
       endTime: string
-      courseInstance: string
+      courseInstance: CourseInstance
       assignedStudents: Student[]
     }>
   }>

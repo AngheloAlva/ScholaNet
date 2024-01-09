@@ -44,3 +44,8 @@ export const updateSchedule = async (id: string, {
 export const deleteSchedule = async (id: string): Promise<void> => {
   await axios.delete(`${API_URL}/schedule/${id}`)
 }
+
+export const getScheduleByStudent = async (studentId: string): Promise<Schedule> => {
+  const { data } = await axios.get<Schedule>(`${API_URL}/schedule/student/${studentId}`)
+  return data
+}

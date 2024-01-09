@@ -1,25 +1,27 @@
 import { FaCalendarDays, FaBookOpen, FaTriangleExclamation, FaPhone } from 'react-icons/fa6'
 import InfoCard from '@/app/components/dashboard/guardian/students/Info-card'
 import { Skeleton } from '@/app/components/ui/skeleton'
+import { usePathname } from 'next/navigation'
 
 interface InfoCardSectionProps {
   averageGrades: Record<string, number>
   attendance: number
   behaviorReports: number
   isLoading: boolean
-  studentId: string
 }
 
 function InfoCardSection ({
-  averageGrades, attendance, behaviorReports, isLoading, studentId
+  averageGrades, attendance, behaviorReports, isLoading
 }: InfoCardSectionProps): React.ReactElement {
+  const pathName = usePathname()
+
   return (
     <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-4'>
       <InfoCard
         icon={<FaCalendarDays className='w-4 h-4 text-gray-500' />}
         description='of 180 days'
         title='Attendance'
-        href={`/dashboard/guardian/student/${studentId}/attendance`}
+        href={`${pathName}/attendance`}
       >
         {isLoading
           ? <Skeleton className='w-16 h-8' />
@@ -30,7 +32,7 @@ function InfoCardSection ({
         icon={<FaBookOpen className='w-4 h-4 text-gray-500' />}
         description='of 180 days'
         title='Academic Performance'
-        href={`/dashboard/guardian/student/${studentId}/academic-performance`}
+        href={`${pathName}/academic-performance`}
       >
         {isLoading
           ? <Skeleton className='w-16 h-8' />
@@ -47,7 +49,7 @@ function InfoCardSection ({
         icon={<FaTriangleExclamation className='w-4 h-4 text-gray-500' />}
         description='Incidents this year'
         title='Behavior Reports'
-        href={`/dashboard/guardian/student/${studentId}/behavior-reports`}
+        href={`${pathName}/behavior-reports`}
       >
         {isLoading
           ? <Skeleton className='w-16 h-8' />
@@ -58,7 +60,7 @@ function InfoCardSection ({
         icon={<FaPhone className='w-4 h-4 text-gray-500' />}
         description='New announcements this week'
         title='School Announcements'
-        href={`/dashboard/guardian/student/${studentId}/announcements`}
+        href={`${pathName}/announcements`}
       >
         {
           isLoading
