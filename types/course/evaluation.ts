@@ -20,6 +20,7 @@ interface Submission {
   student: string
   startTime: string
   endTime: string
+  attempt: number
   answers: Array<{
     question: string
     answer: string[]
@@ -51,7 +52,12 @@ export interface UpdateEvaluation {
 
 export interface AddSubmission {
   id: string
-  submission: Submission
-  totalScore: number
-  feedback: string
+  submission: {
+    student: string
+    endTime: string
+    answers: Array<{
+      question: string
+      answer: string[]
+    }>
+  }
 }

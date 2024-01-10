@@ -6,7 +6,7 @@ import CourseCard from '@/app/components/dashboard/student/ui/Course-card'
 import BackButton from '@/app/components/ui/Back-button'
 import { Skeleton } from '@/app/components/ui/skeleton'
 
-function TeacherIntranetPage (
+function StudentIntranetPage (
   { params }: { params: { studentId: string } }
 ): React.ReactElement {
   const { schedules, isLoading } = useDashboardStudentData(params.studentId)
@@ -40,7 +40,7 @@ function TeacherIntranetPage (
                   description={courseInstance.course.description}
                   classroom={courseInstance.classroom}
                   image={courseInstance.course.image}
-                  href={`/dashboard/student/intranet/${courseInstance._id}`}
+                  href={`/dashboard/student/${params.studentId}/intranet/${courseInstance._id}`}
                 />
             ))
         }
@@ -49,4 +49,4 @@ function TeacherIntranetPage (
   )
 }
 
-export default TeacherIntranetPage
+export default StudentIntranetPage
