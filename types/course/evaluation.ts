@@ -1,4 +1,5 @@
 import type { CourseInstance } from './course-instance'
+import type { Question } from './question'
 
 export interface Evaluation {
   _id: string
@@ -7,14 +8,18 @@ export interface Evaluation {
   courseInstance: CourseInstance
   dueDate: string
   type: string
-  questions: string[]
+  questions: Question[]
   submissions: Submission[]
   totalScore: number
   feedback: string
+  duration: number
+  maxAttempts: number
 }
 
 interface Submission {
   student: string
+  startTime: string
+  endTime: string
   answers: Array<{
     question: string
     answer: string[]
@@ -29,6 +34,8 @@ export interface CreateEvaluation {
   courseInstance: string
   dueDate: string
   type: string
+  maxAttempts: number
+  duration: number
 }
 
 export interface UpdateEvaluation {
@@ -38,6 +45,8 @@ export interface UpdateEvaluation {
   dueDate?: string
   questions?: string[]
   totalScore?: number
+  duration?: number
+  maxAttempts?: number
 }
 
 export interface AddSubmission {

@@ -1,18 +1,17 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 
 import { createEvaluationSchema } from '@/app/lib/createEvaluationSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
-import { Form } from '@/app/components/ui/form'
 import SelectField from '@/app/components/forms/Select-form-field'
 import GenericFormField from '@/app/components/forms/Form-field'
 import SubmitButton from '@/app/components/forms/Submit-button'
 import { Label } from '@/app/components/ui/label'
+import { Form } from '@/app/components/ui/form'
+import DueDatePicker from './Due-date-picker'
 
 import type { z } from 'zod'
-import DueDatePicker from './Due-date-picker'
 
 interface CreateEvaluationFormProps {
   onSubmit: (values: z.infer<typeof createEvaluationSchema>) => Promise<void>
@@ -32,6 +31,8 @@ function CreateEvaluationForm (
       <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col gap-4 mt-2'>
         <GenericFormField control={form.control} name='title' label='Title' placeholder='title' />
         <GenericFormField control={form.control} name='description' label='Description' placeholder='description' />
+        <GenericFormField control={form.control} name='maxAttempts' label='Max attempts' placeholder='max attempts' type='number' />
+        <GenericFormField control={form.control} name='duration' label='Duration' placeholder='duration' type='number' />
 
         <div className='space-y-2'>
           <Label>Type</Label>

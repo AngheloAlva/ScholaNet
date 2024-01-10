@@ -16,6 +16,8 @@ interface DueDatePickerProps {
     description: string
     dueDate: Date
     type: string
+    maxAttempts: number
+    duration: number
   }>
 }
 
