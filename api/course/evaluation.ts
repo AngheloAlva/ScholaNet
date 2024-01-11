@@ -36,7 +36,7 @@ export const createEvaluation = async ({
 export const addSubmission = async ({
   id, submission
 }: AddSubmission): Promise<Evaluation> => {
-  const { data } = await axios.put<Evaluation>(`${API_URL}/evaluation/submission/${id}`, {
+  const { data } = await axios.post<Evaluation>(`${API_URL}/evaluation/submission/${id}`, {
     submission
   })
   return data
@@ -62,10 +62,12 @@ export const deleteEvaluation = async (id: string): Promise<string> => {
   return data.message
 }
 
-export const startEvaluation = async (id: string, studentId: string): Promise<Evaluation> => {
-  const { data } = await axios.post<Evaluation>(`${API_URL}/evaluation/${id}/start`, {
-    studentId
-  })
+export const startEvaluation = async (
+  id: string, studentId: string
+): Promise<{ canDo: boolean, message: string }> => {
+  const { data } = await axios.post<{ canDo: boolean, message: string }>(
+    `${API_URL}/evaluation/${id}/start`, { studentId }
+  )
 
   return data
 }

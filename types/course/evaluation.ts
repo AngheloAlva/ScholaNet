@@ -13,7 +13,6 @@ export interface Evaluation {
   totalScore: number
   feedback: string
   duration: number
-  maxAttempts: number
 }
 
 interface Submission {
@@ -35,7 +34,6 @@ export interface CreateEvaluation {
   courseInstance: string
   dueDate: string
   type: string
-  maxAttempts: number
   duration: number
 }
 

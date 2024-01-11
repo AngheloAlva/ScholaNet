@@ -1,12 +1,12 @@
 'use client'
 
 import { addSubmission } from '@/api/course/evaluation'
+import QuestionsSection from '@/app/components/dashboard/student/page/Questions-section'
 import { Button } from '@/app/components/ui/button'
-import { Input } from '@/app/components/ui/input'
-import { Label } from '@/app/components/ui/label'
 import { Skeleton } from '@/app/components/ui/skeleton'
-import { Textarea } from '@/app/components/ui/textarea'
+import { useToast } from '@/app/components/ui/use-toast'
 import useEvaluationById from '@/app/hooks/useEvaluationById'
+import useTimer from '@/app/hooks/useTimer'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
@@ -14,48 +14,40 @@ function DoEvaluationPage (
   { params }: { params: { studentId: string, courseId: string, evaluationId: string } }
 ): React.ReactElement {
   const { evaluation, isLoading, questions } = useEvaluationById(params.evaluationId)
-  const router = useRouter()
-  const [timeLeft, setTimeLeft] = useState<number>(0)
   const [answers, setAnswers] = useState<Array<{ question: string, answer: string[] }>>([])
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const { toast } = useToast()
+  const router = useRouter()
 
   useEffect(() => {
-    if (!isLoading && ((evaluation?.duration) != null)) {
-      setTimeLeft(evaluation.duration * 60)
-    }
-  }, [evaluation, isLoading])
+    toast({
+      title: 'Evaluation started. You have only one chance to submit it.',
+      description: 'Don\'t close this page until you finish the evaluation.'
+    })
+  }, [])
 
-  useEffect(() => {
-    if ((evaluation != null) && !isLoading) {
-      const startTime = new Date(evaluation.submissions[0].startTime)
-      const durationInMilliseconds = evaluation.duration * 60000
-      const currentTime = new Date()
-      const timeElapsed = currentTime.getTime() - startTime.getTime()
-      const remainingTime = durationInMilliseconds - timeElapsed
+  const getStartTime = (): Date => {
+    if (!isLoading && (evaluation != null) && evaluation.submissions.length > 0) {
+      const currentSubmission = evaluation.submissions.find((sub) =>
+        sub.student === params.studentId
+      )
 
-      if (remainingTime > 0) {
-        setTimeLeft(Math.floor(remainingTime / 1000))
-      } else {
-        void handleSubmit()
-      }
-    }
-  }, [evaluation, isLoading])
-
-  useEffect(() => {
-    if (timeLeft <= 0) {
-      void handleSubmit()
-      return
+      return (currentSubmission != null)
+        ? new Date(currentSubmission.startTime)
+        : new Date()
     }
 
-    const timer = setTimeout(() => {
-      setTimeLeft(timeLeft - 1)
-    }, 1000)
+    return new Date()
+  }
 
-    return () => { clearTimeout(timer) }
-  }, [timeLeft])
+  const duration = evaluation?.duration ?? 0
+  const timeLeft = useTimer(getStartTime, duration)
 
   const formatTime = (totalSeconds: number): string => {
     const minutes = Math.floor(totalSeconds / 60)
     const seconds = totalSeconds % 60
+
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
   }
 
@@ -64,14 +56,33 @@ function DoEvaluationPage (
       const updatedAnswers = prevAnswers.map(ans =>
         ans.question === questionId ? { ...ans, answer: [answer] } : ans
       )
+
       if (updatedAnswers.find(ans => ans.question === questionId) == null) {
         updatedAnswers.push({ question: questionId, answer: [answer] })
       }
+
       return updatedAnswers
     })
   }
 
   const handleSubmit = async (): Promise<void> => {
+    setIsSubmitting(true)
+
+    const unansweredQuestions = questions.filter(question => {
+      const answer = answers.find(ans => ans.question === question._id)
+
+      return answer == null
+    })
+
+    if (unansweredQuestions.length > 0) {
+      setIsSubmitting(false)
+      toast({
+        title: 'You have unanswered questions',
+        description: 'Please answer all the questions before submitting.'
+      })
+      return
+    }
+
     try {
       const endTime = new Date().toISOString()
 
@@ -83,9 +94,21 @@ function DoEvaluationPage (
           answers
         }
       })
+      toast({
+        title: 'Evaluation submitted',
+        description: 'Your evaluation has been submitted successfully.',
+        duration: 3000
+      })
       router.push(`/dashboard/student/${params.studentId}/intranet/${params.courseId}`)
     } catch (error) {
       console.log(error)
+      toast({
+        title: 'An error occurred',
+        description: (error as any)?.response?.data?.message ?? 'An error occurred. Please try again later.',
+        duration: 3000
+      })
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -102,82 +125,10 @@ function DoEvaluationPage (
               </p>
             </div>
 
-            <div className='flex flex-col gap-6'>
-              {
-                questions.map((question, index) => (
-                  <div key={question._id}>
-                    <h3>
-                      <strong>Question {index + 1}:</strong> {question.questionText}
-                    </h3>
-
-                    {question.questionType === 'multipleChoice' && (
-                        <div>
-                          {
-                            question.options.map((option, index) => (
-                              <div key={index} className='flex items-center gap-2'>
-                                <Input
-                                  type='radio'
-                                  className='w-auto'
-                                  name={question._id}
-                                  value={option}
-                                  id={`${question._id}-${option}`}
-                                  onChange={(e) => {
-                                    handleAnswerChange(question._id, e.target.value)
-                                  }}
-                                />
-                                <Label htmlFor={`${question._id}-${option}`}>{option}</Label>
-                              </div>
-                            ))
-                          }
-                        </div>
-                    )}
-
-                    {question.questionType === 'trueFalse' && (
-                        <div className='flex gap-6'>
-                          <div className='flex items-center gap-2'>
-                            <Input
-                              type='radio'
-                              name={question._id}
-                              id={`${question._id}-true`}
-                              className='w-auto'
-                              onChange={(e) => {
-                                handleAnswerChange(question._id, e.target.value)
-                              }}
-                            />
-                            <Label htmlFor={`${question._id}-true`}>True</Label>
-                          </div>
-
-                          <div className='flex items-center gap-2'>
-                            <Input
-                              type='radio'
-                              name={question._id}
-                              id={`${question._id}-false`}
-                              className='w-auto'
-                              onChange={(e) => {
-                                handleAnswerChange(question._id, e.target.value)
-                              }}
-                            />
-                            <Label htmlFor={`${question._id}-false`}>False</Label>
-                          </div>
-                        </div>
-                    )}
-
-                    {question.questionType === 'shortAnswer' && (
-                        <div>
-                          <Textarea
-                            name={question._id}
-                            id={question._id}
-                            placeholder='Short Answer'
-                            onChange={(e) => {
-                              handleAnswerChange(question._id, e.target.value)
-                            }}
-                          />
-                        </div>
-                    )}
-                  </div>
-                ))
-              }
-            </div>
+            <QuestionsSection
+              questions={questions}
+              handleAnswerChange={handleAnswerChange}
+            />
           </>
           )}
 
@@ -188,7 +139,11 @@ function DoEvaluationPage (
             void handleSubmit()
           }}
         >
-          Submit
+          {
+            isSubmitting
+              ? <div className='lds-ring'><div /><div /><div /><div /></div>
+              : 'Submit'
+          }
         </Button>
       </div>
     </div>

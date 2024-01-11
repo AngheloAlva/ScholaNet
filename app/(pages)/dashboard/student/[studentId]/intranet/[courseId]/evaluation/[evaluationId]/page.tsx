@@ -7,7 +7,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 import EvaluationPageSkeleton from '@/app/components/dashboard/student/ui/Evaluation-page-skeleton'
-import { Card, CardContent, CardHeader } from '@/app/components/ui/card'
+import { Card, CardContent, CardFooter, CardHeader } from '@/app/components/ui/card'
 import { useToast } from '@/app/components/ui/use-toast'
 import BackButton from '@/app/components/ui/Back-button'
 import { Button } from '@/app/components/ui/button'
@@ -26,13 +26,16 @@ function EvaluationPage (
 
   const handleStartEvaluation = async (): Promise<void> => {
     try {
-      await startEvaluation(params.evaluationId, params.studentId)
-      setIsEvaluationStarted(true)
-      router.push(`${pathName}/do-evaluation`)
+      const response = await startEvaluation(params.evaluationId, params.studentId)
+
+      if (response.canDo) {
+        setIsEvaluationStarted(true)
+        router.push(`${pathName}/do-evaluation`)
+      }
     } catch (error) {
       console.log(error)
       toast({
-        title: 'Error',
+        title: 'You cannot do this evaluation',
         description: (error as any)?.response?.data?.message ?? 'An error occurred. Please try again later.'
       })
     }
@@ -84,6 +87,9 @@ function EvaluationPage (
                 )
           }
         </CardContent>
+        <CardFooter className='text-sm text-muted-foreground'>
+          * You can only do this evaluation once. When you are redirect to the evaluation page, you will have a limited time to complete it. Dont close page or you will lose your progress.
+        </CardFooter>
       </Card>
     </div>
   )

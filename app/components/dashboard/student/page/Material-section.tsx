@@ -21,6 +21,7 @@ function MaterialsSection ({
             ? <p>No materials</p>
             : materials?.map((material) => (
               <MaterialItem
+                key={material._id}
                 material={material}
               />
             ))
